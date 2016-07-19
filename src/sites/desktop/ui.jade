@@ -10,8 +10,6 @@ block body
 				ul#misskey-post-form-tabs
 					li(data-ref='status', title=locale.sites.desktop.common.post_form.status_tab)
 						i.fa.fa-comment-o
-					li(data-ref='poll', title=locale.sites.desktop.common.post_form.poll_tab)
-						i.fa.fa-pie-chart
 				div#misskey-post-form-tab-pages
 					form#misskey-post-form-status-tab-page(data-name='status')
 						textarea(name='text', placeholder=locale.sites.desktop.common.post_form.whats_up, aria-multiline='true', tabindex='1')
@@ -26,8 +24,6 @@ block body
 						button.submit(type='submit', tabindex='2')
 							span.text Update
 							i.fa.fa-paper-plane
-					form#misskey-post-form-poll-tab-page(data-name='poll')
-						p coming soon
 
 	div#misskey-global
 		if !noui
@@ -39,24 +35,14 @@ block body
 							li: a.ui-waves-effect(href= config.aboutUrl)
 								i.fa.fa-info-circle
 								| About Misskey
-							li: a.ui-waves-effect(href= config.helpUrl)
-								i.fa.fa-question-circle
-								| Help
 						ul
 							li: a.ui-waves-effect(href= config.url + '/madoka')
 								i.fa.fa-check-circle
 								| @madoka
 						ul
-							li: a.ui-waves-effect(href= config.aboutUrl + '/donate')
-								i.fa.fa-heart
-								| Donate
-						ul
 							li: a.ui-waves-effect(href='https://github.com/MissKernel/Misskey')
 								i.fa.fa-github
 								| Github repository
-							li: a.ui-waves-effect(href= config.developerCenterUrl)
-								i.fa.fa-terminal
-								| Developers Center
 
 				if login && me.isSuspended
 					- var text = locale.sites.desktop.common.account_suspended
@@ -84,9 +70,6 @@ block body
 											li.talks(class= pagePath == '/i/talks' ? 'active' : ''): a(href= config.talkUrl)
 												i.fa.fa-comments
 												p= locale.sites.desktop.common.header.talks
-											li.forum: a(href= config.forumUrl)
-												i.fa.fa-users
-												p= locale.sites.desktop.common.header.forum
 						div.right
 							form.search(action= config.searchUrl, method='get', role='search')
 								input(type='search', name='q', placeholder!='&#xf002; ' + locale.sites.desktop.common.header.search_placeholder)
@@ -108,10 +91,6 @@ block body
 											li: a.ui-waves-effect(href= config.url + '/i/album')
 												i.fa.fa-cloud
 												=locale.sites.desktop.common.header.album
-												i.fa.fa-angle-right
-											li: a.ui-waves-effect(href= config.url + '/' + me.screenName + '/likes')
-												i.fa.fa-star
-												| Likes
 												i.fa.fa-angle-right
 										ul
 											li: a.ui-waves-effect(href= config.url + '/i/settings')

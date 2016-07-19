@@ -13,15 +13,9 @@ block content
 				li(data-ref='web')
 					i.fa.fa-desktop
 					=locale.sites.desktop.pages._i._settings.web
-				li(data-ref='application')
-					i.fa.fa-puzzle-piece
-					| Applications
 				li(data-ref='credit')
 					i.fa.fa-credit-card
 					| Credit
-				li(data-ref='email')
-					i.fa.fa-envelope-o
-					| E-Mail
 				li(data-ref='logout')
 					i.fa.fa-power-off
 					| Sign out
@@ -32,9 +26,6 @@ block content
 						i.fa.fa-camera-retro
 						=locale.sites.desktop.pages._i._settings.user_avatar
 					img.avatar(src=me.avatarUrl, alt='avatar')
-					button.select-from-local.ui-waves-effect(type='button')
-						i.fa.fa-upload
-						=locale.sites.desktop.pages._i._settings.select_image_from_pc
 					button.select-from-album.ui-waves-effect(type='button')
 						i.fa.fa-folder-open
 						=locale.sites.desktop.pages._i._settings.select_image_from_album
@@ -107,25 +98,6 @@ block content
 						input(type='checkbox', name='enable-sushi', checked= userSettings.enableSushi)
 						p=locale.sites.desktop.pages._i._settings.enable_sushi
 
-			div.application(data-name='application')
-				if apps != null && apps.length > 0
-					ol.apps
-						each app in apps
-							li.app(data-app-id= app.id)
-								div.icon-area
-									a.icon-anchor
-										img.icon(src= app.iconUrl, alt='icon')
-								div.main
-									a.name-anchor
-										p.name= app.name
-									p.description= app.description
-									button.remove(role='button')
-										i.fa.fa-trash
-										| アンインストール
-				else
-					p#no-apps
-						| No application installed
-
 			div.credit(data-name='credit')
 				div.main
 					p.title
@@ -135,9 +107,6 @@ block content
 					p.credit
 						i.fa.fa-leaf
 						= me.credit.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
-
-			div.email(data-name='email')
-				p coming soon....
 
 			div.logout(data-name='logout')
 				a(href=config.signoutUrl) ログアウト
