@@ -184,6 +184,10 @@
 						"page_title": "設定",
 						"profile": "プロフィール",
 						"web": "Web",
+						"applications": "アプリケーション",
+						"credit": "クレジット",
+						"email": "Eメール",
+						"logout": "サインアウト",
 						"general": "全般",
 						"home": "ホーム",
 						"advanced": "高度な設定",
@@ -205,7 +209,8 @@
 						"customize_home": "ホームをカスタマイズ",
 						"enable_notification_sound_when_receiving_new_post": "新しい投稿がされたときに通知音を鳴らす",
 						"read_timeline_automatically": "自動的にタイムラインを「もっと読み込む」",
-						"enable_sushi": "寿司を有効にする(環境依存)"
+						"remaining": "あなたの保有",
+						"hima_gold": "ひまゴールド"
 					},
 					"_talk": {
 						"_group": {

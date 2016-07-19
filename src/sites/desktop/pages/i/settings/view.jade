@@ -15,10 +15,10 @@ block content
 					=locale.sites.desktop.pages._i._settings.web
 				li(data-ref='credit')
 					i.fa.fa-credit-card
-					| Credit
+					=locale.sites.desktop.pages._i._settings.credit
 				li(data-ref='logout')
 					i.fa.fa-power-off
-					| Sign out
+					=locale.sites.desktop.pages._i._settings.logout
 		div.contents
 			div.profile(data-name='profile')
 				label.avatar
@@ -101,12 +101,13 @@ block content
 			div.credit(data-name='credit')
 				div.main
 					p.title
-						| あなたの保有
-						b ひまゴールド
+						| =locale.sites.desktop.pages._i._settings.remaining
+						b =locale.sites.desktop.pages._i._settings.hima_gold
 						| :
 					p.credit
 						i.fa.fa-leaf
 						= me.credit.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
 
 			div.logout(data-name='logout')
-				a(href=config.signoutUrl) ログアウト
+				a(href=config.signoutUrl)
+				=locale.sites.desktop.pages._i._settings.logout

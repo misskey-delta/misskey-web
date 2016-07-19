@@ -184,6 +184,10 @@
 						"page_title": "Settings",
 						"profile": "Profile",
 						"web": "Web",
+						"applications": "Applications", 
+						"credit": "Credit",
+						"email": "E-Mail",
+						"logout": "Sign out",
 						"general": "General",
 						"home": "Home",
 						"advanced": "Advanced",
@@ -205,7 +209,9 @@
 						"customize_home": "Customize your home",
 						"enable_notification_sound_when_receiving_new_post": "Enable the notification sound when receive a new post",
 						"read_timeline_automatically": "Read the timeline more automatically",
-						"enable_sushi": "Enable Sushi (Environment-dependent)"
+						"enable_sushi": "Enable Sushi (Environment-dependent)",
+						"remaining": "Remaining ",
+						"hima_gold": "Hima Gold"
 					},
 					"_talk": {
 						"_group": {
