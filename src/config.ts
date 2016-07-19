@@ -1,5 +1,5 @@
 export const homeDirPath = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
-export const configDirName = '.misskey';
+export const configDirName = 'link/.misskey';
 export const configFileName = 'web.json';
 export const configDirectoryPath = `${homeDirPath}/${configDirName}`;
 export const configPath = `${configDirectoryPath}/${configFileName}`;
