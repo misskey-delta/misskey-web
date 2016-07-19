@@ -210,7 +210,7 @@
 						"enable_notification_sound_when_receiving_new_post": "Enable the notification sound when receive a new post",
 						"read_timeline_automatically": "Read the timeline more automatically",
 						"enable_sushi": "Enable Sushi (Environment-dependent)",
-						"remaining": "Remaining ",
+						"remaining": "Balance ",
 						"hima_gold": "Hima Gold"
 					},
 					"_talk": {
