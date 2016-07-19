@@ -182,6 +182,10 @@
 						"page_title": "ほむ",
 						"profile": "ほむ",
 						"web": "ほむ",
+						"applications": "ほむ", 
+						"credit": "ほむ",
+						"email": "ほむ",
+						"logout": "ほむ",
 						"general": "ほむ",
 						"home": "ほむ",
 						"advanced": "ほむ",
@@ -203,7 +207,9 @@
 						"customize_home": "ほむ",
 						"enable_notification_sound_when_receiving_new_post": "ほむ",
 						"read_timeline_automatically": "ほむ",
-						"enable_sushi": "ほむ"
+						"enable_sushi": "ほむ",
+						"remaining": "ほむ",
+						"hima_gold": "ほむ"
 					},
 					"_talk": {
 						"_group": {
