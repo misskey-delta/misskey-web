@@ -19,7 +19,6 @@
   "dependencies": {
     "cropper": "2.3.2",
     "fastclick": "1.0.6",
-    "fuck-adblock": "3.2.0",
     "jquery": "2.2.0",
     "jquery.transit": "0.9.12",
     "marked": "0.3.5",
