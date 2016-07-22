@@ -78,8 +78,7 @@ block content
 								i.fa.fa-comment
 								= locale.sites.desktop.pages._user.posts
 							p.count= comma(user.postsCount)
-						li: a(href= config.url + '/' + user.screenName + '/likes')
-							p.caption
+						li: p.caption
 								i.fa.fa-thumbs-o-up
 								= locale.sites.desktop.pages._user.likes
 							p.count= comma(user.likesCount)
