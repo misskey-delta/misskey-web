@@ -78,7 +78,8 @@ block content
 								i.fa.fa-comment
 								= locale.sites.desktop.pages._user.posts
 							p.count= comma(user.postsCount)
-						li: p.caption
+						li: a
+							p.caption
 								i.fa.fa-thumbs-o-up
 								= locale.sites.desktop.pages._user.likes
 							p.count= comma(user.likesCount)
