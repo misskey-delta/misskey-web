@@ -225,7 +225,24 @@
 					}
 				},
 				"_user": {
+					"edit_header": "ほむ",
+					"verified": "ほむ",
+					"follows_you": "ほむ",
+					"you": "ほむ",
+					"posts": "ほむ",
+					"likes": "ほむ",
+					"liked": "ほむ",
+					"following": "ほむ",
+					"followers": "ほむ",
+					"follow": "ほむ",
+					"unfollow": "ほむ",
 					"_home": {
+						"empty_tags": "ほむ",
+						"timeline": "ほむ",
+						"all": "ほむ",
+						"popular": "ほむ",
+						"read_more": "ほむ",
+						"empty": "ほむ"
 					}
 				}
 			}
