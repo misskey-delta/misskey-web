@@ -26,7 +26,7 @@ block contents
 							= tag
 			else
 				p.empty-tags
-					| タグは設定されていません。
+					= locale.sites.desktop.pages._user._home.empty_tags
 			
 			p.created-at
 				i.fa.fa-calendar
@@ -60,7 +60,7 @@ block contents
 					each post in timeline
 						+post(post)
 				button.read-more
-					| もっと読み込む
+					= locale.sites.desktop.pages._user._home.read_more
 			else
 				p.empty
-					| このユーザーはまだ何も投稿していないようです。
+					= locale.sites.desktop.pages._user._home.empty

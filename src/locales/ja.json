@@ -227,18 +227,24 @@
 					}
 				},
 				"_user": {
+					"edit_header": "ヘッダー画像を編集",
+					"verified": "認証済み",
+					"follows_you": "フォローされています",
+					"you": "あなたです",
 					"posts": "投稿",
 					"likes": "Likeした",
 					"liked": "Likeされた",
-					"posts": "投稿",
 					"following": "フォロー",
 					"followers": "フォロワー",
 					"follow": "フォロー",
 					"unfollow": "フォロー解除",
 					"_home": {
+						"empty_tags": "タグは設定されていません。",
 						"timeline": "タイムライン",
 						"all": "すべて",
-						"popular": "人気"
+						"popular": "人気",
+						"read_more": "もっと読む",
+						"empty": "このユーザーはまだ何も投稿していないようです。"
 					}
 				}
 			}
