@@ -26,7 +26,7 @@ block contents
 							= tag
 			else
 				p.empty-tags
-					| タグは設定されていません。
+					= locale.sites.desktop.pages._user._home.empty_tags
 			
 			p.created-at
 				i.fa.fa-calendar
@@ -44,23 +44,13 @@ block contents
 									a(href= config.url + '/' + user.screenName + '/' + post.id)
 
 	div#main-content
-		ul.nav
-			li.active: a(href= config.url + '/' + user.screenName + '/')
-				i.fa.fa-comment
-				= locale.sites.desktop.pages._user._home.timeline
-			li: a(href= config.url + '/' + user.screenName + '/')
-				i.fa.fa-comments-o
-				= locale.sites.desktop.pages._user._home.all
-			li: a(href= config.url + '/' + user.screenName + '/')
-				i.fa.fa-fire
-				= locale.sites.desktop.pages._user._home.popular
 		div#timeline
 			if timeline.length > 0
 				div.posts
 					each post in timeline
 						+post(post)
 				button.read-more
-					| もっと読み込む
+					= locale.sites.desktop.pages._user._home.read_more
 			else
 				p.empty
-					| このユーザーはまだ何も投稿していないようです。
+					= locale.sites.desktop.pages._user._home.empty

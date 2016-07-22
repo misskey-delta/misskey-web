@@ -36,7 +36,7 @@ block content
 		header
 			div#header-data(style={'background-image': "url(#{user.bannerUrl})"})
 				if login && me.id == user.id
-					button#banner-edit(title='ヘッダー画像を編集')
+					button#banner-edit(title= locale.sites.desktop.pages._user.edit_header)
 						i.fa.fa-picture-o
 				div.bottom
 					div.body
@@ -44,18 +44,18 @@ block content
 							h1#name-container
 								p#name(itemprop='name')= user.name
 								if user.isVerified
-									img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
+									img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title= locale.sites.desktop.pages._user.verified)
 							p#screen-name(itemprop='alternateName')= '@' + user.screenName
 							if login
 								if me.id != user.id
 									if user.isFollowed
 										p#friend-status
 											i.fa.fa-heart
-											| フォローされています
+											= locale.sites.desktop.pages._user.follows_you
 								else
 									p#friend-status
-										i.fa.fa-smile-o
-										| You
+										i.fa.fa-circle-o
+										= locale.sites.desktop.pages._user.you
 						table.count-table
 							tr
 								th= locale.sites.desktop.pages._user.liked
@@ -78,8 +78,7 @@ block content
 								i.fa.fa-comment
 								= locale.sites.desktop.pages._user.posts
 							p.count= comma(user.postsCount)
-						li: a(href= config.url + '/' + user.screenName + '/likes')
-							p.caption
+						li: p.caption
 								i.fa.fa-thumbs-o-up
 								= locale.sites.desktop.pages._user.likes
 							p.count= comma(user.likesCount)
