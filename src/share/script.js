@@ -50,7 +50,7 @@ window.addEventListener('load', function() {
 	style.appendChild(document.createTextNode(buttonStyle));
 	document.getElementsByTagName('head')[0].appendChild(style);
 
-	var shareFormUrl = 'https://share.misskey.xyz/?title=' + document.title + '&url=' + location.href;
+	var shareFormUrl = 'https://share.misskey.link/?title=' + document.title + '&url=' + location.href;
 
 	[].forEach.call(document.getElementsByClassName('misskey-share'), function(button) {
 		var a = document.createElement('a');
@@ -68,7 +68,7 @@ window.addEventListener('load', function() {
 		var count = document.createElement('a');
 		count.textContent = '-';
 		count.setAttribute('class', 'count');
-		count.setAttribute('href', 'https://search.misskey.xyz/?q=' + location.href);
+		count.setAttribute('href', 'https://search.misskey.link/?q=' + location.href);
 		count.setAttribute('target', '_blank');
 		button.appendChild(count);
 
@@ -76,20 +76,8 @@ window.addEventListener('load', function() {
 
 		if (XMLHttpRequest) {
 			ajax = new XMLHttpRequest();
-		} else {
-			ajax = new ActiveXObject('MSXML2.XMLHTTP.6.0');
-			if (!ajax) {
-				ajax = new ActiveXObject('MSXML2.XMLHTTP.3.0');
-				if (!ajax) {
-					ajax = new ActiveXObject('MSXML2.XMLHTTP');
-					if (!ajax) {
-						return;
-					}
-				}
-			}
 		}
-
-		ajax.open('POST','https://api.misskey.xyz/share/count?url=' + location.href, true);
+		ajax.open('POST','https://api.misskey.link/share/count?url=' + location.href, true);
 		ajax.onreadystatechange = function Receive() {
 			if (ajax.readyState == 4 && ajax.status == 200) {
 				count.textContent = ajax.responseText;
