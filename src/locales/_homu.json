@@ -118,6 +118,11 @@
 				"_about": {
 				},
 				"_home": {
+					"timeline": {
+						"read_more": "ほむ",
+						"empty_timeline": "ほむ",
+						"about_timeline": "ほむ"
+					},
 					"my_status_widget": {
 						"name": "ほむ",
 						"posts": "ほむ",

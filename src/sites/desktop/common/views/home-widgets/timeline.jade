@@ -10,9 +10,9 @@ div.misskey-home-widget#widget-timeline(
 					+post(post)
 		if posts.length > 0
 			button.read-more
-				| もっと読み込む
+				=locale.sites.desktop.pages._home.timeline.read_more
 		if posts.length == 0
 			p.empty
-				| タイムラインに表示するコンテンツがありません。
+				=locale.sites.desktop.pages._home.timeline.empty_timeline
 				br
-				| フォローしている人の投稿と、自分の投稿がここに表示されます。
+				=locale.sites.desktop.pages._home.timeline.about_timeline

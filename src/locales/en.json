@@ -120,6 +120,11 @@
 				"_about": {
 				},
 				"_home": {
+					"timeline": {
+						"read_more": "Read more",
+						"empty_timeline": "Your timeline is currently empty.",
+						"about_timeline": "Timeline will show following people's and your Posts."
+					},
 					"my_status_widget": {
 						"name": "Status",
 						"posts": "Posts",

@@ -120,6 +120,11 @@
 				"_about": {
 				},
 				"_home": {
+					"timeline": {
+						"read_more": "もっと読む",
+						"empty_timeline": "タイムラインに表示するコンテンツがありません。",
+						"about_timeline": "フォローしている人の投稿と、自分の投稿がここに表示されます。"
+					},
 					"my_status_widget": {
 						"name": "ステータス",
 						"posts": "投稿",
