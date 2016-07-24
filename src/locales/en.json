@@ -123,7 +123,7 @@
 					"timeline": {
 						"read_more": "Read more",
 						"empty_timeline": "Your timeline is currently empty.",
-						"about_timeline": "Timeline will show following people's and your Posts."
+						"about_timeline": "Timeline will show posts by following people and you."
 					},
 					"my_status_widget": {
 						"name": "Status",
