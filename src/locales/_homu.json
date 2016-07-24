@@ -4,18 +4,18 @@
 		"sign_out": "ほむ",
 		"verified": "ほむ",
 		"times": {
-			"just_now": "たったほむ",
-			"seconds_ago": "{n}ほむ前",
-			"minutes_ago": "{n}ほむほむ前",
-			"hours_ago": "{n}ほむほむほむ前",
-			"days_ago": "{n}ほむほむほむほむ前",
-			"weeks_ago": "{n}ほむほむほむほむほむ前",
-			"months_ago": "{n}ほむほむほむほむほむほむ前",
-			"years_ago": "{n}ほむほむほむほむほむほむほむ前"
+			"just_now": "ほむ",
+			"seconds_ago": "{n}ほむ",
+			"minutes_ago": "{n}ほむほむ",
+			"hours_ago": "{n}ほむほむほむ",
+			"days_ago": "{n}ほむほむほむほむ",
+			"weeks_ago": "{n}ほむほむほむほむほむ",
+			"months_ago": "{n}ほむほむほむほむほむほむ",
+			"years_ago": "{n}ほむほむほむほむほむほむほむ"
 		},
 		"languages": {
-			"japanese": "ほむ語",
-			"english": "ほむ語"
+			"japanese": "ほむ",
+			"english": "ほむ"
 		},
 		"about": {
 			"articles": {
@@ -42,7 +42,7 @@
 				"talk_window_title": "ほむ",
 				"account_suspended": "ほむ",
 				"header": {
-					"home": "ほむホーム",
+					"home": "ほむ",
 					"mentions": "ほむ",
 					"talks": "ほむ",
 					"album": "ほむ",
