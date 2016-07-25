@@ -40,6 +40,8 @@
 				"connected_stream": "Connected",
 				"reconnecting_stream": "Disconnected from stream. Reconnecting...",
 				"talk_window_title": "Talk",
+				"about_misskey": "About Misskey",
+				"github_repository": "GitHub Repository",
 				"account_suspended": "<strong>Your account has been suspended.</strong> If you need our supports, see <link>here</link>.",
 				"header": {
 					"home": "Home",

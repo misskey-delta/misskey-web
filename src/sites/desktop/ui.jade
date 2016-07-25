@@ -34,15 +34,15 @@ block body
 						ul
 							li: a.ui-waves-effect(href= config.aboutUrl)
 								i.fa.fa-info-circle
-								| About Misskey
+								= locale.sites.desktop.common.about_misskey
 						ul
 							li: a.ui-waves-effect(href= config.url + '/madoka')
 								i.fa.fa-check-circle
 								| @madoka
 						ul
-							li: a.ui-waves-effect(href='https://github.com/MissKernel/Misskey')
+							li: a.ui-waves-effect(href='https://github.com/sagume/Misskey')
 								i.fa.fa-github
-								| Github repository
+								= locale.sites.desktop.common.github_repository
 
 				if login && me.isSuspended
 					- var text = locale.sites.desktop.common.account_suspended
