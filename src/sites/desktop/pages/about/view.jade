@@ -1,17 +1,17 @@
 extends ../../ui
 
 block title
-	| About
+	=locale.sites.desktop.pages._about.title
 
 block content
 	main(role='main')
 		ul
 			li: a(href='/technologies')
-				| テクノロジー
+				=locale.sites.desktop.pages._about.technologies
 				i.angle.fa.fa-angle-right
 			li: a(href='/system')
-				| システム情報
+				=locale.sites.desktop.pages._about.system_info
 				i.angle.fa.fa-angle-right
 			li: a(href='/license')
-				| ライセンス
+				=locale.sites.desktop.pages._about.licence
 				i.angle.fa.fa-angle-right

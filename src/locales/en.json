@@ -120,6 +120,10 @@
 			},
 			"pages": {
 				"_about": {
+					"title": "About Misskey",
+					"technologies": "Technologies",
+					"system_info": "System info",
+					"licence": "Licence"
 				},
 				"_home": {
 					"timeline": {
