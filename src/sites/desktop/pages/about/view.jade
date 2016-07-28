@@ -4,14 +4,15 @@ block title
 	=locale.sites.desktop.pages._about.title
 
 block content
-	main(role='main')
-		ul
-			li: a(href='/technologies')
-				=locale.sites.desktop.pages._about.technologies
-				i.angle.fa.fa-angle-right
-			li: a(href='/system')
-				=locale.sites.desktop.pages._about.system_info
-				i.angle.fa.fa-angle-right
-			li: a(href='/license')
-				=locale.sites.desktop.pages._about.licence
-				i.angle.fa.fa-angle-right
+	div#main-container
+		main(role='main')
+			ul
+				li: a(href='/technologies')
+					=locale.sites.desktop.pages._about.technologies
+					i.angle.fa.fa-angle-right
+				li: a(href='/system')
+					=locale.sites.desktop.pages._about.system_info
+					i.angle.fa.fa-angle-right
+				li: a(href='/license')
+					=locale.sites.desktop.pages._about.licence
+					i.angle.fa.fa-angle-right
