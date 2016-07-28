@@ -23,7 +23,8 @@
 					"title": "ライセンス"
 				},
 				"technologies": {
-					"title": "テクノロジー"
+					"title": "テクノロジー",
+					"description": "直接的に利用しているメジャーなテクノロジー"
 				}
 			}
 		}

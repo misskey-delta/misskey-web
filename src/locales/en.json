@@ -23,7 +23,8 @@
 					"title": "License"
 				},
 				"technologies": {
-					"title": "Technologies"
+					"title": "Technologies",
+					"description": "Some major technologies used by Misskey"
 				}
 			}
 		}
