@@ -120,10 +120,6 @@
 			},
 			"pages": {
 				"_about": {
-					"title": "Misskeyについて",
-					"technologies": "テクノロジー",
-					"system_info": "システム情報",
-					"licence": "ライセンス"
 				},
 				"_home": {
 					"timeline": {

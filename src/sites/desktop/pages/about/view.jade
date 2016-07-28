@@ -1,20 +1,17 @@
-extends ./_article-base/view
+extends ../../ui
 
 block title
-	=locale.sites.desktop.pages._about.title
+	| About
 
-block article
+block content
 	main(role='main')
 		ul
 			li: a(href='/technologies')
-				i.fa.fa-list
-				=locale.sites.desktop.pages._about.technologies
+				| テクノロジー
 				i.angle.fa.fa-angle-right
 			li: a(href='/system')
-				i.fa.fa-info-circle
-				=locale.sites.desktop.pages._about.system_info
+				| システム情報
 				i.angle.fa.fa-angle-right
 			li: a(href='/license')
-				i.fa.fa-file-text-o
-				=locale.sites.desktop.pages._about.licence
+				| ライセンス
 				i.angle.fa.fa-angle-right
