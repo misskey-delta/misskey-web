@@ -12,7 +12,7 @@
 * GraphicsMagick (for trimming, compress, etc etc)
 
 ## How to build
-1. `git clone git://github.com/MissKernel/Misskey-Web.git`
+1. `git clone git://github.com/sagume/Misskey-Web.git`
 2. `cd Misskey-Web`
 3. `npm install`
 4. `npm run dtsm`
