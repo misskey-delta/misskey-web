@@ -115,6 +115,11 @@ app.get('/manifest.json', (req, res) => {
 	res.sendFile(path.resolve(`${__dirname}/manifest.json`));
 });
 
+// Return publicconfig
+app.get('/publicconfig.json', (req,res) => {
+	res.send(config.publicConfig);
+});
+
 shield(app);
 router(app);
 
