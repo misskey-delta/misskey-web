@@ -102,7 +102,7 @@ app.use(require('subdomain')(subdomainOptions));
 // HSTS
 if (config.https.enable) {
 	app.use((req, res, next) => {
-		res.header('Strict-Transport-Security', 'max-age=10886400; includeSubDomains; preload');
+		res.header('Strict-Transport-Security', 'max-age=15768000; includeSubDomains; preload');
 		next();
 	});
 }
