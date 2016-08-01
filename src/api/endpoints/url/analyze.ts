@@ -3,6 +3,9 @@ import * as URL from 'url';
 import * as request from 'request';
 const jade: any = require('jade');
 
+// ニコニコ動画専用
+const xml2json = require('xml2json');
+
 const client: any = require('cheerio-httpcli');
 client.headers['User-Agent'] = 'MisskeyBot';
 client.referer = false;
@@ -49,6 +52,11 @@ export default function analyze(req: express.Request, res: express.Response): vo
 			break;
 		case 'gist.github.com':
 			analyzeGithubGist(req, res, url);
+			break;
+		case 'nico.ms':
+		case 'www.nicovideo.jp':
+		case 'nicovideo.jp':
+			analyzeNicovideo(req, res, url);
 			break;
 		default:
 			analyzeGeneral(req, res, url);
@@ -237,6 +245,52 @@ function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url)
 	res.send(image);
 }
 
+function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.Url): void {
+	'use strict';
+
+	// ID取得
+	function getVideoId(): string {
+		'use strict';
+
+		switch (url.hostname) {
+			case 'nicovideo.jp':
+				return url.pathname.substring(7);
+			case 'nico.ms':
+				return url.pathname.substring(1);
+			default:
+				return null;
+		}
+
+	}
+
+	const videoId = getVideoId();
+
+	// XML取得
+	const getThumbInfoUrl = 'http://ext.nicovideo.jp/api/getthumbinfo/' + videoId;
+	request(getThumbInfoUrl, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			const thumbInfo = JSON.parse(xml2json.toJson(body));
+			const title = thumbInfo.nicovideo_thumb_response.title;
+			const description = thumbInfo.nicovideo_thumb_response.description;
+			const image = thumbInfo.nicovideo_thumb_response.thumbnail_url;
+
+			const compiler: (locals: any) => string = jade.compileFile(
+				`${__dirname}/summary.jade`);
+
+			const viewer = compiler({
+				url: url,
+				title: title,
+				icon: "http://www.nicovideo.jp/favicon.ico",
+				description: description,
+				image: image,
+				siteName: "ニコニコ動画"
+			});
+
+			res.send(viewer);
+		}
+	});
+
+}
 /**
  * @param req MisskeyExpressRequest
  * @param res MisskeyExpressResponse
