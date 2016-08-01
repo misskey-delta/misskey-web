@@ -67,6 +67,7 @@ app.use(vhost(config.publicConfig.webApiHost, api(session)));
 app.use(vhost(config.publicConfig.resourcesHost, resources()));
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cookieParser(config.cookiePass));
 app.use(compression());
 
