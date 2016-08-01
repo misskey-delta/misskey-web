@@ -3,6 +3,9 @@ import * as URL from 'url';
 import * as request from 'request';
 const jade: any = require('jade');
 
+// ニコニコ動画専用
+const xml2json = require('xml2json');
+
 const client: any = require('cheerio-httpcli');
 client.headers['User-Agent'] = 'MisskeyBot';
 client.referer = false;
@@ -49,6 +52,11 @@ export default function analyze(req: express.Request, res: express.Response): vo
 			break;
 		case 'gist.github.com':
 			analyzeGithubGist(req, res, url);
+			break;
+		case 'nico.ms':
+		case 'www.nicovideo.jp':
+		case 'nicovideo.jp':
+			analyzeNicovideo(req, res, url);
 			break;
 		default:
 			analyzeGeneral(req, res, url);
@@ -237,6 +245,104 @@ function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url)
 	res.send(image);
 }
 
+function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.Url): void {
+	'use strict';
+
+	// ID取得
+	function getVideoId(): string {
+		'use strict';
+
+		switch (url.hostname) {
+			case 'nicovideo.jp':
+				return url.pathname.substring(7);
+			case 'nico.ms':
+				return url.pathname.substring(1);
+			default:
+				return null;
+		}
+
+	}
+
+	const videoId = getVideoId();
+
+	// XML取得
+	const getThumbInfoUrl = 'http://ext.nicovideo.jp/api/getthumbinfo/' + videoId;
+	request(getThumbInfoUrl, (error, response, body) => {
+		if (!error && response.statusCode === 200) {
+
+			// 変数宣言
+			let title = '未知の動画情報';
+			let description = '動画情報を取得できませんでした';
+			let image = wrapMisskeyProxy('http://deliver.commons.nicovideo.jp/thumbnail/nc3132');
+
+			// JSONへ変換
+			const thumbInfo = JSON.parse(xml2json.toJson(body));
+
+			// 動画が存在するか
+			if (thumbInfo.nicovideo_thumb_response.status === 'ok') {
+
+				// 情報代入
+				const tags = thumbInfo.nicovideo_thumb_response.thumb.tags.tag;
+				let category = "";
+				if (typeof tags !== 'undefined') {
+					const categoryArr = tags.find((tag) => { return tag.category === '1'; });
+					if (categoryArr !== 'undefined') {
+						categoryStr = categoryArr.$t;
+						category = `[${categoryStr}] `;
+					}
+				}
+				const userNickname = thumbInfo.nicovideo_thumb_response.thumb.user_nickname;
+				const length = thumbInfo.nicovideo_thumb_response.thumb.length;
+				const titleStr = thumbInfo.nicovideo_thumb_response.thumb.title;
+				title = `${titleStr} by ${userNickname} (${length})`;
+				const descriptionStr = thumbInfo.nicovideo_thumb_response.thumb.description;
+				description = category + descriptionStr;
+				image = thumbInfo.nicovideo_thumb_response.thumb.thumbnail_url;
+
+				// 整形
+				title = title !== null ? clip(entities.decode(title), 100) : null;
+				description = description !== null ? clip(entities.decode(description), 300) : null;
+
+			} else if (thumbInfo.nicovideo_thumb_response.status === 'fail') {
+
+				// 存在しない理由を判別
+				switch (thumbInfo.nicovideo_thumb_response.error.code) {
+					case 'DELETED':
+						title = '非公開か削除済の動画';
+						break;
+					case 'NOT_FOUND':
+						title = '存在しない動画';
+						break;
+					default:
+						title = '未知の動画情報';
+						break;
+				}
+
+				description = 'APIエラーコード: ' +  thumbInfo.nicovideo_thumb_response.error.code;
+				image = wrapMisskeyProxy('http://deliver.commons.nicovideo.jp/thumbnail/nc3132');
+
+			}
+
+			const icon = wrapMisskeyProxy('http://www.nicovideo.jp/favicon.ico');
+			const siteName = 'ニコニコ動画';
+
+			const compiler: (locals: any) => string = jade.compileFile(
+				`${__dirname}/summary.jade`);
+
+			const viewer = compiler({
+				url: url,
+				title: title,
+				icon: icon,
+				description: description,
+				image: image,
+				siteName: siteName
+			});
+
+			res.send(viewer);
+		}
+	});
+
+}
 /**
  * @param req MisskeyExpressRequest
  * @param res MisskeyExpressResponse
