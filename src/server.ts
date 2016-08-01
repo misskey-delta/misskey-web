@@ -116,7 +116,7 @@ app.get('/manifest.json', (req, res) => {
 });
 
 // Return publicconfig
-app.get('/publicconfig.json', (req,res) => {
+app.get('/publicconfig.json', (req, res) => {
 	res.send(config.publicConfig);
 });
 
