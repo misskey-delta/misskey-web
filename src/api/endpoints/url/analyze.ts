@@ -285,9 +285,9 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				// 情報代入
 				const tags = thumbInfo.nicovideo_thumb_response.thumb.tags.tag;
 				let category = "";
-				if (typeof tags !== 'undefined') {
+				if (typeof tags !== "undefined") {
 					const categoryArr = tags.find((tags: any) => { return tags.category === '1'; });
-					if (categoryArr !== 'undefined') {
+					if (typeof categoryArr !== "undefined") {
 						const categoryStr = categoryArr.$t;
 						category = `[${categoryStr}] `;
 					}
