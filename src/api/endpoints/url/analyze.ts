@@ -253,6 +253,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 		'use strict';
 
 		switch (url.hostname) {
+			case 'www.nicovideo.jp':
 			case 'nicovideo.jp':
 				return url.pathname.substring(7);
 			case 'nico.ms':
@@ -285,9 +286,9 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				const tags = thumbInfo.nicovideo_thumb_response.thumb.tags.tag;
 				let category = "";
 				if (typeof tags !== 'undefined') {
-					const categoryArr = tags.find((tag) => { return tag.category === '1'; });
+					const categoryArr = tags.find((tags: any) => { return tags.category === '1'; });
 					if (categoryArr !== 'undefined') {
-						categoryStr = categoryArr.$t;
+						const categoryStr = categoryArr.$t;
 						category = `[${categoryStr}] `;
 					}
 				}
