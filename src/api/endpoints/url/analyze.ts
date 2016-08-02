@@ -296,7 +296,8 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				const length = thumbInfo.nicovideo_thumb_response.thumb.length;
 				const titleStr = thumbInfo.nicovideo_thumb_response.thumb.title;
 				title = `${titleStr} by ${userNickname} (${length})`;
-				const descriptionStr = thumbInfo.nicovideo_thumb_response.thumb.description;
+				const descriptionAny = thumbInfo.nicovideo_thumb_response.thumb.description;
+				const descriptionStr = typeof descriptionAny === "string" ? descriptionAny : "";
 				description = category + descriptionStr;
 				image = thumbInfo.nicovideo_thumb_response.thumb.thumbnail_url;
 
