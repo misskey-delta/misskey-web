@@ -56,6 +56,7 @@ export default function analyze(req: express.Request, res: express.Response): vo
 		case 'nico.ms':
 		case 'www.nicovideo.jp':
 		case 'nicovideo.jp':
+		case 'sp.nicovideo.jp':
 			analyzeNicovideo(req, res, url);
 			break;
 		default:
@@ -253,6 +254,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 		'use strict';
 
 		switch (url.hostname) {
+			case 'sp.nicovideo.jp':
 			case 'www.nicovideo.jp':
 			case 'nicovideo.jp':
 				return url.pathname.substring(7);
