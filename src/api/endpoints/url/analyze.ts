@@ -57,7 +57,7 @@ export default function analyze(req: express.Request, res: express.Response): vo
 		case 'www.nicovideo.jp':
 		case 'nicovideo.jp':
 		case 'sp.nicovideo.jp':
-			analyzeNicovideo(req, res, url);
+			allocateNicovideoURL(req, res, url);
 			break;
 		default:
 			analyzeGeneral(req, res, url);
@@ -246,7 +246,7 @@ function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url)
 	res.send(image);
 }
 
-function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.Url): void {
+function allocateNicovideoURL(req: express.Request, res: express.Response, url: URL.Url): void {
 	'use strict';
 
 	// ID取得
@@ -257,9 +257,9 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 			case 'sp.nicovideo.jp':
 			case 'www.nicovideo.jp':
 			case 'nicovideo.jp':
-				return url.pathname.substring(7);
+				return url.pathname.substr(0, 7) === "/watch/" ? url.pathname.substring(7) : null;
 			case 'nico.ms':
-				return url.pathname.substring(1);
+				return url.pathname.match(/^(\/sm|\/so|\/nm|\/)([0-9]+)$/) ? url.pathname.substring(1) : null;
 			default:
 				return null;
 		}
@@ -267,6 +267,17 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 	}
 
 	const videoId = getVideoId();
+
+	// 動画判定
+	if (videoId !== null) {
+		analyzeNicovideo(req, res, url, videoId);
+	} else {
+		analyzeGeneral(req, res, url);
+	}
+}
+
+function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.Url, videoId: string): void {
+	'use strict';
 
 	// XML取得
 	const getThumbInfoUrl = 'http://ext.nicovideo.jp/api/getthumbinfo/' + videoId;
