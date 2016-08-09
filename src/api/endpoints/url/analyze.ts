@@ -312,7 +312,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				const descriptionAny = thumbInfo.nicovideo_thumb_response.thumb.description;
 				const descriptionStr = typeof descriptionAny === "string" ? descriptionAny : "";
 				description = category + descriptionStr;
-				image = thumbInfo.nicovideo_thumb_response.thumb.thumbnail_url;
+				image = wrapMisskeyProxy(thumbInfo.nicovideo_thumb_response.thumb.thumbnail_url);
 
 				// 整形
 				title = title !== null ? clip(entities.decode(title), 100) : null;
