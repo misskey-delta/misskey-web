@@ -12,7 +12,7 @@ export default function router(app: express.Express): void {
 	'use strict';
 
 	app.get(`/subdomain/${config.publicConfig.shieldDomain}/*`, (req, res) => {
-		const url = req.path.replace(`/subdomain/${config.publicConfig.shieldDomain}/`, '');
+		const url = req.url.replace(`/subdomain/${config.publicConfig.shieldDomain}/`, '');
 		client.fetch(url).then((result: any) => {
 			if (result.error !== undefined && result.error !== null) {
 				return res.sendStatus(204);
