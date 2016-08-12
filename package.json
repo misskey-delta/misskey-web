@@ -4,7 +4,7 @@
   "description": "Misskey Web",
   "main": "./built/index.js",
   "repository": {
-    "url": "https://github.com/MissKernel/Misskey-Web.git"
+    "url": "https://github.com/sagume/Misskey-Web.git"
   },
   "scripts": {
     "start-production": "NODE_ENV=production node ./built/index.js",
