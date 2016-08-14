@@ -59,6 +59,8 @@ export default function analyze(req: express.Request, res: express.Response): vo
 		case 'sp.nicovideo.jp':
 			allocateNicovideoURL(req, res, url);
 			break;
+		case 'yabumi.cc':
+			analyzeYabumi(req, res, url);
 		default:
 			analyzeGeneral(req, res, url);
 			break;
@@ -234,6 +236,23 @@ function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url)
 
 	const imageId: string = url.pathname.substring(1);
 	const src: string = `https://i.gyazo.com/${imageId}.png`;
+
+	const compiler: (locals: any) => string = jade.compileFile(
+		`${__dirname}/gyazo.jade`);
+
+	const image: string = compiler({
+		src,
+		href: url.href
+	});
+
+	res.send(image);
+}
+
+function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url): void {
+	'use strict';
+
+	const imageId: string = url.pathname.substring(1);
+	const src: string = `https://yabumi.cc/api/images/${imageId}`;
 
 	const compiler: (locals: any) => string = jade.compileFile(
 		`${__dirname}/gyazo.jade`);
