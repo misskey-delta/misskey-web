@@ -249,7 +249,7 @@ function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url)
 	res.send(image);
 }
 
-function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url): void {
+function analyzeYabumi(req: express.Request, res: express.Response, url: URL.Url): void {
 	'use strict';
 
 	const imageId: string = url.pathname.substring(1);
