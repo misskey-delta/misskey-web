@@ -61,6 +61,7 @@ export default function analyze(req: express.Request, res: express.Response): vo
 			break;
 		case 'yabumi.cc':
 			analyzeYabumi(req, res, url);
+			break;
 		default:
 			analyzeGeneral(req, res, url);
 			break;
