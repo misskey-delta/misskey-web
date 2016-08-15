@@ -279,10 +279,10 @@ function analyzeImgur(req: express.Request, res: express.Response, url: URL.Url)
 		if (result.error !== undefined && result.error !== null) {
 			return res.sendStatus(204);
 		}
-		
+
 		const compiler: (locals: any) => string = jade.compileFile(
 			`${__dirname}/image.jade`);
-		
+
 		const contentType: string = result.response.headers['content-type'];
 		// 画像が帰ってきたらそのまま表示
 		if (contentType.indexOf('image/') !== -1) {
@@ -290,7 +290,7 @@ function analyzeImgur(req: express.Request, res: express.Response, url: URL.Url)
 				src: wrapMisskeyProxy(url),
 				href: url
 			});
-			
+
 			return image;
 		}
 		// HTMLじゃなかった場合は中止
@@ -299,7 +299,7 @@ function analyzeImgur(req: express.Request, res: express.Response, url: URL.Url)
 		}
 
 		const $: any = result.$;
-		
+
 		let src = or(
 			$('meta[property="misskey:image"]').attr('content'),
 			$('meta[property="og:image"]').attr('content'),
@@ -307,7 +307,7 @@ function analyzeImgur(req: express.Request, res: express.Response, url: URL.Url)
 			$('link[rel="image_src"]').attr('href'),
 			$('link[rel="apple-touch-icon"]').attr('href'),
 			$('link[rel="apple-touch-icon image_src"]').attr('href'));
-		if(src == null) {
+		if (src == null) {
 			res.sendStatus(204);
 			return;
 		}
@@ -315,7 +315,7 @@ function analyzeImgur(req: express.Request, res: express.Response, url: URL.Url)
 			src: wrapMisskeyProxy(src),
 			href: url
 		});
-		res.send(viewer);
+		res.send(image);
 	}, (err: any) => {
 		res.sendStatus(204);
 	});
