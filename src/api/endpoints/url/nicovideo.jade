@@ -13,6 +13,8 @@ a.nicovideo(title= url.href, href= url.href, target='_blank')
 				p.length 動画時間
 			if userNickname
 				p.userNickname 投稿者
+			if description
+				p.description 説明文
 		div.right
 			if viewCount
 				p.viewCount= viewCount
@@ -22,8 +24,8 @@ a.nicovideo(title= url.href, href= url.href, target='_blank')
 				p.length= length
 			if userNickname
 				p.userNickname= userNickname
-		if description
-			p.description= description
+			if description
+				p.description= description
 		footer
 			p.hostname
 				if url.protocol == 'https:'
