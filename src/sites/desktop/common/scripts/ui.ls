@@ -478,7 +478,7 @@ class StatusPostForm
 						THIS.upload-file file
 					| \string =>
 						text = data.get-data \text/plain
-						if /^https?:\/\//.test text
+						if (/^https?:\/\//.test text) && !(/\%/.test text)
 							event.prevent-default!
 							text = encodeURI text
 							PASTE.value = (PASTE.value.slice(0, PASTE.selection-start) + text + PASTE.value.slice(PASTE.selection-start + Math.abs(PASTE.selection-end - PASTE.selection-start)))
