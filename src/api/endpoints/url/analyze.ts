@@ -239,7 +239,7 @@ function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url)
 	const src: string = `https://i.gyazo.com/${imageId}.png`;
 
 	const compiler: (locals: any) => string = jade.compileFile(
-		`${__dirname}/gyazo.jade`);
+		`${__dirname}/image.jade`);
 
 	const image: string = compiler({
 		src,
@@ -256,7 +256,7 @@ function analyzeYabumi(req: express.Request, res: express.Response, url: URL.Url
 	const src: string = `https://yabumi.cc/api/images/${imageId}`;
 
 	const compiler: (locals: any) => string = jade.compileFile(
-		`${__dirname}/gyazo.jade`);
+		`${__dirname}/image.jade`);
 
 	const image: string = compiler({
 		src,
