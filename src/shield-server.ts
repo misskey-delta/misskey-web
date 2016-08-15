@@ -4,7 +4,7 @@ const client: any = require('cheerio-httpcli');
 client.headers['User-Agent'] = 'MisskeyBot';
 client.referer = false;
 client.timeout = 10000;
-client.maxDataSize = 1024 * 1024; // 1MiB
+client.maxDataSize = 2 * 1024 * 1024; // 2MiB
 
 import config from './config';
 
