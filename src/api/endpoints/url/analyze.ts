@@ -359,6 +359,10 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 	request(getThumbInfoUrl, (error, response, body) => {
 		if (!error && response.statusCode === 200) {
 
+			// 固定値
+			const icon = wrapMisskeyProxy('http://www.nicovideo.jp/favicon.ico');
+			const siteName = 'ニコニコ動画';
+
 			// 変数宣言
 			let title = '未知の動画情報';
 			let description = '動画情報を取得できませんでした';
@@ -372,14 +376,15 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 
 				// カテゴリタグ
 				const tags = thumbInfo.nicovideo_thumb_response.thumb.tags.tag;
-				let category = "";
 				if (typeof tags !== "undefined") {
 					const categoryArr = tags.find((tags: any) => { return tags.category === '1'; });
 					if (typeof categoryArr !== "undefined") {
-						const categoryStr = categoryArr.$t;
-						category = `[${categoryStr}] `;
+						const category = categoryArr.$t;
 					}
 				}
+
+				// 再生回数
+				const viewCount = thumbInfo.nicovideo_thumb_response.thumb.view_counter;
 
 				// ユーザー名
 				const userNickname = thumbInfo.nicovideo_thumb_response.thumb.user_nickname;
@@ -388,24 +393,20 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				const length = thumbInfo.nicovideo_thumb_response.thumb.length;
 
 				// タイトル
-				const titleStr = thumbInfo.nicovideo_thumb_response.thumb.title;
-				title = `${titleStr} by ${userNickname} (${length})`;
+				title = thumbInfo.nicovideo_thumb_response.thumb.title;
+				title = title !== null ? clip(entities.decode(title), 100) : null;
 
 				// 説明文
 				const descriptionAny = thumbInfo.nicovideo_thumb_response.thumb.description;
-				const descriptionStr = typeof descriptionAny === "string" ? descriptionAny : "";
-				description = category + descriptionStr;
+				description = typeof descriptionAny === "string" ? descriptionAny : "";
+				description = description !== null ? clip(entities.decode(description), 300) : null;
 
 				// 画像
 				image = wrapMisskeyProxy(thumbInfo.nicovideo_thumb_response.thumb.thumbnail_url);
 
-				// 整形
-				title = title !== null ? clip(entities.decode(title), 100) : null;
-				description = description !== null ? clip(entities.decode(description), 300) : null;
-
 			} else if (thumbInfo.nicovideo_thumb_response.status === 'fail') {
 
-				// 存在しない理由を判別
+				// エラー内容
 				switch (thumbInfo.nicovideo_thumb_response.error.code) {
 					case 'DELETED':
 						title = '非公開か削除済の動画';
@@ -414,34 +415,36 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 						title = '存在しない動画';
 						break;
 					default:
-						title = '未知の動画情報';
 						break;
 				}
 
+				// エラーコード
 				description = 'APIエラーコード: ' +  thumbInfo.nicovideo_thumb_response.error.code;
-				image = wrapMisskeyProxy('http://deliver.commons.nicovideo.jp/thumbnail/nc3132');
 
 			}
 
-			const icon = wrapMisskeyProxy('http://www.nicovideo.jp/favicon.ico');
-			const siteName = 'ニコニコ動画';
-
+			// jade読み込み
 			const compiler: (locals: any) => string = jade.compileFile(
-				`${__dirname}/summary.jade`);
+				`${__dirname}/nicovideo.jade`);
 
+			// コンパイル
 			const viewer = compiler({
 				url: url,
 				title: title,
 				icon: icon,
+				viewCount: viewCount,
 				description: description,
+				category: category,
+				length: length,
+				userNickname: userNickname,
 				image: image,
 				siteName: siteName
 			});
 
+			// 送信
 			res.send(viewer);
 		}
 	});
-
 }
 /**
  * @param req MisskeyExpressRequest

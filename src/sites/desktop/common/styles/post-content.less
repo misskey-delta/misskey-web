@@ -274,3 +274,134 @@
 		}
 	}
 }
+
+> .nicovideo {
+	display: block;
+	position: relative;
+	padding: 12px;
+	margin: 8px 0 0 0;
+	overflow: hidden;
+	word-wrap: break-word;
+	border: solid 1px #EFE4DF;
+	border-radius: 4px;
+	text-decoration: none;
+	font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+
+	&:hover {
+		border: solid 1px #cFc4bF;
+
+		> aside > .title {
+			text-decoration: underline;
+		}
+	}
+
+	&:active {
+		border: solid 1px #aFa49F;
+
+		> aside > .title {
+			text-decoration: underline;
+		}
+	}
+
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+
+	> aside {
+		display: block;
+		position: relative;
+
+		> .block {
+			display: block;
+			height: 58px;
+
+			> .thumbnail {
+				display: block;
+				float: left;
+				width: 58px;
+				height: 58px;
+				margin-right: 12px;
+				background-size: cover;
+			}
+
+			> .title {
+				display: block;
+				margin: 0;
+				font-size: 1em;
+				color: #A07A6D;
+				text-overflow: ellipsis;
+				text-align:center;
+			}
+		}
+
+		> .description {
+			margin: 4px;
+			font-size: 0.9em;
+			color: #AF7C65;
+		}
+
+		> .viewCount {
+			margin: 4px;
+			font-size: 0.9em;
+			color: #AF7C65;
+		}
+
+		> .category {
+			margin: 4px;
+			font-size: 0.9em;
+			color: #AF7C65;
+		}
+
+		> .length {
+			margin: 4px;
+			font-size: 0.9em;
+			color: #AF7C65;
+		}
+
+		> .userNickname {
+			margin: 4px;
+			font-size: 0.9em;
+			color: #AF7C65;
+		}
+
+
+		> footer {
+			display: block;
+			font-size: 0.8em;
+			line-height: 16px;
+			color: #DECAC1;
+
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+			> .hostname {
+				float: left;
+				margin: 0;
+				font-style: oblique;
+
+				> .secure {
+					margin-right: 0.25em;
+					color: #86D400;
+				}
+			}
+
+			> .site-name {
+				float: right;
+				margin: 0;
+				font-style: oblique;
+			}
+
+			> .icon {
+				float: right;
+				margin-left: 6px;
+				width: 16px;
+				height: 16px;
+			}
+		}
+	}
+}
