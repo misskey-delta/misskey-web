@@ -66,6 +66,7 @@ export default function analyze(req: express.Request, res: express.Response): vo
 		case 'm.imgur.com':
 		case 'i.imgur.com':
 			analyzeImgur(req, res, url);
+			break;
 		default:
 			analyzeGeneral(req, res, url);
 			break;
