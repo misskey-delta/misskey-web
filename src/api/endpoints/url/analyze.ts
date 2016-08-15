@@ -280,7 +280,7 @@ function analyzeImgur(req: express.Request, res: express.Response, url: URL.Url)
 		}
 		
 		const compiler: (locals: any) => string = jade.compileFile(
-			`${__dirname}/gyazo.jade`);
+			`${__dirname}/image.jade`);
 		
 		const contentType: string = result.response.headers['content-type'];
 		// 画像が帰ってきたらそのまま表示
