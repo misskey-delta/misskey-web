@@ -307,7 +307,7 @@ function analyzeImgur(req: express.Request, res: express.Response, url: URL.Url)
 			$('link[rel="image_src"]').attr('href'),
 			$('link[rel="apple-touch-icon"]').attr('href'),
 			$('link[rel="apple-touch-icon image_src"]').attr('href'));
-		if (src == null) {
+		if (src === null) {
 			res.sendStatus(204);
 			return;
 		}
