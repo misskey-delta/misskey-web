@@ -370,7 +370,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 			// 動画が存在するか
 			if (thumbInfo.nicovideo_thumb_response.status === 'ok') {
 
-				// 情報代入
+				// カテゴリタグ
 				const tags = thumbInfo.nicovideo_thumb_response.thumb.tags.tag;
 				let category = "";
 				if (typeof tags !== "undefined") {
@@ -380,13 +380,23 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 						category = `[${categoryStr}] `;
 					}
 				}
+
+				// ユーザー名
 				const userNickname = thumbInfo.nicovideo_thumb_response.thumb.user_nickname;
+
+				// 動画時間
 				const length = thumbInfo.nicovideo_thumb_response.thumb.length;
+
+				// タイトル
 				const titleStr = thumbInfo.nicovideo_thumb_response.thumb.title;
 				title = `${titleStr} by ${userNickname} (${length})`;
+
+				// 説明文
 				const descriptionAny = thumbInfo.nicovideo_thumb_response.thumb.description;
 				const descriptionStr = typeof descriptionAny === "string" ? descriptionAny : "";
 				description = category + descriptionStr;
+
+				// 画像
 				image = wrapMisskeyProxy(thumbInfo.nicovideo_thumb_response.thumb.thumbnail_url);
 
 				// 整形
