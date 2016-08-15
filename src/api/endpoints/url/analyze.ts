@@ -367,6 +367,10 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 			let title = '未知の動画情報';
 			let description = '動画情報を取得できませんでした';
 			let image = wrapMisskeyProxy('http://deliver.commons.nicovideo.jp/thumbnail/nc3132');
+			let category = null;
+			let viewCount = null;
+			let userNickname = null;
+			let length = null;
 
 			// JSONへ変換
 			const thumbInfo = JSON.parse(xml2json.toJson(body));
@@ -379,26 +383,26 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				if (typeof tags !== "undefined") {
 					const categoryArr = tags.find((tags: any) => { return tags.category === '1'; });
 					if (typeof categoryArr !== "undefined") {
-						const category = categoryArr.$t;
+						category = categoryArr.$t;
 					}
 				}
 
 				// 再生回数
-				const viewCount = thumbInfo.nicovideo_thumb_response.thumb.view_counter;
+				viewCount = thumbInfo.nicovideo_thumb_response.thumb.view_counter;
 
 				// ユーザー名
-				const userNickname = thumbInfo.nicovideo_thumb_response.thumb.user_nickname;
+				userNickname = thumbInfo.nicovideo_thumb_response.thumb.user_nickname;
 
 				// 動画時間
-				const length = thumbInfo.nicovideo_thumb_response.thumb.length;
+				length = thumbInfo.nicovideo_thumb_response.thumb.length;
 
 				// タイトル
 				title = thumbInfo.nicovideo_thumb_response.thumb.title;
 				title = title !== null ? clip(entities.decode(title), 100) : null;
 
 				// 説明文
-				const descriptionAny = thumbInfo.nicovideo_thumb_response.thumb.description;
-				description = typeof descriptionAny === "string" ? descriptionAny : "";
+				description = thumbInfo.nicovideo_thumb_response.thumb.description;
+				description = typeof description === "string" ? description : null;
 				description = description !== null ? clip(entities.decode(description), 300) : null;
 
 				// 画像
