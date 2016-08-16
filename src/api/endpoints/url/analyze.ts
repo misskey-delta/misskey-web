@@ -366,10 +366,12 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 			let title = '未知の動画情報';
 			let description = '動画情報を取得できませんでした';
 			let image = wrapMisskeyProxy('http://deliver.commons.nicovideo.jp/thumbnail/nc3132');
-			let category = '';
-			let viewCount = '';
-			let userNickname = '';
-			let length = '';
+			let category = String(null);
+			let viewCount = String(null);
+			let userNickname = String(null);
+			let length = String(null);
+			let myListCounter = String(null);
+			let commentNum = String(null);
 
 			// JSONへ変換
 			const thumbInfo = JSON.parse(xml2json.toJson(body));
@@ -394,6 +396,12 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 
 				// 動画時間
 				length = thumbInfo.nicovideo_thumb_response.thumb.length;
+
+				// マイリスト数
+				myListCounter = thumbInfo.nicovideo_thumb_response.thumb.mylist_counter;
+
+				// コメント数
+				commentNum = thumbInfo.nicovideo_thumb_response.thumb.comment_num;
 
 				// タイトル
 				title = thumbInfo.nicovideo_thumb_response.thumb.title;
@@ -439,6 +447,8 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				description: description,
 				category: category,
 				length: length,
+				myListCounter: myListCounter,
+				commentNum: commentNum,
 				userNickname: userNickname,
 				image: image,
 				siteName: siteName

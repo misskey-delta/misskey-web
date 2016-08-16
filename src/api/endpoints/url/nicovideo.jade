@@ -10,6 +10,14 @@ a.nicovideo(title= url.href, href= url.href, target='_blank')
 			div.content.viewCount
 				p.name 再生数
 				p.description= viewCount
+		if commentNum
+			div.content.commentNum
+				p.name コメント
+				p.description= commentNum
+		if myListCounter
+			div.content.myListCounter
+				p.name マイリス
+				p.description= myListCounter
 		if category
 			div.content.category
 				p.name カテゴリ
