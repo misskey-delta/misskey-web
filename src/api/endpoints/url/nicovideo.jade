@@ -4,26 +4,24 @@ a.nicovideo(title= url.href, href= url.href, target='_blank')
 			if image
 				div.thumbnail(style={'background-image': 'url(#{image})'})
 			h1.title= title
-		div.left
-			if viewCount
-				p.viewCount 再生数
-			if category
-				p.category カテゴリ
-			if length
-				p.length 動画時間
-			if userNickname
-				p.userNickname 投稿者
-		div.right
-			if viewCount
-				p.viewCount= viewCount
-			if category
-				p.category= category
-			if length
-				p.length= length
-			if userNickname
-				p.userNickname= userNickname
 		if description
 			p.description= description
+		if viewCount
+			div.content.viewCount
+				p.name 再生数
+				p.description= viewCount
+		if category
+			div.content.category
+				p.name カテゴリ
+				p.description= category
+		if length
+			div.content.length
+				p.name 動画時間
+				p.description= length
+		if userNickname
+			div.content.userNickname
+				p.name 投稿者
+				p.description=userNickname 
 		footer
 			p.hostname
 				if url.protocol == 'https:'
