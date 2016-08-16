@@ -309,3 +309,127 @@
 		}
 	}
 }
+
+> .nicovideo {
+	display: block;
+	position: relative;
+	padding: 12px;
+	margin: 16px 0 0 0;
+	overflow: hidden;
+	word-wrap: break-word;
+	border: solid 1px #EFE4DF;
+	border-radius: 4px;
+	text-decoration: none;
+
+	&:hover {
+		border: solid 1px #cFc4bF;
+
+		> aside > .title {
+			text-decoration: underline;
+		}
+	}
+
+	&:active {
+		border: solid 1px #aFa49F;
+
+		> aside > .title {
+			text-decoration: underline;
+		}
+	}
+
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+
+	> aside {
+		display: block;
+		position: relative;
+
+		> .block {
+			display: block;
+			overflow: hidden;
+			margin: 4px;
+
+			> .thumbnail {
+				float: left;
+				width: 100px;
+				height: 55px;
+				margin: 0 12px 0 0;
+				background-size: cover;
+				background-position: center center;
+			}
+
+			> .title {
+				margin: 0;
+				font-size: 1em;
+				color: #A07A6D;
+			}
+
+			> .description {
+				margin: 0;
+				font-size: 0.9em;
+				color: #AF7C65;
+			}
+		}
+
+		> .content {
+			display: block;
+			font-size: 0.9em;
+			margin: 4px;
+			overflow: hidden;
+
+			> .name {
+				float: left;
+				margin: 0;
+				width: 70px;
+				color: #DECAC1;
+				line-height: 1.2;
+			}
+
+			> .description {
+				margin: 0 0 0 70px;
+				color: #AF7C65;
+				line-height: 1.2;
+			}
+		}
+
+		> footer {
+			display: block;
+			font-size: 0.8em;
+			line-height: 16px;
+			color: #DECAC1;
+
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+			> .hostname {
+				float: left;
+				margin: 0;
+				font-style: oblique;
+
+				> .secure {
+					margin-right: 0.25em;
+					color: #86D400;
+				}
+			}
+
+			> .site-name {
+				float: right;
+				margin: 0;
+				font-style: oblique;
+			}
+
+			> .icon {
+				float: right;
+				margin-left: 6px;
+				width: 16px;
+				height: 16px;
+			}
+		}
+	}
+}
