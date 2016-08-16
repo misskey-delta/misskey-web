@@ -84,7 +84,8 @@
     "socket.io": "1.4.5",
     "subdomain": "1.2.0",
     "vhost": "3.0.2",
-    "xml2json": "0.9.1"
+    "xml2json": "0.9.1",
+    "numeral": "1.5.3"
   },
   "private": true
 }

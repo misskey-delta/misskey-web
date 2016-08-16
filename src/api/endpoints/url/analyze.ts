@@ -3,8 +3,9 @@ import * as URL from 'url';
 import * as request from 'request';
 const jade: any = require('jade');
 
-// ニコニコ動画専用
+// only for analyzeNicovideo
 const xml2json = require('xml2json');
+const numeral = require('numeral');
 
 const client: any = require('cheerio-httpcli');
 client.headers['User-Agent'] = 'MisskeyBot';
@@ -389,7 +390,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				}
 
 				// 再生回数
-				viewCount = thumbInfo.nicovideo_thumb_response.thumb.view_counter;
+				viewCount = numeral(thumbInfo.nicovideo_thumb_response.thumb.view_counter).format('0,0');
 
 				// ユーザー名
 				userNickname = thumbInfo.nicovideo_thumb_response.thumb.user_nickname;
@@ -398,10 +399,10 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				length = thumbInfo.nicovideo_thumb_response.thumb.length;
 
 				// マイリスト数
-				myListCounter = thumbInfo.nicovideo_thumb_response.thumb.mylist_counter;
+				myListCounter = numeral(thumbInfo.nicovideo_thumb_response.thumb.mylist_counter).format('0,0');
 
 				// コメント数
-				commentNum = thumbInfo.nicovideo_thumb_response.thumb.comment_num;
+				commentNum = numeral(thumbInfo.nicovideo_thumb_response.thumb.comment_num).format('0,0');
 
 				// タイトル
 				title = thumbInfo.nicovideo_thumb_response.thumb.title;
