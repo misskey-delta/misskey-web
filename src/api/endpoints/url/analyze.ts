@@ -434,7 +434,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 		// 成功
 		} else if (resVideoApi['@status'] === 'ok' && resThumbApi.status === 'ok') {
 			// 情報代入
-			state= resVideoApi.video.deleted === '1'
+			state = resVideoApi.video.deleted === '1'
 				? '削除済み'
 				: null;
 			description = resVideoApi.video.description !== null
