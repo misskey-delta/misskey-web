@@ -335,31 +335,38 @@
 				color: #A07A6D;
 			}
 
+		}
+
+		> .contents {
+			display: block;
+			max-height: 256px;
+			overflow: auto;
+
 			> .description {
 				margin: 0;
 				font-size: 0.9em;
 				color: #AF7C65;
 			}
-		}
 
-		> .content {
-			display: block;
-			font-size: 0.9em;
-			margin: 4px;
-			overflow: hidden;
+			> .content {
+				display: block;
+				font-size: 0.9em;
+				margin: 4px;
+				overflow: hidden;
 
-			> .name {
-				float: left;
-				margin: 0;
-				width: 70px;
-				color: #DECAC1;
-				line-height: 1.2;
-			}
+				> .name {
+					float: left;
+					margin: 0;
+					width: 70px;
+					color: #DECAC1;
+					line-height: 1.2;
+				}
 
-			> .description {
-				margin: 0 0 0 70px;
-				color: #AF7C65;
-				line-height: 1.2;
+				> .description {
+					margin: 0 0 0 70px;
+					color: #AF7C65;
+					line-height: 1.2;
+				}
 			}
 		}
 
