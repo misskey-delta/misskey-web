@@ -5,8 +5,6 @@ a.nicovideo(title= url.href, href= url.href, target='_blank')
 				div.thumbnail(style={'background-image': 'url(#{image})'})
 			h1.title= title
 		div.contents
-			if description
-				p.description!= description.replace(/(\n)+/g, '<br />')
 			if viewCount
 				div.content.viewCount
 					p.name 再生数
@@ -39,6 +37,8 @@ a.nicovideo(title= url.href, href= url.href, target='_blank')
 				div.content.status
 					p.name ステータス
 					p.description= state
+			if description
+				p.description!= description.replace(/(\n)+/g, '<br />')
 		footer
 			p.hostname
 				if url.protocol == 'https:'
