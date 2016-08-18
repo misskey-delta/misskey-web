@@ -4,40 +4,41 @@ a.nicovideo(title= url.href, href= url.href, target='_blank')
 			if image
 				div.thumbnail(style={'background-image': 'url(#{image})'})
 			h1.title= title
+		div.contents
+			if viewCount
+				div.content.viewCount
+					p.name 再生数
+					p.description= viewCount
+			if commentNum
+				div.content.commentNum
+					p.name コメント
+					p.description= commentNum
+			if myListCounter
+				div.content.myListCounter
+					p.name マイリス
+					p.description= myListCounter
+			if category
+				div.content.category
+					p.name カテゴリ
+					p.description= category
+			if tag
+				div.content.tag
+					p.name タグ
+					p.description= tag
+			if length
+				div.content.length
+					p.name 動画時間
+					p.description= length
+			if userNickname
+				div.content.userNickname
+					p.name 投稿者
+					p.description=userNickname
+			if state
+				div.content.status
+					p.name ステータス
+					p.description= state
 			if description
 				p.description!= description.replace(/(\n)+/g, '<br />')
-		if viewCount
-			div.content.viewCount
-				p.name 再生数
-				p.description= viewCount
-		if commentNum
-			div.content.commentNum
-				p.name コメント
-				p.description= commentNum
-		if myListCounter
-			div.content.myListCounter
-				p.name マイリス
-				p.description= myListCounter
-		if category
-			div.content.category
-				p.name カテゴリ
-				p.description= category
-		if tag
-			div.content.tag
-				p.name タグ
-				p.description= tag
-		if length
-			div.content.length
-				p.name 動画時間
-				p.description= length
-		if userNickname
-			div.content.userNickname
-				p.name 投稿者
-				p.description=userNickname
-		if state
-			div.content.status
-				p.name ステータス
-				p.description= state
 		footer
 			p.hostname
 				if url.protocol == 'https:'

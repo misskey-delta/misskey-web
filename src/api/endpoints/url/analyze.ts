@@ -417,7 +417,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				? '削除済み'
 				: null;
 			description = resVideoApi.video.description !== null
-				? clip(resVideoApi.video.description, 300)
+				? resVideoApi.video.description
 				: null;
 			title = resVideoApi.video.title;
 			image = resVideoApi.video.deleted === '1'
@@ -438,7 +438,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				? '削除済み'
 				: null;
 			description = resVideoApi.video.description !== null
-				? clip(resVideoApi.video.description, 300)
+				? resVideoApi.video.description
 				: null;
 			title = resVideoApi.video.title;
 			image = resVideoApi.video.deleted === '1'
