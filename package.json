@@ -16,7 +16,9 @@
     "lint": "gulp lint",
     "clean": "gulp clean",
     "clean-all": "gulp clean-all",
-    "test": "gulp test"
+    "test": "gulp test",
+    "less": "gulp build:frontside-styles",
+    "deploy": "npm install && dtsm --insight false install && ./node_modules/.bin/bower install && gulp build"
   },
   "license": "MIT",
   "browserify": {
