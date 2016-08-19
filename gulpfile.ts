@@ -170,4 +170,4 @@ task('build-develop-copy', ['build-develop:frontside-scripts'], () => {
 	src('./resources/**/*').pipe(dest('./built/resources/common/'));
 });
 
-task('test', ['lint']);
+task('test', ['lint', 'build:ts']);
