@@ -75,6 +75,8 @@ export default function analyze(req: express.Request, res: express.Response): vo
 }
 
 function showImage(res: express.Response, src: string, href: string): void {
+	'use strict';
+
 	const compiler: (locals: any) => string = jade.compileFile(
 		`${__dirname}/image.jade`);
 
