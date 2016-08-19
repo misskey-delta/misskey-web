@@ -367,7 +367,7 @@ function allocateNicovideoURL(req: express.Request, res: express.Response, url: 
 
 	// 静画
 
-	let imageId:string = null;
+	let imageId: string = null;
 
 	switch (url.hostname) {
 		case 'seiga.nicovideo.jp':
@@ -381,7 +381,7 @@ function allocateNicovideoURL(req: express.Request, res: express.Response, url: 
 	}
 
 	if (imageId !== null) {
-		showImage("http://seiga.nicovideo.jp/image/source/"+imageId, url.href);
+		showImage("http://seiga.nicovideo.jp/image/source/" + imageId, url.href);
 		return;
 	}
 	analyzeGeneral(req, res, url);
