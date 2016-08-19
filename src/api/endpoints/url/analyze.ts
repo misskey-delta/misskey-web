@@ -381,7 +381,7 @@ function allocateNicovideoURL(req: express.Request, res: express.Response, url: 
 	}
 
 	if (imageId !== null) {
-		showImage("http://seiga.nicovideo.jp/image/source/" + imageId, url.href, res);
+		showImage(res, "http://seiga.nicovideo.jp/image/source/" + imageId, url.href);
 		return;
 	}
 	analyzeGeneral(req, res, url);
