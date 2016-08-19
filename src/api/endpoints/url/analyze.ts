@@ -57,6 +57,7 @@ export default function analyze(req: express.Request, res: express.Response): vo
 		case 'www.nicovideo.jp':
 		case 'nicovideo.jp':
 		case 'sp.nicovideo.jp':
+		case 'seiga.nicovideo.jp':
 			allocateNicovideoURL(req, res, url);
 			break;
 		case 'yabumi.cc':
