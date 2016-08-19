@@ -73,6 +73,18 @@ export default function analyze(req: express.Request, res: express.Response): vo
 	}
 }
 
+function showImage(res: express.Response, src: string, href: string): void {
+	const compiler: (locals: any) => string = jade.compileFile(
+		`${__dirname}/image.jade`);
+
+	const image: string = compiler({
+		src,
+		href
+	});
+
+	res.send(image);
+}
+
 function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.Url): void {
 	'use strict';
 
@@ -346,9 +358,27 @@ function allocateNicovideoURL(req: express.Request, res: express.Response, url: 
 	// 動画判定
 	if (videoId !== null) {
 		analyzeNicovideo(req, res, url, videoId);
-	} else {
-		analyzeGeneral(req, res, url);
+		return;
 	}
+	
+	// 静画
+
+	var imageId:string = null;
+
+	switch (url.hostname) {
+		case 'seiga.nicovideo.jp':
+			imageId = url.pathname.substr(0, 9) === "/seiga/im" ? url.pathname.substring(9) : null;
+			break;
+		case 'nico.ms':
+			imageId = url.pathname.match(/^\/im([0-9]+)$/) ? url.pathname.substring(3) : null;
+			break;
+	}
+
+	if (imageId !== null) {
+		showImage("http://seiga.nicovideo.jp/image/source/"+imageId, url.href);
+		return;
+	}
+	analyzeGeneral(req, res, url);
 }
 
 function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.Url, videoId: string): void {
