@@ -34,6 +34,11 @@ $ ->
 				'comment': $form.find '.profile.comment' .val!}
 		.done!
 
+		(data) <- $.ajax "#{CONFIG.web-api-url}/account/tags/update" {
+			data:
+				'tags': $form.find '.profile.tags' .val!}
+		.done!
+
 		(data) <- $.ajax "#{CONFIG.web-api-url}/account/url/update" {
 			data:
 				'url': $form.find '.profile.url' .val!}

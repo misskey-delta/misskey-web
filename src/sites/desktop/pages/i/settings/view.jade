@@ -43,6 +43,12 @@ block content
 						input.profile.comment(name='comment', type='text', value=me.comment, placeholder=me.comment)
 				label
 					h2.title
+						i.fa.fa-tags
+						=locale.sites.desktop.pages._i._settings.user_tags
+					div.content
+						input.profile.tags(name='comment', type='text', value=me.tags, placeholder=me.tags)
+				label
+					h2.title
 						i.fa.fa-globe
 						=locale.sites.desktop.pages._i._settings.user_website_url
 					div.content
