@@ -20,7 +20,11 @@ export default function getSessionUser(socket: SocketIO.Socket, sessionStore: an
 		sessionStore.get(sidkey, (err: any, session: any) => {
 			if (err !== null) {
 				return console.error(err);
-			} else if (session === null) {
+			}
+			else if (session === null) {
+				return;
+			}
+			else if (typeof session === 'undefined') {
 				return;
 			}
 
