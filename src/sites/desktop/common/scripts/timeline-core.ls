@@ -144,8 +144,8 @@ class Post
 					THIS.upload-new-file file
 
 		# Ctrl + Enter
-		THIS.$reply-form.find 'textarea' .keypress (e) ->
-			if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
+		THIS.$reply-form.find 'textarea' .keydown (e) ->
+			if (e.key-code == 10 || e.key-code == 13) && (e.ctrl-key || e.meta-key)
 				THIS.submit-reply!
 
 		THIS.$reply-form.find '.attach-from-album' .click ->

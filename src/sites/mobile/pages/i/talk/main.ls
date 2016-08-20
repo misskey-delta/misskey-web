@@ -71,8 +71,8 @@ $ ->
 		text = $ '#post-form textarea' .val!
 		socket.emit \type text
 
-	$ '#post-form textarea' .keypress (e) ->
-		if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
+	$ '#post-form textarea' .keydown (e) ->
+		if (e.key-code == 10 || e.key-code == 13) && (e.ctrl-key || e.meta-key)
 			send-message!
 
 	$ '#post-form textarea' .on \paste (event) ->
