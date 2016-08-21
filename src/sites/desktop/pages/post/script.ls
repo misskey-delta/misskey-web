@@ -81,8 +81,8 @@ class Post
 						file = item.get-as-file!
 						upload-new-file file
 
-			..find 'textarea' .keypress (e) ->
-				if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
+			..find 'textarea' .keydown (e) ->
+				if (e.key-code == 10 || e.key-code == 13) && (e.ctrl-key || e.meta-key)
 					submit-reply!
 
 			..find '.attach-from-album' .click ->
