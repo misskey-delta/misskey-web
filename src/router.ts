@@ -157,10 +157,6 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'terms-of-use');
 	});
 
-	app.get('/welcome', (req, res) => {
-		callController(req, res, 'welcome');
-	});
-
 	app.get(`/subdomain/${config.publicConfig.searchDomain}/`, (req, res) => {
 		if (req.query.hasOwnProperty('q')) {
 			callController(req, res, 'search/result');
