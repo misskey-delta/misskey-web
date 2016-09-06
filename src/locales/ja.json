@@ -57,11 +57,6 @@
 					"empty_notifications": "通知はありません",
 					"delete_all_notifications": "全ての通知を削除"
 				},
-				"ad_block_detected": {
-					"title": "広告ブロッカーが有効です",
-					"text": "広告ブロッカー(もしくはリソースの読み込みを妨げる何らかの機能)がはたらいています。<strong>Misskeyは広告を掲載していません</strong>が、広告ブロッカーが有効だと一部の機能が利用できない場合があります(ユーザーのフォローが出来ないなど)。Misskeyを快適にご利用いただくためには、広告ブロッカーを無効にしてください。",
-					"ok": "了解"
-				},
 				"post_form": {
 					"status_tab": "近況",
 					"poll_tab": "投票",
