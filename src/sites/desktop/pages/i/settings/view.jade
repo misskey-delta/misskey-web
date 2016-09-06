@@ -46,7 +46,7 @@ block content
 						i.fa.fa-tags
 						=locale.sites.desktop.pages._i._settings.user_tags
 					div.content
-						input.profile.tags(name='comment', type='text', value=me.tags, placeholder=me.tags)
+						input.profile.tags(name='comment', type='text', value=me.tags.join(' '), placeholder=me.tags)
 				label
 					h2.title
 						i.fa.fa-globe
