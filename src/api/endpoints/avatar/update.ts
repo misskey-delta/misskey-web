@@ -6,7 +6,6 @@ const gm: any = require('gm');
 import requestApi from '../../../core/request-api';
 
 export default function updateavatar(req: express.Request, res: express.Response): void {
-	'use strict';
 	const avaterFileId: string = req.body['file-id'];
 	const trimX: number = Number(req.body['trim-x']);
 	const trimY: number = Number(req.body['trim-y']);

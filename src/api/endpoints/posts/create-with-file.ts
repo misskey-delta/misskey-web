@@ -3,7 +3,6 @@ import * as express from 'express';
 import requestApi from '../../../core/request-api';
 
 export default function createWithFile(req: express.Request, res: express.Response): void {
-	'use strict';
 
 	const file: Express.Multer.File = (<any>req).file;
 	if (file !== undefined && file !== null) {

@@ -2,7 +2,6 @@ import * as express from 'express';
 import { UserSettings, IUserSettings } from '../../../models/user-settings';
 
 export default function updateHomeLayout(req: express.Request, res: express.Response): void {
-	'use strict';
 
 	const lang: string = req.body['lang'];
 

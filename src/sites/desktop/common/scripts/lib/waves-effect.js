@@ -10,7 +10,6 @@
  */
 
 (function(definition) {
-	'use strict';
 
 	// CommonJS
 	if (typeof exports === 'object') {
@@ -25,7 +24,6 @@
 		window.WavesEffect = definition();
 	}
 })(function() {
-	'use strict';
 
 	var WavesEffect = function WavesEffect(){};
 

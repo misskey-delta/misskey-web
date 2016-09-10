@@ -3,7 +3,6 @@ import { User } from '../../../../models/user';
 import requestApi from '../../../../core/request-api';
 
 module.exports = (req: express.Request, res: express.Response): void => {
-	'use strict';
 
 	const me: User = req.user;
 

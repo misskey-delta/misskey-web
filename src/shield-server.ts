@@ -9,7 +9,6 @@ client.maxDataSize = 2 * 1024 * 1024; // 2MiB
 import config from './config';
 
 export default function router(app: express.Express): void {
-	'use strict';
 
 	app.get(`/subdomain/${config.publicConfig.shieldDomain}/*`, (req, res) => {
 		const url = req.url.replace(`/subdomain/${config.publicConfig.shieldDomain}/`, '');
