@@ -425,7 +425,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 			viewCount = numeral(resVideoApi.video.view_counter).format('0,0');
 			myListCounter = numeral(resVideoApi.video.mylist_counter).format('0,0');
 			commentNum = numeral(resVideoApi.thread.num_res).format('0,0');
-			rawUploadTime = resVideoApi.video.first_retrieve;
+			rawUploadTime = new Date(resVideoApi.video.upload_time);
 			uploadyyyymmdd = `${rawUploadTime.getFullYear()}年` +
 				`${(rawUploadTime.getMonth() + 1)}月` +
 				`${rawUploadTime.getDate()}日`;
@@ -458,7 +458,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 					? categoryAny.$t
 					: null;
 			}
-			rawUploadTime = resVideoApi.video.first_retrieve;
+			rawUploadTime = new Date(resVideoApi.video.upload_time);
 			uploadyyyymmdd = `${rawUploadTime.getFullYear()}年` +
 				`${(rawUploadTime.getMonth() + 1)}月` +
 				`${rawUploadTime.getDate()}日`;
