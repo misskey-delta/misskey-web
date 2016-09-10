@@ -25,7 +25,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 			subscriber.on('message', onStreamMessage);
 
 			socket.on('disconnect', () => {
-				subscriber.end();
+				subscriber.end(true);
 			});
 		});
 

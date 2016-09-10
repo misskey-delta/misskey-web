@@ -45,7 +45,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 			});
 
 			socket.on('disconnect', () => {
-				subscriber.end();
+				subscriber.end(true);
 			});
 		});
 
