@@ -135,9 +135,9 @@ task('build-develop:frontside-styles', ['set-less-variables', 'copy:bower_compon
 task('lint', () => {
 	return src('./src/**/*.ts')
 		.pipe(tslint(<any>{
-			tslint: require('tslint')
+			formatter: "verbose"
 		}))
-		.pipe(tslint.report('verbose'));
+		.pipe(tslint.report())
 });
 
 task('build-copy', ['build:frontside-scripts'], () => {
