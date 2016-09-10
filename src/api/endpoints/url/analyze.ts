@@ -410,9 +410,13 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 			state = resVideoApi.video.deleted === '1'
 				? '削除済み'
 				: null;
-			description = resVideoApi.video.description !== null
-				? resVideoApi.video.description
-				: null;
+			description = resVideoApi.video.description === '&nbsp;'
+				? null
+				: resVideoApi.video.description === '　'
+				? null
+				: resVideoApi.video.description === null
+				? null
+				: resVideoApi.video.description;
 			title = resVideoApi.video.title;
 			image = resVideoApi.video.deleted === '1'
 				? wrapMisskeyProxy('http://res.nimg.jp/img/common/video_deleted.jpg')
@@ -438,9 +442,13 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 			state = resVideoApi.video.deleted === '1'
 				? '削除済み'
 				: null;
-			description = resVideoApi.video.description !== null
-				? resVideoApi.video.description
-				: null;
+			description = resVideoApi.video.description === '&nbsp;'
+				? null
+				: resVideoApi.video.description === '　'
+				? null
+				: resVideoApi.video.description === null
+				? null
+				: resVideoApi.video.description;
 			title = resVideoApi.video.title;
 			image = resVideoApi.video.deleted === '1'
 				? wrapMisskeyProxy('http://res.nimg.jp/img/common/video_deleted.jpg')
