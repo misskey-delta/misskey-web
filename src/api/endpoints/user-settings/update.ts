@@ -5,7 +5,6 @@ export default function updateHomeLayout(
 	req: express.Request,
 	res: express.Response
 ): void {
-	'use strict';
 
 	const key: string = req.body['key'].trim();
 	const value: string = req.body['value'].trim();

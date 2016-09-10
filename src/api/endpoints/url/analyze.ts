@@ -23,7 +23,6 @@ import config from '../../../config';
  * @param res MisskeyExpressResponse
  */
 export default function analyze(req: express.Request, res: express.Response): void {
-	'use strict';
 
 	const urlStr: string = req.body.url;
 	const url: URL.Url = URL.parse(urlStr, true);
@@ -75,7 +74,6 @@ export default function analyze(req: express.Request, res: express.Response): vo
 }
 
 function showImage(res: express.Response, src: string, href: string): void {
-	'use strict';
 
 	const compiler: (locals: any) => string = jade.compileFile(
 		`${__dirname}/image.jade`);
@@ -89,7 +87,6 @@ function showImage(res: express.Response, src: string, href: string): void {
 }
 
 function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
 
 	const title: string = decodeURI(url.pathname.split('/')[2]);
 
@@ -124,7 +121,6 @@ function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.
 }
 
 function analyzeMobileWikipedia(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
 
 	const title: string = decodeURI(url.pathname.split('/')[2]);
 
@@ -159,10 +155,8 @@ function analyzeMobileWikipedia(req: express.Request, res: express.Response, url
 }
 
 function analyzeYoutube(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
 
 	function getVideoId(): string {
-		'use strict';
 
 		switch (url.hostname) {
 			case 'www.youtube.com':
@@ -188,7 +182,6 @@ function analyzeYoutube(req: express.Request, res: express.Response, url: URL.Ur
 }
 
 function analyzeSoundcloud(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
 
 	request({
 		url: 'http://soundcloud.com/oembed',
@@ -212,7 +205,6 @@ function analyzeSoundcloud(req: express.Request, res: express.Response, url: URL
 }
 
 function analyzeGithubGist(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
 
 	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
@@ -253,7 +245,6 @@ function analyzeGithubGist(req: express.Request, res: express.Response, url: URL
 }
 
 function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
 
 	const imageId: string = url.pathname.substring(1);
 	const src: string = `https://i.gyazo.com/${imageId}.png`;
@@ -262,7 +253,6 @@ function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url)
 }
 
 function analyzeYabumi(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
 
 	const imageId: string = url.pathname.substring(1);
 	const src: string = `https://yabumi.cc/api/images/${imageId}`;
@@ -271,7 +261,6 @@ function analyzeYabumi(req: express.Request, res: express.Response, url: URL.Url
 }
 
 function analyzeImgur(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
 
 	if (url.hostname === 'i.imgur.com') {
 		showImage(res, wrapMisskeyProxy(url.href), url.href);
@@ -308,11 +297,9 @@ function analyzeImgur(req: express.Request, res: express.Response, url: URL.Url)
 }
 
 function allocateNicovideoURL(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
 
 	// ID取得
 	function getVideoId(): string {
-		'use strict';
 
 		switch (url.hostname) {
 			case 'sp.nicovideo.jp':
@@ -358,11 +345,9 @@ function allocateNicovideoURL(req: express.Request, res: express.Response, url: 
 }
 
 function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.Url, videoId: string): void {
-	'use strict';
 
 	// データ取得関数
 	function fetchUrlByRequest(fetchUrl: string): any {
-		'use strict';
 		return new Promise((resolve, reject) => {
 			request(fetchUrl, (error, responce, body) => {
 				if (!error && responce.statusCode === 200) {
@@ -496,7 +481,6 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
  * @param url url
  */
 function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
 
 	// リクエスト送信
 	client.fetch(url.href).then((result: any) => {
@@ -586,7 +570,6 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 }
 
 function wrapMisskeyProxy(url: string): string {
-	'use strict';
 	return `${config.publicConfig.shieldUrl}/${url}`;
 }
 
@@ -595,7 +578,6 @@ function wrapMisskeyProxy(url: string): string {
  * @param val: 文字列
  */
 function nullOrEmpty(val: string): boolean {
-	'use strict';
 
 	if (val === undefined) {
 		return true;
@@ -609,7 +591,6 @@ function nullOrEmpty(val: string): boolean {
 }
 
 function or(...xs: string[]): string {
-	'use strict';
 
 	for (let i = 0; i < xs.length; i++) {
 		const x = xs[i];
@@ -622,7 +603,6 @@ function or(...xs: string[]): string {
 }
 
 function clip(s: string, max: number): string {
-	'use strict';
 
 	if (nullOrEmpty(s)) {
 		return s;

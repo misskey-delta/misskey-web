@@ -15,7 +15,6 @@ import config from './config';
 const workerId: string = namingWorkerId(cluster.worker.id);
 
 export default function router(app: express.Express): void {
-	'use strict';
 
 	// Init session
 	app.use((req, res, next) => {
@@ -33,7 +32,6 @@ export default function router(app: express.Express): void {
 			(<any>req.session).userId !== null;
 
 		function uatype(ua: string): string {
-			'use strict';
 			if (ua !== undefined && ua !== null) {
 				ua = ua.toLowerCase();
 				if (/(iphone|ipod|ipad|android|windows.*phone|psp|vita|nitro|nintendo)/i.test(ua)) {
@@ -368,7 +366,6 @@ function paramUserScreenName(
 	next: () => void,
 	screenName: string
 ): void {
-	'use strict';
 
 	requestApi('users/show', {
 		'screen-name': screenName
@@ -394,7 +391,6 @@ function paramPostId(
 	next: () => void,
 	postId: string
 ): void {
-	'use strict';
 
 	requestApi('posts/show', {
 		'post-id': postId
@@ -420,7 +416,6 @@ function paramFileId(
 	next: () => void,
 	fileId: string
 ): void {
-	'use strict';
 
 	requestApi('album/files/show', {
 		'file-id': fileId
@@ -441,7 +436,6 @@ function paramFolderId(
 	next: () => void,
 	folderId: string
 ): void {
-	'use strict';
 
 	requestApi('album/folders/show', {
 		'folder-id': folderId
@@ -462,7 +456,6 @@ function paramTalkGroupId(
 	next: () => void,
 	groupId: string
 ): void {
-	'use strict';
 
 	requestApi('talks/group/show', {
 		'group-id': groupId

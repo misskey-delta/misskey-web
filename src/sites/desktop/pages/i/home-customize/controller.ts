@@ -2,7 +2,6 @@ import * as express from 'express';
 import generateHomewidgets from '../../../common/generate-homewidgets';
 
 module.exports = (req: express.Request, res: express.Response): void => {
-	'use strict';
 
 	const widgetCatalog = [
 		'timeline',

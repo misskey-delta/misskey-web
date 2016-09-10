@@ -1,5 +1,4 @@
 export default function namingWorkerId(workerId: string): string {
-	'use strict';
 	workerId = workerId.toString().trim();
 	switch (workerId) {
 		case '1':

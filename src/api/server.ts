@@ -10,7 +10,6 @@ import config from '../config';
 import router from './router';
 
 export default function server(session: any): express.Express {
-	'use strict';
 
 	// Init server
 	const app: express.Express = express();

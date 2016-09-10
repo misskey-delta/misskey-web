@@ -11,7 +11,6 @@ export default function callController(
 	path: string,
 	options: any = null
 ): void {
-	'use strict';
 
 	res.locals.display = (data: any = {}, addLocalePagePath: string = null): void => {
 		const viewPath: string = `${__dirname}/sites/${res.locals.ua}/pages/${path}/view`;
