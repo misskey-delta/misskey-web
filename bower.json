@@ -17,12 +17,12 @@
     "tests"
   ],
   "dependencies": {
-    "cropper": "2.2.5",
+    "cropper": "2.3.2",
     "fastclick": "1.0.6",
     "jquery": "2.2.0",
     "jquery.transit": "0.9.12",
     "marked": "0.3.5",
-    "moment": "2.11.2",
+    "moment": "2.13.0",
     "Sortable": "1.4.2",
     "Swiper": "swiper#3.3.0"
   }
