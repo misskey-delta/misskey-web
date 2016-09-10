@@ -40,7 +40,7 @@ The MIT License. See [LICENSE](LICENSE).
 [mit-badge]:       https://img.shields.io/badge/license-MIT-444444.svg?style=flat-square
 [travis-link]:     https://travis-ci.org/sagume/Misskey-Web
 [travis-badge]:    http://img.shields.io/travis/sagume/Misskey-Web.svg?style=flat-square
-[david-dev-link]:  https://david-dm.org/sagume/Misskey-Web#info=devDependencies&view=table
-[david-dev-badge]: https://img.shields.io/david/dev/sagume/Misskey-Web.svg?style=flat-square
+[david-dev-link]:  https://david-dm.org/sagume/Misskey-Web?type=dev
+[david-dev-badge]: https://david-dm.org/sagume/Misskey-Web/dev-status.svg?style=flat-square
 [gemnasium-link]:  https://gemnasium.com/sagume/Misskey-Web
 [gemnasium-badge]: https://gemnasium.com/sagume/Misskey-Web.svg
