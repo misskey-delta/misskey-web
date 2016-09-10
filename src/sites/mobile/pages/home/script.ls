@@ -2,7 +2,7 @@ require '../../common/scripts/ui.js'
 $ = require 'jquery/dist/jquery'
 require 'jquery.transit'
 Timeline = require '../../common/scripts/timeline-core.js'
-notification-render = require '../../common/views/notification/render.jade'
+notification-render = require '../../common/views/notification/render.pug'
 get-post-summary = require '../../../common/scripts/get-post-summary'
 
 is-active = yes
