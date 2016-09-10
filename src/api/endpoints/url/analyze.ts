@@ -258,15 +258,7 @@ function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url)
 	const imageId: string = url.pathname.substring(1);
 	const src: string = `https://i.gyazo.com/${imageId}.png`;
 
-	const compiler: (locals: any) => string = jade.compileFile(
-		`${__dirname}/image.jade`);
-
-	const image: string = compiler({
-		src,
-		href: url.href
-	});
-
-	res.send(image);
+	showImage(res, src, url.href);
 }
 
 function analyzeYabumi(req: express.Request, res: express.Response, url: URL.Url): void {
@@ -275,30 +267,14 @@ function analyzeYabumi(req: express.Request, res: express.Response, url: URL.Url
 	const imageId: string = url.pathname.substring(1);
 	const src: string = `https://yabumi.cc/api/images/${imageId}`;
 
-	const compiler: (locals: any) => string = jade.compileFile(
-		`${__dirname}/image.jade`);
-
-	const image: string = compiler({
-		src,
-		href: url.href
-	});
-
-	res.send(image);
+	showImage(res, src, url.href);
 }
 
 function analyzeImgur(req: express.Request, res: express.Response, url: URL.Url): void {
 	'use strict';
 
-	const compiler: (locals: any) => string = jade.compileFile(
-			`${__dirname}/image.jade`);
-
 	if (url.hostname === 'i.imgur.com') {
-		const image: string = compiler({
-			src: wrapMisskeyProxy(url.href),
-			href: url.href
-		});
-
-		res.send(image);
+		showImage(res, wrapMisskeyProxy(url.href), url.href);
 	} else {
 		// リクエスト送信
 		client.fetch(url.href).then((result: any) => {
@@ -324,12 +300,7 @@ function analyzeImgur(req: express.Request, res: express.Response, url: URL.Url)
 				return res.sendStatus(204);
 			}
 
-			const image: string = compiler({
-				src: wrapMisskeyProxy(src.replace(URL.parse(src).search, "")),
-				href: url.href
-			});
-
-			res.send(image);
+			showImage(res, wrapMisskeyProxy(src.replace(URL.parse(src).search, "")), url.href);
 		}, (err: any) => {
 			res.sendStatus(204);
 		});
@@ -362,11 +333,9 @@ function allocateNicovideoURL(req: express.Request, res: express.Response, url: 
 	if (videoId !== null) {
 		analyzeNicovideo(req, res, url, videoId);
 		return;
-
 	}
 
 	// 静画
-
 	let imageId: string = null;
 
 	switch (url.hostname) {
@@ -384,6 +353,7 @@ function allocateNicovideoURL(req: express.Request, res: express.Response, url: 
 		showImage(res, wrapMisskeyProxy("http://lohas.nicoseiga.jp/thumb/" + imageId + "l"), url.href);
 		return;
 	}
+
 	analyzeGeneral(req, res, url);
 }
 
