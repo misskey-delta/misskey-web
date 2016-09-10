@@ -32,7 +32,15 @@ a.nicovideo(title= url.href, href= url.href, target='_blank')
 			if userNickname
 				div.content.userNickname
 					p.name 投稿者
-					p.description=userNickname
+					p.description= userNickname
+			if uploadyyyymmdd
+				div.content.uploadyyyymmdd
+					p.name 投稿日
+					p.description= uploadyyyymmdd
+			if uploadhhmmss
+				div.content.uploadhhmmss
+					p.name 投稿時間
+					p.description = uploadhhmmss
 			if state
 				div.content.status
 					p.name ステータス
