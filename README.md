@@ -43,4 +43,4 @@ The MIT License. See [LICENSE](LICENSE).
 [gemnasium-link]:  https://gemnasium.com/misskey-delta/Misskey-Web
 [gemnasium-badge]: https://img.shields.io/gemnasium/misskey-delta/Misskey-Web.svg?style=flat-square
 [david-dev-link]:  https://david-dm.org/misskey-delta/Misskey-Web?type=dev
-[david-dev-badge]: https://david-dm.org/misskey-delta/Misskey-Web/dev-status.svg?style=flat-square
+[david-dev-badge]: https://img.shields.io/david/dev/misskey-delta/Misskey-Web.svg?style=flat-square
