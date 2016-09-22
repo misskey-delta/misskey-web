@@ -377,9 +377,6 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 	let state: String;
 	let userNickname: String;
 	let category: String;
-	let rawUploadTime: Date;
-	let uploadyyyymmdd: String;
-	let uploadhhmmss: String;
 
 	// データ取得
 	Promise.all(promises).then((results) => {
@@ -429,13 +426,6 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 			viewCount = numeral(resVideoApi.video.view_counter).format('0,0');
 			myListCounter = numeral(resVideoApi.video.mylist_counter).format('0,0');
 			commentNum = numeral(resVideoApi.thread.num_res).format('0,0');
-			rawUploadTime = resVideoApi.video.first_retrieve;
-			uploadyyyymmdd = `${rawUploadTime.getFullYear()}年` +
-				`${(rawUploadTime.getMonth() + 1)}月` +
-				`${rawUploadTime.getDate()}日`;
-			uploadhhmmss = `${rawUploadTime.getHours()}時` +
-				`${rawUploadTime.getMinutes()}分` +
-				`${rawUploadTime.getSeconds()}秒`;
 		// 成功
 		} else if (resVideoApi['@status'] === 'ok' && resThumbApi.status === 'ok') {
 			// 情報代入
@@ -466,13 +456,6 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 					? categoryAny.$t
 					: null;
 			}
-			rawUploadTime = resVideoApi.video.first_retrieve;
-			uploadyyyymmdd = `${rawUploadTime.getFullYear()}年` +
-				`${(rawUploadTime.getMonth() + 1)}月` +
-				`${rawUploadTime.getDate()}日`;
-			uploadhhmmss = `${rawUploadTime.getHours()}時` +
-				`${rawUploadTime.getMinutes()}分` +
-				`${rawUploadTime.getSeconds()}秒`;
 		}
 
 		const compiler: (locals: any) => string = jade.compileFile(
@@ -492,9 +475,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 			myListCounter: myListCounter,
 			commentNum: commentNum,
 			state: state,
-			userNickname: userNickname,
-			uploadyyyymmdd: uploadyyyymmdd,
-			uploadhhmmss: uploadhhmmss
+			userNickname: userNickname
 		});
 
 		res.send(viewer);
