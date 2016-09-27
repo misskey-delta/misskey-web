@@ -211,7 +211,7 @@ function init-widgets
 			ui-window do
 				$content
 				LOCALE.sites.desktop.pages._home.my_status_widget.following
-				500px
+				540px
 				560px
 				yes
 			return false
@@ -221,7 +221,7 @@ function init-widgets
 			ui-window do
 				$content
 				LOCALE.sites.desktop.pages._home.my_status_widget.followers
-				500px
+				540px
 				560px
 				yes
 			return false
