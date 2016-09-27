@@ -106,7 +106,7 @@ module.exports = ($trigger) ->
 				ui-window do
 					$content
 					LOCALE.sites.desktop.common.user_card.nav.following
-					540px
+					572px
 					560px
 					yes
 
@@ -115,7 +115,7 @@ module.exports = ($trigger) ->
 				ui-window do
 					$content
 					LOCALE.sites.desktop.common.user_card.nav.followers
-					540px
+					572px
 					560px
 					yes
 
