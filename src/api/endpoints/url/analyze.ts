@@ -9,6 +9,7 @@ const numeral = require('numeral');
 
 const client: any = require('cheerio-httpcli');
 client.headers['User-Agent'] = 'MisskeyBot';
+client.headers['Accept-Language'] = 'ja-JP,ja,en-US;q=0.8,en;q=0.6';
 client.referer = false;
 client.timeout = 10000;
 
