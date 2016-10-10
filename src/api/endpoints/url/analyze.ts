@@ -415,11 +415,11 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				? null
 				: resVideoApi.video.description;
 			title = resVideoApi.video.title;
-			image = resVideoApi.video.deleted === '1'
-				? wrapMisskeyProxy('http://res.nimg.jp/img/common/video_deleted.jpg')
+			image = wrapMisskeyProxy(resVideoApi.video.deleted === '1'
+				? 'http://res.nimg.jp/img/common/video_deleted.jpg'
 				: resVideoApi.video.options['@large_thumbnail'] === '1'
-				? wrapMisskeyProxy(resVideoApi.video.thumbnail_url + '.L')
-				: wrapMisskeyProxy(resVideoApi.video.thumbnail_url);
+				? resVideoApi.video.thumbnail_url + '.L'
+				: resVideoApi.video.thumbnail_url);
 			tag = typeof resVideoApi.tags.tag_info.tag === 'undefined'
 				? resVideoApi.tags.tag_info[0].tag
 				: resVideoApi.tags.tag_info.tag;
@@ -440,11 +440,11 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				? null
 				: resVideoApi.video.description;
 			title = resVideoApi.video.title;
-			image = resVideoApi.video.deleted === '1'
-				? wrapMisskeyProxy('http://res.nimg.jp/img/common/video_deleted.jpg')
+			image = wrapMisskeyProxy(resVideoApi.video.deleted === '1'
+				? 'http://res.nimg.jp/img/common/video_deleted.jpg'
 				: resVideoApi.video.options['@large_thumbnail'] === '1'
-				? wrapMisskeyProxy(resVideoApi.video.thumbnail_url + '.L')
-				: wrapMisskeyProxy(resVideoApi.video.thumbnail_url);
+				? resVideoApi.video.thumbnail_url + '.L'
+				: resVideoApi.video.thumbnail_url);
 			viewCount = numeral(resVideoApi.video.view_counter).format('0,0');
 			myListCounter = numeral(resVideoApi.video.mylist_counter).format('0,0');
 			commentNum = numeral(resVideoApi.thread.num_res).format('0,0');
