@@ -347,142 +347,35 @@ function allocateNicovideoURL(req: express.Request, res: express.Response, url: 
 
 function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.Url, videoId: string): void {
 
-	// データ取得関数
-	function fetchUrlByRequest(fetchUrl: string): any {
-		return new Promise((resolve, reject) => {
-			request(fetchUrl, (error, responce, body) => {
-				if (!error && responce.statusCode === 200) {
-					resolve(body);
-				} else {
-					reject(error);
-				}
-			});
-		});
-	}
-
-	const getThumbInfoUrl = 'http://ext.nicovideo.jp/api/getthumbinfo/' + videoId;
-	const getVideoInfoUrl = 'http://api.ce.nicovideo.jp/nicoapi/v1/video.info?__format=json&v=' + videoId;
-	const promises = [fetchUrlByRequest(getVideoInfoUrl), fetchUrlByRequest(getThumbInfoUrl)];
+	const getUrl = 'http://ext.misskey.link/video?id=' + videoId;
 
 	// 宣言
-	const siteName = 'ニコニコ動画';
+	const site = 'ニコニコ動画';
 	const icon = wrapMisskeyProxy('http://www.nicovideo.jp/favicon.ico');
-	let title = '未知の動画情報';
-	let description = '動画情報を取得できませんでした';
-	let image = wrapMisskeyProxy('http://deliver.commons.nicovideo.jp/thumbnail/nc3132');
-	let tag: String;
-	let viewCount: String;
-	let length: String;
-	let myListCounter: String;
-	let commentNum: String;
-	let state: String;
-	let userNickname: String;
-	let category: String;
 
-	// データ取得
-	Promise.all(promises).then((results) => {
+	request(getUrl, (error, response, body) => {
+		if (!error && response.statusCode === 200) {
+			const info = JSON.parse(body);
+			const state = info.deleted ? '削除済み' : null;
 
-		// 変換
-		const resVideoApi = JSON.parse(results[0]).nicovideo_video_response;
-		const resThumbApi = JSON.parse(xml2json.toJson(results[1])).nicovideo_thumb_response;
-
-		// APIエラー
-		if (resVideoApi['@status'] === 'fail' && resThumbApi.status === 'fail') {
-			// エラー内容判別
-			switch (resThumbApi.error.code) {
-				case 'DELETED':
-					title = '非公開か削除済の動画';
-					break;
-				case 'NOT_FOUND':
-					title = '存在しない動画';
-					break;
-				default:
-					break;
-			}
-
-			// APIエラーコード
-			description = 'APIエラーコード: ' +  resThumbApi.error.code;
-		// 削除済
-		} else if (resVideoApi['@status'] === 'ok' && resThumbApi.status === 'fail') {
-			// 情報代入
-			state = resVideoApi.video.deleted === '1'
-				? '削除済み'
-				: null;
-			description = resVideoApi.video.description === '&nbsp;'
-				? null
-				: resVideoApi.video.description === '　'
-				? null
-				: resVideoApi.video.description === null
-				? null
-				: resVideoApi.video.description;
-			title = resVideoApi.video.title;
-			image = wrapMisskeyProxy(resVideoApi.video.deleted === '1'
-				? 'http://res.nimg.jp/img/common/video_deleted.jpg'
-				: resVideoApi.video.options['@large_thumbnail'] === '1'
-				? resVideoApi.video.thumbnail_url + '.L'
-				: resVideoApi.video.thumbnail_url);
-			tag = typeof resVideoApi.tags.tag_info.tag === 'undefined'
-				? resVideoApi.tags.tag_info[0].tag
-				: resVideoApi.tags.tag_info.tag;
-			viewCount = numeral(resVideoApi.video.view_counter).format('0,0');
-			myListCounter = numeral(resVideoApi.video.mylist_counter).format('0,0');
-			commentNum = numeral(resVideoApi.thread.num_res).format('0,0');
-		// 成功
-		} else if (resVideoApi['@status'] === 'ok' && resThumbApi.status === 'ok') {
-			// 情報代入
-			state = resVideoApi.video.deleted === '1'
-				? '削除済み'
-				: null;
-			description = resVideoApi.video.description === '&nbsp;'
-				? null
-				: resVideoApi.video.description === '　'
-				? null
-				: resVideoApi.video.description === null
-				? null
-				: resVideoApi.video.description;
-			title = resVideoApi.video.title;
-			image = wrapMisskeyProxy(resVideoApi.video.deleted === '1'
-				? 'http://res.nimg.jp/img/common/video_deleted.jpg'
-				: resVideoApi.video.options['@large_thumbnail'] === '1'
-				? resVideoApi.video.thumbnail_url + '.L'
-				: resVideoApi.video.thumbnail_url);
-			viewCount = numeral(resVideoApi.video.view_counter).format('0,0');
-			myListCounter = numeral(resVideoApi.video.mylist_counter).format('0,0');
-			commentNum = numeral(resVideoApi.thread.num_res).format('0,0');
-			length = resThumbApi.thumb.length;
-			userNickname = resThumbApi.thumb.user_nickname;
-			if (typeof resThumbApi.thumb.tags.tag) {
-				const categoryAny = resThumbApi.thumb.tags.tag.find((tags: any) => { return tags.category === '1'; });
-				category = typeof categoryAny !== 'undefined'
-					? categoryAny.$t
-					: null;
-			}
+			const viewer = compiler({
+				url: url,
+				site: site,
+				icon: icon,
+				title: info.title,
+				description: info.description,
+				image: info.image,
+				category: info.category,
+				view: info.view,
+				time: info.time,
+				myList: info.my_list,
+				comment: info.comment,
+				state: state,
+				user: info.user_nickname
+			});
+			return res.send(viewer);
 		}
-
-		const compiler: (locals: any) => string = jade.compileFile(
-			`${__dirname}/nicovideo.jade`);
-
-		const viewer = compiler({
-			url: url,
-			siteName: siteName,
-			icon: icon,
-			title: title,
-			description: description,
-			image: image,
-			category: category,
-			tag: tag,
-			viewCount: viewCount,
-			length: length,
-			myListCounter: myListCounter,
-			commentNum: commentNum,
-			state: state,
-			userNickname: userNickname
-		});
-
-		res.send(viewer);
-	}).catch(() => {
-		return res.sendStatus(204);
-	});
+	}
 }
 /**
  * @param req MisskeyExpressRequest

@@ -5,34 +5,30 @@ a.nicovideo(title= url.href, href= url.href, target='_blank')
 				div.thumbnail(style={'background-image': 'url(#{image})'})
 			h1.title= title
 		div.contents
-			if viewCount
-				div.content.viewCount
+			if view
+				div.content.view
 					p.name 再生数
-					p.description= viewCount
-			if commentNum
-				div.content.commentNum
+					p.description= view
+			if comment
+				div.content.comment
 					p.name コメント
-					p.description= commentNum
-			if myListCounter
-				div.content.myListCounter
+					p.description= comment
+			if myList
+				div.content.myList
 					p.name マイリス
-					p.description= myListCounter
+					p.description= myList
 			if category
 				div.content.category
 					p.name カテゴリ
 					p.description= category
-			if tag
-				div.content.tag
-					p.name タグ
-					p.description= tag
-			if length
-				div.content.length
+			if time
+				div.content.user
 					p.name 動画時間
-					p.description= length
-			if userNickname
-				div.content.userNickname
+					p.description= time
+			if user
+				div.content.user
 					p.name 投稿者
-					p.description=userNickname
+					p.description=user
 			if state
 				div.content.status
 					p.name ステータス
@@ -46,5 +42,5 @@ a.nicovideo(title= url.href, href= url.href, target='_blank')
 				= url.hostname
 			if icon
 				img.icon(src= icon, alt='')
-			if siteName
-				p.site-name= siteName
+			if site
+				p.site= site
