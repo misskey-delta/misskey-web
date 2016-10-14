@@ -373,7 +373,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 		} else {
 			res.sendStatus(204);
 		}
-	}
+	});
 }
 /**
  * @param req MisskeyExpressRequest
