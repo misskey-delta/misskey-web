@@ -3,10 +3,6 @@ import * as URL from 'url';
 import * as request from 'request';
 const jade: any = require('jade');
 
-// only for analyzeNicovideo
-const xml2json = require('xml2json');
-const numeral = require('numeral');
-
 const client: any = require('cheerio-httpcli');
 client.headers['User-Agent'] = 'MisskeyBot';
 client.headers['Accept-Language'] = 'ja-JP,ja,en-US;q=0.8,en;q=0.6';
@@ -374,6 +370,8 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				user: info.user_nickname
 			});
 			return res.send(viewer);
+		} else {
+			res.sendStatus(204);
 		}
 	}
 }
