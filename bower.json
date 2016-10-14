@@ -17,7 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "cropper": "2.3.2",
+    "cropper": "2.3.4",
     "fastclick": "1.0.6",
     "jquery": "2.2.0",
     "jquery.transit": "0.9.12",
