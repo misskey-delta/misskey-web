@@ -1,8 +1,8 @@
 import * as cluster from 'cluster';
 import * as express from 'express';
 import * as path from 'path';
-const acceptLanguage: any = require('accept-language');
-acceptLanguage.languages(['en', 'ja']);
+const accettare: any = require('accettare');
+accettare.languages(['en', 'ja']);
 
 import { User } from './models/user';
 import { UserSettings, IUserSettings, guestUserSettings } from './models/user-settings';
@@ -50,7 +50,7 @@ export default function router(app: express.Express): void {
 		const browserAcceptLanguageString: string = req.headers['accept-language'];
 
 		const browserAcceptLanguage = browserAcceptLanguageString !== undefined && browserAcceptLanguageString !== null
-			? acceptLanguage.get(browserAcceptLanguageString)
+			? accettare.get(browserAcceptLanguageString)
 			: 'en';
 
 		res.locals.config = config.publicConfig;
