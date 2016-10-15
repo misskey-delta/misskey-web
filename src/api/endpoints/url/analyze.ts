@@ -362,7 +362,7 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 				icon: icon,
 				title: info.title,
 				description: info.description,
-				image: info.image,
+				image: wrapMisskeyProxy(info.image),
 				category: info.category,
 				view: info.view,
 				time: info.time,
