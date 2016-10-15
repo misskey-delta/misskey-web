@@ -41,7 +41,7 @@ task('build-develop', [
 
 task('build:ts', () => {
 	return tsProject.src()
-		.pipe(tsProject())
+		.pipe(ts(tsProject))
 		.pipe(dest('./built'));
 });
 
