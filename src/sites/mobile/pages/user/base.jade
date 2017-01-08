@@ -63,14 +63,14 @@ block content
 					div.swiper-pagination
 			div.status
 				div(data-href= config.url + '/' + user.screenName)
-					p.count= comma(user.postsCount)
 					p.caption Posts
+					p.count= comma(user.postsCount)
 				div(data-href= config.url + '/' + user.screenName + '/likes')
-					p.count= comma(user.likesCount)
 					p.caption Likes
+					p.count= comma(user.likesCount)
 				div(data-href= config.url + '/' + user.screenName + '/liked')
-					p.count= comma(user.likedCount)
 					p.caption Liked
+					p.count= comma(user.likedCount)
 			div.actions
 				div#friend-form
 					if login
