@@ -7,7 +7,6 @@
     "url": "https://github.com/misskey-delta/Misskey-Web.git"
   },
   "scripts": {
-    "start-production": "NODE_ENV=production node ./built/index.js",
     "start": "node ./built/index.js",
     "dtsm": "dtsm --insight false install",
     "build": "gulp build",
