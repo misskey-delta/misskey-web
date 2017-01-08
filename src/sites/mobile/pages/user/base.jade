@@ -23,10 +23,17 @@ block content
 									img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
 							p.screen-name
 								= user.screenName
-								if login && (me.id != user.id) && user.isFollowed
-									span#friend-status
-										i.fa.fa-heart
-										= locale.sites.mobile.pages._user.follows_you
+								if login
+									if me.id != user.id
+										if user.isFollowed
+											span#friend-status
+												i.fa.fa-heart
+												= locale.sites.mobile.pages._user.follows_you
+									else
+										span#friend-status
+											i.fa.fa-circle-o
+											= locale.sites.mobile.pages._user.you
+											
 							div.following-and-followers
 								a.following(href= config.url + '/' + user.screenName + '/following')
 									span.count= comma(user.followingCount)
