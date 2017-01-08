@@ -20,12 +20,20 @@ main {
 		padding: 0;
 		list-style: none;
 
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
+
 		> .user {
 			display: block;
-			float: left;
 			margin: 16px 0 0 20px;
 			padding: 0;
 			width: 250px;
+
+      background: #fff;
+      border-radius: 4px;
 
 			&:nth-child(odd) {
 			  margin: 16px 0 0 0;
