@@ -24,18 +24,18 @@ const tsProject = ts.createProject('tsconfig.json', <any>{
 task('build', [
 	'build:ts',
 	'copy:bower_components',
-	'copy:frontside-templates',
-	'build:frontside-scripts',
-	'build:frontside-styles',
+	'copy:client-templates',
+	'build:client-scripts',
+	'build:client-styles',
 	'build-copy'
 ]);
 
 task('build-develop', [
 	'build:ts',
 	'copy:bower_components',
-	'copy:frontside-templates',
-	'build-develop:frontside-scripts',
-	'build-develop:frontside-styles',
+	'copy:client-templates',
+	'build-develop:client-scripts',
+	'build-develop:client-styles',
 	'build-develop-copy'
 ]);
 
@@ -50,7 +50,7 @@ task('copy:bower_components', () => {
 		.pipe(dest('./built/resources/bower_components'));
 });
 
-task('compile:frontside-scripts', ['build:ts'], () => {
+task('compile:client-scripts', ['build:ts'], () => {
 	return es.merge(
 		src('./src/sites/**/*.ls')
 			.pipe(ls()),
@@ -65,7 +65,7 @@ task('compile:frontside-scripts', ['build:ts'], () => {
 	).pipe(dest('./tmp/'));
 });
 
-task('copy:frontside-templates', () => {
+task('copy:client-templates', () => {
 	return es.merge(
 		src('./src/sites/**/common/views/**/*.jade')
 			.pipe(dest('./tmp/')),
@@ -78,7 +78,7 @@ task('copy:frontside-templates', () => {
 	);
 });
 
-task('build:frontside-scripts', ['copy:frontside-templates', 'compile:frontside-scripts'], done => {
+task('build:client-scripts', ['copy:client-templates', 'compile:client-scripts'], done => {
 	glob('./tmp/**/*.js', (err: Error, files: string[]) => {
 		const tasks = files.map((entry: string) => {
 			return browserify({ entries: [entry] })
@@ -94,7 +94,7 @@ task('build:frontside-scripts', ['copy:frontside-templates', 'compile:frontside-
 	});
 });
 
-task('build-develop:frontside-scripts', ['copy:frontside-templates', 'compile:frontside-scripts'], done => {
+task('build-develop:client-scripts', ['copy:client-templates', 'compile:client-scripts'], done => {
 	glob('./tmp/**/*.js', (err: Error, files: string[]) => {
 		const tasks = files.map((entry: string) => {
 			return browserify({ entries: [entry] })
@@ -117,7 +117,7 @@ task('set-less-variables', () => {
 		.pipe(dest('./src/sites/common'));
 });
 
-task('build:frontside-styles', ['set-less-variables', 'copy:bower_components'], () => {
+task('build:client-styles', ['set-less-variables', 'copy:bower_components'], () => {
 	return src('./src/sites/**/*.less')
 		.pipe(less())
 		.pipe(cssnano({
@@ -126,7 +126,7 @@ task('build:frontside-styles', ['set-less-variables', 'copy:bower_components'], 
 		.pipe(dest('./built/resources'));
 });
 
-task('build-develop:frontside-styles', ['set-less-variables', 'copy:bower_components'], () => {
+task('build-develop:client-styles', ['set-less-variables', 'copy:bower_components'], () => {
 	return src('./src/sites/**/*.less')
 		.pipe(less())
 		.pipe(dest('./built/resources'));
@@ -140,7 +140,7 @@ task('lint', () => {
 		.pipe(tslint.report())
 });
 
-task('build-copy', ['build:frontside-scripts'], () => {
+task('build-copy', ['build:client-scripts'], () => {
 	src(['./src/sites/*/common/**/*', './src/sites/*/pages/**/*'])
 		.pipe(dest('./built/resources'));
 	src([
@@ -155,7 +155,7 @@ task('build-copy', ['build:frontside-scripts'], () => {
 	src('./resources/**/*').pipe(dest('./built/resources/common/'));
 });
 
-task('build-develop-copy', ['build-develop:frontside-scripts'], () => {
+task('build-develop-copy', ['build-develop:client-scripts'], () => {
 	src(['./src/sites/*/common/**/*', './src/sites/*/pages/**/*'])
 		.pipe(dest('./built/resources'));
 	src([
