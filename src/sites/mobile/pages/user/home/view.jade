@@ -17,9 +17,8 @@ block user-content
 				each post in timeline
 					+post(post)
 			else
-				p.empty
-					| このユーザーはまだ何も投稿していません。
+				p.empty= locale.sites.mobile.pages._user._home.empty
 		if timeline.length > 0
 			button.read-more
 				i.fa.fa-sort-amount-desc
-				p もっと読み込む
+				p= locale.sites.mobile.pages._user._home.read_more

@@ -26,15 +26,15 @@ block content
 								if login && (me.id != user.id) && user.isFollowed
 									span#friend-status
 										i.fa.fa-heart
-										| フォローされています
+										= locale.sites.mobile.pages._user.follows_you
 							div.following-and-followers
 								a.following(href= config.url + '/' + user.screenName + '/following')
 									span.count= comma(user.followingCount)
-									span.caption Following
+									span.caption= locale.sites.mobile.pages._user.following
 								i |
 								a.followers(href= config.url + '/' + user.screenName + '/followers')
 									span.count= comma(user.followersCount)
-									span.caption Followers
+									span.caption= locale.sites.mobile.pages._user.followers
 						div.swiper-slide
 							if user.comment != null && user.comment != ''
 								p.comment= user.comment
@@ -57,19 +57,18 @@ block content
 											i.fa.fa-tag
 											= tag
 							else
-								p.empty-tags
-									| タグは設定されていません。
+								p.empty-tags= locale.sites.mobile.pages._user.empty_tags
 								
 					div.swiper-pagination
 			div.status
 				div(data-href= config.url + '/' + user.screenName)
-					p.caption Posts
+					p.caption= locale.sites.mobile.pages._user.posts
 					p.count= comma(user.postsCount)
 				div(data-href= config.url + '/' + user.screenName + '/likes')
-					p.caption Likes
+					p.caption= locale.sites.mobile.pages._user.likes
 					p.count= comma(user.likesCount)
 				div(data-href= config.url + '/' + user.screenName + '/liked')
-					p.caption Liked
+					p.caption= locale.sites.mobile.pages._user.liked
 					p.count= comma(user.likedCount)
 			div.actions
 				div#friend-form
@@ -78,9 +77,9 @@ block content
 							if user.isFollowing
 								button#friend-button.following
 									i.fa.fa-minus-circle
-									span.text フォロー解除
+									span.text= locale.sites.mobile.pages._user.unfollow
 							else
 								button#friend-button.not-following
 									i.fa.fa-plus
-									span.text フォローする
+									span.text= locale.sites.mobile.pages._user.follow
 		block user-content
