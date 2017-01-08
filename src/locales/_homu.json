@@ -495,18 +495,18 @@
 					}
 				},
 				"_user": {
-					"empty_tags": "ほむ",
-					"verified": "ほむ",
-					"follows_you": "ほむ",
-					"posts": "ほむ",
-					"likes": "ほむ",
-					"liked": "ほむ",
-					"following": "ほむ",
-					"followers": "ほむ",
-					"follow": "ほむ",
-					"unfollow": "ほむ",
-					"you": "ほむ",
 					"_home": {
+						"empty_tags": "ほむ",
+						"verified": "ほむ",
+						"follows_you": "ほむ",
+						"posts": "ほむ",
+						"likes": "ほむ",
+						"liked": "ほむ",
+						"following": "ほむ",
+						"followers": "ほむ",
+						"follow": "ほむ",
+						"unfollow": "ほむ",
+						"you": "ほむ",
 						"read_more": "ほむ",
 						"empty": "ほむ"
 					}

@@ -496,17 +496,17 @@
 					}
 				},
 				"_user": {
-					"empty_tags": "タグは設定されていません。",
-					"follows_you": "フォローされています",
-					"posts": "投稿",
-					"likes": "Likeした",
-					"liked": "Likeされた",
-					"following": "フォロー",
-					"followers": "フォロワー",
-					"follow": "フォロー",
-					"unfollow": "フォロー解除",
-					"you": "あなたです",
 					"_home": {
+						"empty_tags": "タグは設定されていません。",
+						"follows_you": "フォローされています",
+						"posts": "投稿",
+						"likes": "Likeした",
+						"liked": "Likeされた",
+						"following": "フォロー",
+						"followers": "フォロワー",
+						"follow": "フォロー",
+						"unfollow": "フォロー解除",
+						"you": "あなたです",
 						"read_more": "もっと読む",
 						"empty": "このユーザーはまだ何も投稿していないようです。"
 					}
