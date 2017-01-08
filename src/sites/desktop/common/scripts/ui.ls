@@ -79,9 +79,6 @@ $ ->
 			| 110, 112 => # Open post form
 				e.prevent-default!
 				post-form.open!
-			| 109 =>
-				e.prevent-default!
-				toggle-misskey-menu!
 
 $ window .on 'load scroll resize' on-scroll
 
