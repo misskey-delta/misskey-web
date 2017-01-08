@@ -88,21 +88,3 @@ $ ->
 					} 500ms \ease ->
 						$notification.remove!
 				, USER_SETTINGS.pseudo-push-notification-display-duration
-
-	$ '#misskey-header .post' .click ->
-		text = window.prompt LOCALE.sites.mobile.pages._home.new_post
-		if text? and text != ''
-			$.ajax "#{CONFIG.web-api-url}/posts/create" {
-				data: {
-					type: \text
-					text
-				}
-			} .done (post) ->
-				# something
-			.fail (data) ->
-				error = data.error
-				switch error
-				| \empty-text => window.alert 'テキストを入力してください。'
-				| \too-long-text => window.alert 'テキストが長過ぎます。'
-				| \duplicate-content => window.alert '投稿が重複しています。'
-				| _ => window.alert "不明なエラー (#error-code)"
