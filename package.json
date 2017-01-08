@@ -17,7 +17,7 @@
     "clean": "gulp clean",
     "clean-all": "gulp clean-all",
     "test": "gulp test",
-    "less": "gulp build:frontside-styles",
+    "less": "gulp build:client-styles",
     "deploy": "npm install && dtsm --insight false install && ./node_modules/.bin/bower install && gulp build"
   },
   "license": "MIT",
