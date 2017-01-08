@@ -496,7 +496,20 @@
 					}
 				},
 				"_user": {
+					"empty_tags": "No tags",
+					"verified": "Verified",
+					"follows_you": "Follows You",
+					"posts": "Posts",
+					"likes": "Likes",
+					"liked": "Liked",
+					"following": "Following",
+					"followers": "Followers",
+					"follow": "Follow",
+					"unfollow": "UnFollow",
+					"you": "You",
 					"_home": {
+						"read_more": "Read More",
+						"empty": "No posts here yet"
 					}
 				}
 			}
