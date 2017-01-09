@@ -13,6 +13,6 @@ module.exports = (req: express.Request, res: express.Response): void => {
 		res.locals.display({
 			user: user,
 			followers: followers
-		});
+		}, 'user');
 	});
 };

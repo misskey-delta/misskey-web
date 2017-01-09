@@ -10,6 +10,6 @@ module.exports = (req: express.Request, res: express.Response): void => {
 		res.locals.display({
 			user: res.locals.user,
 			timeline: timeline
-		});
+		}, 'user');
 	});
 };
