@@ -28,20 +28,20 @@ block content
 										if user.isFollowed
 											span#friend-status
 												i.fa.fa-heart
-												= locale.sites.mobile.pages._user._home.follows_you
+												= locale.sites.mobile.pages._user.follows_you
 									else
 										span#friend-status
 											i.fa.fa-circle-o
-											= locale.sites.mobile.pages._user._home.you
+											= locale.sites.mobile.pages._user.you
 											
 							div.following-and-followers
 								a.following(href= config.url + '/' + user.screenName + '/following')
 									span.count= comma(user.followingCount)
-									span.caption= locale.sites.mobile.pages._user._home.following
+									span.caption= locale.sites.mobile.pages._user.following
 								i |
 								a.followers(href= config.url + '/' + user.screenName + '/followers')
 									span.count= comma(user.followersCount)
-									span.caption= locale.sites.mobile.pages._user._home.followers
+									span.caption= locale.sites.mobile.pages._user.followers
 						div.swiper-slide
 							if user.comment != null && user.comment != ''
 								p.comment= user.comment
@@ -64,18 +64,18 @@ block content
 											i.fa.fa-tag
 											= tag
 							else
-								p.empty-tags= locale.sites.mobile.pages._user._home.empty_tags
+								p.empty-tags= locale.sites.mobile.pages._user.empty_tags
 								
 					div.swiper-pagination
 			div.status
 				div(data-href= config.url + '/' + user.screenName)
-					p.caption= locale.sites.mobile.pages._user._home.posts
+					p.caption= locale.sites.mobile.pages._user.posts
 					p.count= comma(user.postsCount)
 				div(data-href= config.url + '/' + user.screenName + '/likes')
-					p.caption= locale.sites.mobile.pages._user._home.likes
+					p.caption= locale.sites.mobile.pages._user.likes
 					p.count= comma(user.likesCount)
 				div(data-href= config.url + '/' + user.screenName + '/liked')
-					p.caption= locale.sites.mobile.pages._user._home.liked
+					p.caption= locale.sites.mobile.pages._user.liked
 					p.count= comma(user.likedCount)
 			div.actions
 				div#friend-form
@@ -84,9 +84,9 @@ block content
 							if user.isFollowing
 								button#friend-button.following
 									i.fa.fa-minus-circle
-									span.text= locale.sites.mobile.pages._user._home.unfollow
+									span.text= locale.sites.mobile.pages._user.unfollow
 							else
 								button#friend-button.not-following
 									i.fa.fa-plus
-									span.text= locale.sites.mobile.pages._user._home.follow
+									span.text= locale.sites.mobile.pages._user.follow
 		block user-content
