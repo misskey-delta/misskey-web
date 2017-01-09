@@ -13,7 +13,7 @@ sncompleter = require './sncompleter.js'
 show-modal-window = require './modal-window.js'
 show-modal-dialog = require './modal-dialog.js'
 ui-window = require './window.js'
-notifications-compiler = require '../../common/views/notification/smart/items.jade'
+notifications-compiler = require '../../common/views/notification/smart/items.pug'
 
 window.is-keyboard-shortcuts-open = no
 

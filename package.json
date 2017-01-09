@@ -24,9 +24,8 @@
     "transform": [
       "debowerify",
       [
-        "jadeify",
+        "pugify",
         {
-          "compileDebug": false,
           "pretty": false
         }
       ]
@@ -49,7 +48,7 @@
     "gulp-tslint": "6.1.2",
     "gulp-typescript": "2.13.6",
     "gulp-uglify": "2.0.0",
-    "jadeify": "4.6.0",
+    "pugify": "2.1.0",
     "less": "2.7.1",
     "livescript": "1.5.0",
     "tslint": "3.15.1",
@@ -74,7 +73,7 @@
     "express-session": "1.14.1",
     "gm": "1.23.0",
     "html-entities": "1.2.0",
-    "jade": "1.11.0",
+    "pug": "2.0.0-beta6",
     "marked": "0.3.6",
     "moment": "2.15.1",
     "mongoose": "4.6.3",

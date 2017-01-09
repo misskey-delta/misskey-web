@@ -1,7 +1,7 @@
 $ = require 'jquery/dist/jquery'
 marked = require 'marked'
 urldecorator = require '../../../common/urldecorator.js'
-message-compiler = require '../views/talk/render.jade'
+message-compiler = require '../views/talk/render.pug'
 
 marked.set-options {
 	+gfm

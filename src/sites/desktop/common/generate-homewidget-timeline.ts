@@ -1,4 +1,4 @@
-const jade: any = require('jade');
+const pug: any = require('pug');
 
 import { User } from '../../../models/user';
 import { Post } from '../../../models/post';
@@ -11,8 +11,8 @@ import config from '../../../config';
  */
 export default function generateHomewidgetTimeline(me: User, locale: any, tlsource: string): Promise<string> {
 
-	const compiler: (locals?: any) => string = jade.compileFile(
-		`${__dirname}/views/home-widgets/timeline.jade`, {
+	const compiler: (locals?: any) => string = pug.compileFile(
+		`${__dirname}/views/home-widgets/timeline.pug`, {
 			cache: true
 	});
 
