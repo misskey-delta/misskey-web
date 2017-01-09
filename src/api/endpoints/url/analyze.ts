@@ -354,8 +354,8 @@ function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.
 			const info = JSON.parse(body);
 			const state = info.deleted ? '削除済み' : null;
 
-			const compiler: (locals: any) => string = jade.compileFile(
-				`${__dirname}/nicovideo.jade`);
+			const compiler: (locals: any) => string = pug.compileFile(
+				`${__dirname}/nicovideo.pug`);
 			const viewer = compiler({
 				url: url,
 				site: site,
