@@ -74,7 +74,7 @@
     "express-session": "1.14.1",
     "gm": "1.23.0",
     "html-entities": "1.2.0",
-    "pug": "1.11.0",
+    "pug": "2.0.0-beta6",
     "marked": "0.3.6",
     "moment": "2.15.1",
     "mongoose": "4.6.3",
