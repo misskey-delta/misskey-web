@@ -16,7 +16,6 @@
 1. `git clone git://github.com/misskey-delta/Misskey-Web.git`
 2. `cd Misskey-Web`
 3. `npm install`
-4. `npm run dtsm`
 4. `npm run bower`
 5. `npm run build`
 
