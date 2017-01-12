@@ -1,5 +1,3 @@
-/// <reference path="./node_modules/typescript/lib/lib.es6.d.ts" />
-
 import { task, src, dest } from 'gulp';
 import * as glob from 'glob';
 import * as ts from 'gulp-typescript';
