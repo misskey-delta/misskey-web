@@ -9,9 +9,13 @@
 		"removeComments": true,
 		"noLib": true,
 		"outDir": "built",
-		"rootDir": "src"
+		"rootDir": "src",
+		"declaration": false,
+		"noUnusedParameters": true,
+		"noUnusedLocals": true,
+		"typeRoots": [ "./node_modules/@types" ]
 	},
-	"files": [
+	"include": [
 		"node_modules/typescript/lib/lib.es6.d.ts",
 		"src/index.ts",
 		"src/config.ts",
