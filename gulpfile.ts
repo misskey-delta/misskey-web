@@ -12,9 +12,7 @@ const cssnano = require('gulp-cssnano');
 const ls = require('gulp-livescript');
 const uglify = require('gulp-uglify');
 
-import config from './src/config';
-
-const tsProject = ts.createProject('tsconfig.json', <any>{
+const tsProject = ts.createProject('tsconfig.json', {
 	typescript: require('typescript'),
 	target: 'ES5'
 });
@@ -132,7 +130,7 @@ task('build-develop:client-styles', ['set-less-variables', 'copy:bower_component
 
 task('lint', () => {
 	return src('./src/**/*.ts')
-		.pipe(tslint(<any>{
+		.pipe(tslint({
 			formatter: "verbose"
 		}))
 		.pipe(tslint.report())
