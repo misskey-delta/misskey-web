@@ -5,7 +5,7 @@ import requestApi from '../../../../../core/request-api';
 module.exports = (req: express.Request, res: express.Response): void => {
 
 	const user: User = res.locals.user;
-	const me: User = req.user;
+	const me: User = req.app.locals.user;
 
 	requestApi('users/followers', {
 		'user-id': user.id

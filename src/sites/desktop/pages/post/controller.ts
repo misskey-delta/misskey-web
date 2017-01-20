@@ -8,7 +8,7 @@ module.exports = (req: express.Request, res: express.Response): void => {
 
 	const user: User = res.locals.user;
 	const post: any = res.locals.post;
-	const me: User = req.user;
+	const me: User = req.app.locals.user;
 
 	Promise.all([
 		new Promise<any>((resolve, reject) => {

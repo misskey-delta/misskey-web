@@ -15,14 +15,14 @@ module.exports = (req: express.Request, res: express.Response): void => {
 		'big-calendar',
 		'small-calendar'];
 
-	const me: any = req.user;
+	const me: any = req.app.locals.user;
 	const widgets: any = {
 		left: [],
 		center: [],
 		right: []
 	};
 
-	const layout: any = req.user._settings.homeLayout;
+	const layout: any = req.app.locals.user._settings.homeLayout;
 	const useWidgets = layout.left.concat(layout.center.concat(layout.right));
 	const unuseWidgets = widgetCatalog.map(widgetName => {
 		if (useWidgets.indexOf(widgetName) === -1) {

@@ -9,11 +9,11 @@
 		"removeComments": true,
 		"noLib": true,
 		"outDir": "built",
-		"rootDir": "src"
+		"rootDir": "src",
+		"declaration": false
 	},
-	"files": [
+	"include": [
 		"node_modules/typescript/lib/lib.es6.d.ts",
-		"typings/bundle.d.ts",
 		"src/index.ts",
 		"src/config.ts",
 		"src/server.ts",
