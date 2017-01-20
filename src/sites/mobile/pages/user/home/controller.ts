@@ -6,7 +6,7 @@ module.exports = (req: express.Request, res: express.Response): void => {
 	requestApi('posts/user-timeline', {
 		'user-id': res.locals.user.id,
 		'limit': 10
-	}, req.user).then((timeline: any[]) => {
+	}, req.app.locals.user).then((timeline: any[]) => {
 		res.locals.display({
 			user: res.locals.user,
 			timeline: timeline

@@ -6,7 +6,7 @@ module.exports = (req: express.Request, res: express.Response): void => {
 	if (res.locals.file.folder !== null) {
 		requestApi('album/folders/show', {
 			'folder-id': res.locals.file.folder
-		}, req.user).then((folder: Object) => {
+		}, req.app.locals.user).then((folder: Object) => {
 			res.locals.display({
 				folder: folder
 			}, 'i/album');

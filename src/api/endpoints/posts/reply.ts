@@ -7,7 +7,7 @@ export default function reply(req: express.Request, res: express.Response): void
 		'in-reply-to-post-id': req.body['in-reply-to-post-id'],
 		'text': req.body['text'],
 		'files': req.body['files']
-	}, req.user).then((reply: Object) => {
+	}, req.app.locals.user).then((reply: Object) => {
 		res.send(reply);
 	}, (err: any) => {
 		res.send(err);

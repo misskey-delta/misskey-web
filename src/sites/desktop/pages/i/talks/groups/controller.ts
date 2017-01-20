@@ -5,8 +5,8 @@ module.exports = (req: express.Request, res: express.Response): void => {
 
 	requestApi('talks/history/show', {
 		type: 'group'
-	}, req.user.id).then((messages: any[]) => {
-		requestApi('talks/group/invitations/show', {}, req.user.id).then((invitations: any[]) => {
+	}, req.app.locals.user.id).then((messages: any[]) => {
+		requestApi('talks/group/invitations/show', {}, req.app.locals.user.id).then((invitations: any[]) => {
 			res.locals.display({
 				messages: messages,
 				invitations: invitations

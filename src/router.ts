@@ -70,7 +70,7 @@ export default function router(app: express.Express): void {
 					const lang = settings.uiLanguage !== null
 						? settings.uiLanguage
 						: browserAcceptLanguage;
-					req.user = Object.assign({}, user, {_settings: settings.toObject()});
+					req.app.locals.user = Object.assign({}, user, {_settings: settings.toObject()});
 					res.locals.me = user;
 					res.locals.userSettings = settings.toObject();
 					res.locals.locale = require(`${__dirname}/locales/${lang}.json`);
@@ -84,7 +84,7 @@ export default function router(app: express.Express): void {
 			const lang = cookieLang !== undefined
 				? cookieLang
 				: browserAcceptLanguage;
-			req.user = null;
+			req.app.locals.user = null;
 			res.locals.me = null;
 			res.locals.userSettings = guestUserSettings;
 			res.locals.locale = require(`${__dirname}/locales/${lang}.json`);
@@ -354,7 +354,7 @@ function paramUserScreenName(
 
 	requestApi('users/show', {
 		'screen-name': screenName
-	}, res.locals.isLogin ? req.user : null).then((user: User) => {
+	}, res.locals.isLogin ? req.app.locals.user : null).then((user: User) => {
 		if (user !== null) {
 			res.locals.user = user;
 			next();
@@ -379,7 +379,7 @@ function paramPostId(
 
 	requestApi('posts/show', {
 		'post-id': postId
-	}, res.locals.isLogin ? req.user : null).then((post: Object) => {
+	}, res.locals.isLogin ? req.app.locals.user : null).then((post: Object) => {
 		if (post !== null) {
 			res.locals.post = post;
 			next();
@@ -404,7 +404,7 @@ function paramFileId(
 
 	requestApi('album/files/show', {
 		'file-id': fileId
-	}, res.locals.isLogin ? req.user : null).then((file: Object) => {
+	}, res.locals.isLogin ? req.app.locals.user : null).then((file: Object) => {
 		res.locals.file = file;
 		next();
 	}, (err: any) => {
@@ -424,7 +424,7 @@ function paramFolderId(
 
 	requestApi('album/folders/show', {
 		'folder-id': folderId
-	}, res.locals.isLogin ? req.user : null).then((folder: Object) => {
+	}, res.locals.isLogin ? req.app.locals.user : null).then((folder: Object) => {
 		res.locals.folder = folder;
 		next();
 	}, (err: any) => {
@@ -444,7 +444,7 @@ function paramTalkGroupId(
 
 	requestApi('talks/group/show', {
 		'group-id': groupId
-	}, req.user).then((group: Object) => {
+	}, req.app.locals.user).then((group: Object) => {
 		res.locals.talkGroup = group;
 		next();
 	}, (err: any) => {
