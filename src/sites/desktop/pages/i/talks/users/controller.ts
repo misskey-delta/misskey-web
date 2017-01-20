@@ -5,7 +5,7 @@ module.exports = (req: express.Request, res: express.Response): void => {
 
 	requestApi('talks/history/show', {
 		type: 'user'
-	}, req.app.locals.user.id).then((messages: any[]) => {
+	}, res.locals.user.id).then((messages: any[]) => {
 		res.locals.display({
 			messages: messages
 		});

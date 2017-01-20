@@ -16,8 +16,8 @@ export default function callController(
 		const viewPath: string = `${__dirname}/sites/${res.locals.ua}/pages/${path}/view`;
 		if (data.overrideTheme !== undefined && data.overrideTheme !== null) {
 			data.stylePath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${path}/style.${data.overrideTheme}.css`;
-		} else if (res.locals.isLogin && req.app.locals.user._settings.theme !== null) {
-			data.stylePath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${path}/style.${req.app.locals.user._settings.theme}.css`;
+		} else if (res.locals.isLogin && res.locals.user._settings.theme !== null) {
+			data.stylePath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${path}/style.${res.locals.user._settings.theme}.css`;
 		} else {
 			data.stylePath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${path}/style.css`;
 		}

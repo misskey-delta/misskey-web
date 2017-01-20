@@ -4,7 +4,7 @@ import generateHomeWidgets from '../../../common/generate-layouted-homewidgets';
 
 module.exports = (req: express.Request, res: express.Response): void => {
 
-	const me: User = req.app.locals.user;
+	const me: User = res.locals.user;
 
 	generateHomeWidgets(me, res.locals.locale, 'mentions').then((widgets: any) => {
 		res.locals.display({
