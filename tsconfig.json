@@ -10,9 +10,7 @@
 		"noLib": true,
 		"outDir": "built",
 		"rootDir": "src",
-		"declaration": false,
-		"noUnusedParameters": true,
-		"noUnusedLocals": true
+		"declaration": false
 	},
 	"include": [
 		"node_modules/typescript/lib/lib.es6.d.ts",
