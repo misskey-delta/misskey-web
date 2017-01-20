@@ -7,7 +7,7 @@ module.exports = (req: express.Request, res: express.Response): void => {
 
 	requestApi('talks/messages/stream', {
 		'group-id': group.id
-	}, req.app.locals.user.id).then((messages: any[]) => {
+	}, res.locals.user.id).then((messages: any[]) => {
 		res.locals.display({
 			group: group,
 			messages: messages.reverse()

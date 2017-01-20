@@ -15,7 +15,7 @@ export default function createWithFile(req: express.Request, res: express.Respon
 			}
 		};
 		fs.unlink(file.path);
-		requestApi('album/files/upload', data, req.app.locals.user, true).then((albumFile: Object) => {
+		requestApi('album/files/upload', data, res.locals.user, true).then((albumFile: Object) => {
 			create(albumFile);
 		}, (err: any) => {
 			console.error(err);
@@ -32,7 +32,7 @@ export default function createWithFile(req: express.Request, res: express.Respon
 				'text': req.body.text,
 				'files': fileEntity !== null ? fileEntity.id : null,
 				'in-reply-to-post-id': inReplyToPostId
-			}, req.app.locals.user).then((post: Object) => {
+			}, res.locals.user).then((post: Object) => {
 				res.send(post);
 			}, (err: any) => {
 				res.status(500).send(err);
@@ -41,7 +41,7 @@ export default function createWithFile(req: express.Request, res: express.Respon
 			requestApi('posts/create', {
 				'text': req.body.text,
 				'files': fileEntity !== null ? fileEntity.id : null
-			}, req.app.locals.user).then((post: Object) => {
+			}, res.locals.user).then((post: Object) => {
 				res.send(post);
 			}, (err: any) => {
 				res.status(500).send(err);

@@ -20,7 +20,7 @@ export default function updateHomeLayout(
 	}
 
 	UserSettings.findOne({
-		userId: req.app.locals.user
+		userId: res.locals.user
 	}, (findErr: any, settings: IUserSettings) => {
 		if (findErr !== null) {
 			return res.sendStatus(500);

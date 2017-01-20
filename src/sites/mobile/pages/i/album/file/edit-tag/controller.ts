@@ -8,7 +8,7 @@ module.exports = (req: express.Request, res: express.Response): void => {
 		res.locals.noui = true;
 		isDialog = true;
 	}
-	requestApi('album/tags/list', {}, req.app.locals.user).then((tags: Object) => {
+	requestApi('album/tags/list', {}, res.locals.user).then((tags: Object) => {
 		res.locals.display({
 			albumTags: tags,
 			isDialog: isDialog
