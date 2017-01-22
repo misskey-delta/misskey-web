@@ -6,7 +6,7 @@ export default function updateHomeLayout(req: express.Request, res: express.Resp
 	const lang: string = req.body['lang'];
 
 	UserSettings.findOne({
-		userId: res.locals.user
+		userId: req.user
 	}, (findErr: any, settings: IUserSettings) => {
 		if (findErr !== null) {
 			return res.sendStatus(500);

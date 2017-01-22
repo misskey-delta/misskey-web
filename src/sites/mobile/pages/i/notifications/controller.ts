@@ -5,7 +5,7 @@ module.exports = (req: express.Request, res: express.Response): void => {
 
 	requestApi('notifications/timeline', {
 		'limit': 30
-	}, res.locals.user).then((notifications: any[]) => {
+	}, req.user).then((notifications: any[]) => {
 		res.locals.display({
 			notifications: notifications
 		});

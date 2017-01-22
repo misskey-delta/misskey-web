@@ -10,7 +10,7 @@ module.exports = (req: express.Request, res: express.Response): void => {
 
 	requestApi('posts/search', {
 		'query': query
-	}, res.locals.user).then((posts: any[]) => {
+	}, req.user).then((posts: any[]) => {
 		res.locals.display({
 			query: query,
 			posts: posts

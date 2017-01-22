@@ -15,7 +15,7 @@ export default function updatebanner(req: express.Request, res: express.Response
 	if (trimX >= 0 && trimY >= 0 && trimW > 0 && trimH > 0) {
 		requestApi('album/files/show', {
 			'file-id': avaterFileId
-		}, res.locals.user).then((file: any) => {
+		}, req.user).then((file: any) => {
 			if (file.dataSize > ((1024 * 1024) * 10)) {
 				return res.status(500).send('big-data');
 			}
@@ -44,10 +44,10 @@ export default function updatebanner(req: express.Request, res: express.Response
 								contentType: 'image/jpeg'
 							}
 						}
-					}, res.locals.user, true).then((albumFile: any) => {
+					}, req.user, true).then((albumFile: any) => {
 						requestApi('account/banner/update', {
 							'file-id': albumFile.id
-						}, res.locals.user).then((me: Object) => {
+						}, req.user).then((me: Object) => {
 							res.send('success');
 						}, (updateErr: any) => {
 							return res.status(500).send('something-happened');
@@ -61,7 +61,7 @@ export default function updatebanner(req: express.Request, res: express.Response
 	} else {
 		requestApi('account/banner/update', {
 			'file-id': avaterFileId
-		}, res.locals.user).then((me: Object) => {
+		}, req.user).then((me: Object) => {
 			res.send('success');
 		}, (updateErr: any) => {
 			return res.status(500).send('something-happened');
