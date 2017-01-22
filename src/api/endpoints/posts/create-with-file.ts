@@ -14,7 +14,7 @@ export default function createWithFile(req: express.Request, res: express.Respon
 				contentType: file.mimetype
 			}
 		};
-		fs.unlink(file.path);
+		fs.unlinkSync(file.path);
 		requestApi('album/files/upload', data, req.user, true).then((albumFile: Object) => {
 			create(albumFile);
 		}, (err: any) => {
