@@ -3,6 +3,7 @@ import * as glob from 'glob';
 import * as ts from 'gulp-typescript';
 import * as tslint from 'gulp-tslint';
 import * as browserify from 'browserify';
+import {exec} from 'child_process';
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const es = require('event-stream');
@@ -104,13 +105,17 @@ task('build-develop:client-scripts', ['copy:client-templates', 'compile:client-s
 	});
 });
 
-task('set-less-variables', () => {
-	return src('./src/sites/common/common.less')
+task('touch-less', () => {
+   return exec('touch ./built/sites/common/common.less');
+});
+
+task('set-less-variables', ['touch-less'], () => {
+	return src('./built/sites/common/common.less')
 		.pipe(lessVars({
 			'@theme-color': config.publicConfig.themeColor,
 			'@resources-url': "\"" + config.publicConfig.resourcesUrl + "\""
 		}))
-		.pipe(dest('./src/sites/common'));
+		.pipe(dest('./built/sites/common'));
 });
 
 task('build:client-styles', ['set-less-variables', 'copy:bower_components'], () => {
