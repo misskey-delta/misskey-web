@@ -105,11 +105,8 @@ task('build-develop:client-scripts', ['copy:client-templates', 'compile:client-s
 	});
 });
 
-task('touch-less', () => {
-   return exec('touch ./built/sites/common/common.less');
-});
-
-task('set-less-variables', ['touch-less'], () => {
+task('set-less-variables', () => {
+	exec('touch ./built/sites/common/common.less');
 	return src('./built/sites/common/common.less')
 		.pipe(lessVars({
 			'@theme-color': config.publicConfig.themeColor,
@@ -134,7 +131,7 @@ task('build-develop:client-styles', ['set-less-variables', 'copy:bower_component
 });
 
 task('lint', () => {
-	return src('./src/**/*.ts')
+	return src(['./src/**/*.ts', './expansion-types/*.d.ts'])
 		.pipe(tslint({
 			formatter: "verbose"
 		}))
