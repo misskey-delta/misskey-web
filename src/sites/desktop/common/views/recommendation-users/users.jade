@@ -1,9 +1,0 @@
-include ./user
-
-if users.length > 0
-	each user in users
-		+user(user)
-else
-	p.empty
-		i.fa.fa-lightbulb-o
-		=locale.sites.desktop.pages._home.recommendation_users_widget.no_users
