@@ -106,13 +106,14 @@ task('build-develop:client-scripts', ['copy:client-templates', 'compile:client-s
 });
 
 task('set-less-variables', () => {
-	exec('touch ./built/sites/common/common.less');
-	return src('./built/sites/common/common.less')
+	exec('mkdir -p ./tmp/sites/common/')
+	exec('touch ./tmp/sites/common/common.less');
+	return src('./tmp/sites/common/common.less')
 		.pipe(lessVars({
 			'@theme-color': config.publicConfig.themeColor,
 			'@resources-url': "\"" + config.publicConfig.resourcesUrl + "\""
 		}))
-		.pipe(dest('./built/sites/common'));
+		.pipe(dest('./tmp/sites/common'));
 });
 
 task('build:client-styles', ['set-less-variables', 'copy:bower_components'], () => {
