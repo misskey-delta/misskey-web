@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as URL from 'url';
 import * as request from 'request';
+import tracer from 'trace-redirect';
 const jade: any = require('jade');
 
 const client: any = require('cheerio-httpcli');
@@ -19,9 +20,9 @@ import config from '../../../config';
  * @param req MisskeyExpressRequest
  * @param res MisskeyExpressResponse
  */
-export default function analyze(req: express.Request, res: express.Response): void {
+export default async function analyze(req: express.Request, res: express.Response): Promise<void> {
 
-	const urlStr: string = req.body.url;
+	const urlStr: string = await tracer(req.body.url);
 	const url: URL.Url = URL.parse(urlStr, true);
 
 	res.header('Content-Type', 'text/plain');
