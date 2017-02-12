@@ -2,9 +2,9 @@
  * waves-effect.js
  *
  * @version  0.0.0
- * @url https://github.com/syuilo/waves-effect
+ * @url https://github.com/otofune/waves-effect
  *
- * Copyright 2015-2016 syuilo.
+ * Copyright 2015-2016 otofune.
  * Licensed under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
  */
