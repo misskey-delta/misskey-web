@@ -15,7 +15,7 @@ $ ->
 		$submit-button = $form.find '[type=submit]'
 			..attr \disabled on
 
-		$.ajax CONFIG.signin-url, {
+		$.post CONFIG.signin-url, {
 			data: {
 				'screen-name': $form.find '[name="screen-name"]' .val!
 				'password': $form.find '[name="password"]' .val!
