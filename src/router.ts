@@ -130,12 +130,6 @@ export default function router(app: express.Express): void {
 	app.get(`/subdomain/${config.publicConfig.signinDomain}/`, (req, res) => {
 		if (res.locals.isLogin) {
 			res.redirect(config.publicConfig.url);
-		} else if (req.query.hasOwnProperty('screen-name') && req.query.hasOwnProperty('password')) {
-			login(req.query['screen-name'], req.query['password'], req.session).then(() => {
-				res.redirect(config.publicConfig.url);
-			}, (err: any) => {
-				res.status(err.statusCode).send(err.body);
-			});
 		} else {
 			callController(req, res, 'login');
 		}

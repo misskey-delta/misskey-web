@@ -24,10 +24,9 @@ $ ->
 
 		$ \html .add-class \logging
 
-		$.ajax CONFIG.signin-url, {
-			data:
-				'screen-name': $form.find '[name="screen-name"]' .val!
-				'password': $form.find '[name="password"]' .val!
+		$.post CONFIG.signin-url, {
+			'screen-name': $form.find '[name="screen-name"]' .val!
+			'password': $form.find '[name="password"]' .val!
 		}
 		.done ->
 			location.reload!
