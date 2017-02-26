@@ -30,7 +30,7 @@
 
 ## People
 
-The original author of Misskey is [syuilo](https://github.com/syuilo)
+The original author of Misskey is [otofune](https://github.com/otofune)
 
 The current lead maintainer is [otofune](https://github.com/otofune)
 

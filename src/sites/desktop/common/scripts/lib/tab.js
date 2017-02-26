@@ -1,6 +1,6 @@
 /**
  * Tab
- * (c) syuilo 2015-2016
+ * (c) otofune 2015-2016
  */
 
 var $ = require('jquery');
