@@ -114,9 +114,8 @@ $ ->
 				.find \span .text LOCALE.sites.desktop.pages._register.logging
 
 			$.post CONFIG.signin-url, {
-				data:
-					'screen-name': screen-name
-					'password': password
+				'screen-name': screen-name
+				'password': password
 			}
 			.done ->
 				location.href = CONFIG.url

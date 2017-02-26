@@ -25,9 +25,8 @@ $ ->
 		$ \html .add-class \logging
 
 		$.post CONFIG.signin-url, {
-			data:
-				'screen-name': $form.find '[name="screen-name"]' .val!
-				'password': $form.find '[name="password"]' .val!
+			'screen-name': $form.find '[name="screen-name"]' .val!
+			'password': $form.find '[name="password"]' .val!
 		}
 		.done ->
 			location.reload!
