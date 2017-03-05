@@ -15,7 +15,6 @@
     "test": "gulp test",
     "less": "gulp build:client-styles",
     "gulp": "gulp",
-    "security": "nsp check",
     "deploy": "npm install && npm run bower && npm run build"
   },
   "license": "MIT",
@@ -75,7 +74,6 @@
     "jadeify": "4.6.0",
     "less": "2.7.2",
     "livescript": "1.5.0",
-    "nsp": "^2.6.2",
     "tslint": "4.3.1",
     "typescript": "2.1.5",
     "vinyl-buffer": "1.0.0",
