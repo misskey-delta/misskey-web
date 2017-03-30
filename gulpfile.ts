@@ -3,6 +3,7 @@ import * as glob from 'glob';
 import * as ts from 'gulp-typescript';
 import * as tslint from 'gulp-tslint';
 import * as browserify from 'browserify';
+import {exec} from 'child_process';
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const es = require('event-stream');
@@ -105,12 +106,14 @@ task('build-develop:client-scripts', ['copy:client-templates', 'compile:client-s
 });
 
 task('set-less-variables', () => {
-	return src('./src/sites/common/common.less')
+	exec('mkdir -p ./tmp/sites/common/')
+	exec('touch ./tmp/sites/common/common.less');
+	return src('./tmp/sites/common/common.less')
 		.pipe(lessVars({
 			'@theme-color': config.publicConfig.themeColor,
 			'@resources-url': "\"" + config.publicConfig.resourcesUrl + "\""
 		}))
-		.pipe(dest('./src/sites/common'));
+		.pipe(dest('./tmp/sites/common'));
 });
 
 task('build:client-styles', ['set-less-variables', 'copy:bower_components'], () => {
@@ -129,7 +132,7 @@ task('build-develop:client-styles', ['set-less-variables', 'copy:bower_component
 });
 
 task('lint', () => {
-	return src('./src/**/*.ts')
+	return src(['./src/**/*.ts', './expansion-types/*.d.ts'])
 		.pipe(tslint({
 			formatter: "verbose"
 		}))

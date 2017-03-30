@@ -113,7 +113,12 @@ $ ->
 			$submit-button
 				.find \span .text LOCALE.sites.mobile.pages._register.logging
 
-			location.href = "#{CONFIG.signin-url}?screen-name=#{screen-name}&password=#{password}"
+			$.post CONFIG.signin-url, {
+				'screen-name': location.href = screen-name
+				'password': password
+			}
+			.done ->
+				location.href = CONFIG.url
 		.fail ->
 			$submit-button
 				..attr \disabled off

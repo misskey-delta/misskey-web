@@ -14,9 +14,9 @@ export default function router(app: express.Express): void {
 			(<any>req.session).userId !== null;
 
 		if (res.locals.isLogin) {
-			res.locals.user = (<any>req.session).userId;
+			req.user = (<any>req.session).userId;
 		} else {
-			res.locals.user = null;
+			req.user = null;
 		}
 
 		next();
@@ -49,7 +49,7 @@ export default function router(app: express.Express): void {
 		requestApi(
 			req.path.substring(1),
 			req.body,
-			res.locals.user
+			req.user
 		).then((response: any) => {
 			res.json(response);
 		}, (err: any) => {

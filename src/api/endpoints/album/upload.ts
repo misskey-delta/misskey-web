@@ -17,8 +17,8 @@ export default function upload(req: express.Request, res: express.Response): voi
 	if (folder !== undefined && folder !== null) {
 		data['folder-id'] = folder;
 	}
-	fs.unlink(file.path);
-	requestApi('album/files/upload', data, res.locals.user, true).then((albumFile: Object) => {
+	fs.unlinkSync(file.path);
+	requestApi('album/files/upload', data, req.user, true).then((albumFile: Object) => {
 		res.send(albumFile);
 	}, (err: any) => {
 		console.error(err);

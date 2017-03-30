@@ -11,12 +11,10 @@
     "bower": "./node_modules/.bin/bower install",
     "build": "gulp build",
     "build-develop": "gulp build-develop",
-    "watch": "gulp watch",
     "lint": "gulp lint",
-    "clean": "gulp clean",
-    "clean-all": "gulp clean-all",
     "test": "gulp test",
     "less": "gulp build:client-styles",
+    "gulp": "gulp",
     "deploy": "npm install && npm run bower && npm run build"
   },
   "license": "MIT",
@@ -53,7 +51,7 @@
     "@types/less": "0.0.32",
     "@types/mongoose": "4.7.3",
     "@types/multer": "0.0.32",
-    "@types/node": "^7.0.0",
+    "@types/node": "7.0.0",
     "@types/redis": "0.12.34",
     "@types/request": "0.0.39",
     "@types/socket.io": "1.4.27",
@@ -82,6 +80,7 @@
     "vinyl-source-stream": "1.1.0"
   },
   "dependencies": {
+    "@misskey/emojinize": "git+https://github.com/potato4d/ms-emojinize.git",
     "accettare": "0.0.4",
     "body-parser": "1.15.2",
     "cheerio-httpcli": "0.6.10",
@@ -107,6 +106,7 @@
     "request": "2.79.0",
     "socket.io": "1.7.2",
     "subdomain": "1.2.0",
+    "trace-redirect": "1.0.2-1",
     "vhost": "3.0.2"
   },
   "private": true
