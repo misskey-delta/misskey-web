@@ -21,7 +21,7 @@
 
 	function analyzeMentions(text) {
 		'use strict';
-		return text.replace(/@([a-zA-Z0-9\-]+)/g, function(arg, screenName) {
+		return text.replace(/(^|\s)@([a-zA-Z0-9\-]+)/g, function(arg, _, screenName) {
 			return '<a href="' + config.url + '/' + screenName + '" class="mention" data-user-card="' + screenName + '">@' + screenName + '</a>';
 		});
 	}
