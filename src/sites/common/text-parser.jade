@@ -21,8 +21,8 @@
 
 	function analyzeMentions(text) {
 		'use strict';
-		return text.replace(/(^|\s)@([a-zA-Z0-9\-]+)/g, function(arg, _, screenName) {
-			return '<a href="' + config.url + '/' + screenName + '" class="mention" data-user-card="' + screenName + '">@' + screenName + '</a>';
+		return text.replace(/(^|\s)@([a-zA-Z0-9\-]+)/g, function(arg, space, screenName) {
+			return space + '<a href="' + config.url + '/' + screenName + '" class="mention" data-user-card="' + screenName + '">@' + screenName + '</a>';
 		});
 	}
 	
@@ -42,7 +42,7 @@
 
 	function analyzeHashtags(text) {
 		'use strict';
-		return text.replace(/(^|\s)#(\S+)/g, function(arg, _, tag) {
-			return _ + '<a href="' + config.searchUrl + '?q=' + encodeURIComponent("#"+tag) + '" class="hashtag">#' + tag + '</a>';
+		return text.replace(/(^|\s)#(\S+)/g, function(arg, space, tag) {
+			return space + '<a href="' + config.searchUrl + '?q=' + encodeURIComponent("#"+tag) + '" class="hashtag">#' + tag + '</a>';
 		});
 	}
