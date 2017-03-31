@@ -14,7 +14,7 @@
 
 	function analyzeUrl(text) {
 		'use strict';
-		return text.replace(/https?:\/\/[0-9a-z\.\-~%!$&'()*+,;=@:]+(\/[0-9a-z\.\-~%!$&'()*+,;=@:]*)*(\?[0-9a-z\.\-~%!$&'()*+,;=@:\/\?]*)?(#[0-9a-z\.\-~%!$&'()*+,;=@:\/\?]*)?/gi, function(url) {
+		return text.replace(/https?:\/\/[0-9a-z_\.\-~%!$&'()*+,;=@:]+(\/[0-9a-z_\.\-~%!$&'()*+,;=@:]*)*(\?[0-9a-z_\.\-~%!$&'()*+,;=@:\/\?]*)?(#[0-9a-z_\.\-~%!$&'()*+,;=@:\/\?]*)?/gi, function(url) {
 			return '<a href="' + url + '" title="' + url + '" target="_blank" class="url" rel="nofollow">' + url + '</a>';
 		});
 	}
