@@ -55,7 +55,6 @@ export default async function analyze(req: express.Request, res: express.Respons
 		case 'www.nicovideo.jp':
 		case 'nicovideo.jp':
 		case 'sp.nicovideo.jp':
-		case 'seiga.nicovideo.jp':
 			allocateNicovideoURL(req, res, url);
 			break;
 		case 'yabumi.cc':
@@ -315,25 +314,6 @@ function allocateNicovideoURL(req: express.Request, res: express.Response, url: 
 	// 動画判定
 	if (videoId !== null) {
 		analyzeNicovideo(req, res, url, videoId);
-		return;
-	}
-
-	// 静画
-	let imageId: string = null;
-
-	switch (url.hostname) {
-		case 'seiga.nicovideo.jp':
-			imageId = url.pathname.substr(0, 9) === "/seiga/im" ? url.pathname.substring(9) : null;
-			break;
-		case 'nico.ms':
-			imageId = url.pathname.match(/^\/im([0-9]+)$/) ? url.pathname.substring(3) : null;
-			break;
-		default:
-			break;
-	}
-
-	if (imageId !== null) {
-		showImage(res, wrapMisskeyProxy("http://lohas.nicoseiga.jp/thumb/" + imageId + "l"), url.href);
 		return;
 	}
 
