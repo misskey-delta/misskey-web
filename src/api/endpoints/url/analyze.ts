@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as URL from 'url';
 import * as request from 'request';
 import tracer from 'trace-redirect';
+import sorriso from 'sorriso';
 const jade: any = require('jade');
 
 const client: any = require('cheerio-httpcli');
@@ -54,7 +55,6 @@ export default async function analyze(req: express.Request, res: express.Respons
 		case 'www.nicovideo.jp':
 		case 'nicovideo.jp':
 		case 'sp.nicovideo.jp':
-		case 'seiga.nicovideo.jp':
 			allocateNicovideoURL(req, res, url);
 			break;
 		case 'yabumi.cc':
@@ -295,10 +295,8 @@ function analyzeImgur(req: express.Request, res: express.Response, url: URL.Url)
 }
 
 function allocateNicovideoURL(req: express.Request, res: express.Response, url: URL.Url): void {
-
 	// ID取得
 	function getVideoId(): string {
-
 		switch (url.hostname) {
 			case 'sp.nicovideo.jp':
 			case 'www.nicovideo.jp':
@@ -309,7 +307,6 @@ function allocateNicovideoURL(req: express.Request, res: express.Response, url: 
 			default:
 				return null;
 		}
-
 	}
 
 	const videoId = getVideoId();
@@ -320,63 +317,42 @@ function allocateNicovideoURL(req: express.Request, res: express.Response, url: 
 		return;
 	}
 
-	// 静画
-	let imageId: string = null;
-
-	switch (url.hostname) {
-		case 'seiga.nicovideo.jp':
-			imageId = url.pathname.substr(0, 9) === "/seiga/im" ? url.pathname.substring(9) : null;
-			break;
-		case 'nico.ms':
-			imageId = url.pathname.match(/^\/im([0-9]+)$/) ? url.pathname.substring(3) : null;
-			break;
-		default:
-			break;
-	}
-
-	if (imageId !== null) {
-		showImage(res, wrapMisskeyProxy("http://lohas.nicoseiga.jp/thumb/" + imageId + "l"), url.href);
-		return;
-	}
-
 	analyzeGeneral(req, res, url);
 }
 
-function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.Url, videoId: string): void {
-
-	const getUrl = 'http://ext.misskey.link/video?id=' + videoId;
-
+async function analyzeNicovideo(req: express.Request, res: express.Response, url: URL.Url, videoId: string): Promise<void> {
 	// 宣言
 	const site = 'ニコニコ動画';
 	const icon = wrapMisskeyProxy('http://www.nicovideo.jp/favicon.ico');
 
-	request(getUrl, (error, response, body) => {
-		if (!error && response.statusCode === 200) {
-			const info = JSON.parse(body);
-			const state = info.deleted ? '削除済み' : null;
+	try {
+		// 情報取得
+		const info = await sorriso(videoId);
 
-			const compiler: (locals: any) => string = jade.compileFile(
-				`${__dirname}/nicovideo.jade`);
-			const viewer = compiler({
-				url: url,
-				site: site,
-				icon: icon,
-				title: info.title,
-				description: info.description,
-				image: wrapMisskeyProxy(info.image),
-				category: info.category,
-				view: info.view,
-				time: info.time,
-				myList: info.my_list,
-				comment: info.comment,
-				state: state,
-				user: info.user_nickname
-			});
-			return res.send(viewer);
-		} else {
-			res.sendStatus(204);
-		}
-	});
+		// 情報をパック
+		const compiler: (locals: any) => string = jade.compileFile(
+			`${__dirname}/nicovideo.jade`);
+		const viewer = compiler({
+			url: url,
+			site: site,
+			icon: icon,
+			title: info.title,
+			description: info.description,
+			image: wrapMisskeyProxy(info.image),
+			category: info.category,
+			view: info.view,
+			time: info.time.string,
+			myList: info.mylist,
+			comment: info.comment,
+			state: info.deleted ? "削除済み" : null,
+			user: info.user.nickname
+		});
+
+		// 送信
+		res.send(viewer);
+	} catch (e) {
+		res.sendStatus(204);
+	}
 }
 /**
  * @param req MisskeyExpressRequest
