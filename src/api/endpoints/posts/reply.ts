@@ -12,4 +12,4 @@ export default function reply(req: express.Request, res: express.Response): void
 	}, (err: any) => {
 		res.send(err);
 	});
-};
+}

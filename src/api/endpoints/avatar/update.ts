@@ -65,4 +65,4 @@ export default function updateavatar(req: express.Request, res: express.Response
 			return res.status(500).send('something-happened');
 		});
 	}
-};
+}
