@@ -15,8 +15,8 @@
 
 ## How to build
 #### step by step
-1. `git clone git://github.com/misskey-delta/Misskey-Web.git`
-2. `cd Misskey-Web`
+1. `git clone git://github.com/misskey-delta/misskey-web.git`
+2. `cd misskey-web`
 3. `npm install`
 4. `npm run bower`
 5. `npm run build`
@@ -36,16 +36,16 @@ The original author of Misskey is [syuilo](https://github.com/syuilo)
 
 The current lead maintainer is [otofune](https://github.com/otofune)
 
-[List of all contributors](https://github.com/misskey-delta/Misskey-Web/graphs/contributors)
+[List of all contributors](https://github.com/misskey-delta/misskey-web/graphs/contributors)
 
 ## License
 The MIT License. See [LICENSE](LICENSE).
 
 [mit]:             http://opensource.org/licenses/MIT
 [mit-badge]:       https://img.shields.io/badge/license-MIT-444444.svg?style=flat-square
-[travis-link]:     https://travis-ci.org/misskey-delta/Misskey-Web
-[travis-badge]:    https://img.shields.io/travis/misskey-delta/Misskey-Web/master.svg?style=flat-square
-[gemnasium-link]:  https://gemnasium.com/misskey-delta/Misskey-Web
-[gemnasium-badge]: https://img.shields.io/gemnasium/misskey-delta/Misskey-Web.svg?style=flat-square
-[david-dev-link]:  https://david-dm.org/misskey-delta/Misskey-Web?type=dev
-[david-dev-badge]: https://img.shields.io/david/dev/misskey-delta/Misskey-Web.svg?style=flat-square
+[travis-link]:     https://travis-ci.org/misskey-delta/misskey-web
+[travis-badge]:    https://img.shields.io/travis/misskey-delta/misskey-web/master.svg?style=flat-square
+[gemnasium-link]:  https://gemnasium.com/misskey-delta/misskey-web
+[gemnasium-badge]: https://img.shields.io/gemnasium/misskey-delta/misskey-web.svg?style=flat-square
+[david-dev-link]:  https://david-dm.org/misskey-delta/misskey-web?type=dev
+[david-dev-badge]: https://img.shields.io/david/dev/misskey-delta/misskey-web.svg?style=flat-square
