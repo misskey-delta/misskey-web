@@ -33,4 +33,4 @@ export default function create(req: express.Request, res: express.Response): voi
 			res.status(400).send('recaptcha-failed');
 		}
 	});
-};
+}

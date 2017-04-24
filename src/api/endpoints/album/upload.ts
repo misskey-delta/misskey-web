@@ -24,4 +24,4 @@ export default function upload(req: express.Request, res: express.Response): voi
 		console.error(err);
 		res.status(500).send('something-happened');
 	});
-};
+}

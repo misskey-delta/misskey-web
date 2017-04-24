@@ -21,4 +21,4 @@ export default function updateHomeLayout(req: express.Request, res: express.Resp
 			});
 		});
 	});
-};
+}

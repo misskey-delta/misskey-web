@@ -1,4 +1,6 @@
 # Misskey Web
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/misskey-delta/misskey-web.svg)](https://greenkeeper.io/)
 [![][travis-badge]][travis-link]
 [![][gemnasium-badge]][gemnasium-link]
 [![][david-dev-badge]][david-dev-link]

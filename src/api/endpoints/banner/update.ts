@@ -67,4 +67,4 @@ export default function updatebanner(req: express.Request, res: express.Response
 			return res.status(500).send('something-happened');
 		});
 	}
-};
+}
