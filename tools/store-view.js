@@ -1,5 +1,12 @@
 'use strict'
 
+// load misskey config
+const config = require('../built/config').default
+if (!config) {
+    console.error("failed to load configration.")
+    process.exit(1)
+}
+
 const zeroPadding = (num, length, showPlusSign = false) => {
     if (!Number.isInteger(length) || !Number.isInteger(num)) {
         throw new Error('argument must be integer.')
@@ -27,7 +34,7 @@ const time = (date = new Date()) => {
 
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
-const connection = mongoose.createConnection('mongodb://localhost:27017/misskey-web', {
+const connection = mongoose.createConnection(config.mongo.uri, {
     promiseLibrary: global.Promise
 })
 const sessionsScheme = new mongoose.Schema({
