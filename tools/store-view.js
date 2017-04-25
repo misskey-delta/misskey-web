@@ -41,6 +41,8 @@ Sessions.find({}).where('session').exists().exec().then((values) => {
     values.forEach(value => {
         const obj = value.toObject()
         const session = JSON.parse(obj.session)
+        // if not logged in session, return
+        if (!session.userId) return;
         // get date from session data
         const date = new Date()
         date.setTime(session.time)
