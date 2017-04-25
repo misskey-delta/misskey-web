@@ -1,7 +1,7 @@
 import requestApi from '../core/request-api';
 import { UserSettings, IUserSettings } from '../models/user-settings';
 
-export default function login(screenName: string, password: string, session: any): Promise<void> {
+export default function login(screenName: string, password: string, session: any, headers: any): Promise<void> {
 
 	return new Promise<void>((resove, reject) => {
 		requestApi('login', {
@@ -32,6 +32,7 @@ export default function login(screenName: string, password: string, session: any
 
 		function saveSession(user: any): void {
 			session.userId = user.id;
+			session.headers = headers;
 			session.save(() => {
 				resove();
 			});

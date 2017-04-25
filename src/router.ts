@@ -120,7 +120,7 @@ export default function router(app: express.Express): void {
 	});
 
 	app.post(`/subdomain/${config.publicConfig.signinDomain}/`, (req, res) => {
-		login(req.body['screen-name'], req.body['password'], req.session).then(() => {
+		login(req.body['screen-name'], req.body['password'], req.session, req.headers).then(() => {
 			res.sendStatus(200);
 		}, (err: any) => {
 			res.status(err.statusCode).send(err.body);
