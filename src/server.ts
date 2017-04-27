@@ -38,7 +38,7 @@ const session: any = {
 	name: config.sessionKey,
 	secret: config.sessionSecret,
 	resave: false,
-	saveUninitialized: true,
+	saveUninitialized: false,
 	cookie: {
 		path: '/',
 		domain: `.${config.publicConfig.host}`,
