@@ -2,11 +2,6 @@ $ = require 'jquery/dist/jquery'
 urldecorator = require '../../../common/urldecorator.js'
 imageviewer = require './image-viewer.js'
 
-$.ajax-setup {
-	type: \get
-	+cache
-}
-
 module.exports = (post-type, $content) ->
 	switch (post-type)
 	| \status, \reply =>
@@ -15,8 +10,10 @@ module.exports = (post-type, $content) ->
 			$link = urldecorator $ @
 			if USER_SETTINGS.enable-url-preview-in-post
 				$.ajax "#{CONFIG.web-api-url}/web/url/analyze" {
+					type: \get
 					data:
-						'url': $link.attr \href}
+						'url': $link.attr \href
+					+cache}
 				.done (html) ->
 					$ html .append-to $content .hide!.fade-in 200ms
 		# Images
