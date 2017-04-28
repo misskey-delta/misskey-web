@@ -129,7 +129,7 @@ function analyzeYabumi(url: URL.Url): string {
 async function analyzeImgur(url: URL.Url): Promise<string> {
 	// i.imgur.comだったらリクエストを送らずともわかる
 	if (url.hostname === 'i.imgur.com') {
-		return showImage(wrapMisskeyProxy(url.href), url.href);
+		return showImage(wrap(url.href), url.href);
 	}
 
 	// リクエスト送信
@@ -156,7 +156,7 @@ async function analyzeImgur(url: URL.Url): Promise<string> {
 	if (! src) {
 		throw new Error("crawl-error-empty-src");
 	}
-	return showImage(wrapMisskeyProxy(src.replace(URL.parse(src).search, "")), url.href);
+	return showImage(wrap(src.replace(URL.parse(src).search, "")), url.href);
 }
 
 /**
@@ -183,8 +183,8 @@ async function analyzeGeneral(url: URL.Url): Promise<string> {
 	return viewer;
 }
 
-function wrapMisskeyProxy(url: string): string {
-	return `${config.publicConfig.shieldUrl}/${url}`;
+function wrap(url: string): string {
+	return `https://images.weserv.nl/?url=${url.replace(/^.*:\/\//, '')}`;
 }
 
 /**
