@@ -34,7 +34,7 @@ block content
 	
 	main(role='main')
 		header
-			div#header-data(style={'background-image': "url(#{user.bannerUrl})"})
+			div#header-data(style={'background-image': `url(${user.bannerUrl})`})
 				if login && me.id == user.id
 					button#banner-edit(title= locale.sites.desktop.pages._user.edit_header)
 						i.fa.fa-picture-o

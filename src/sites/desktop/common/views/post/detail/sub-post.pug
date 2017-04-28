@@ -2,7 +2,7 @@ include ../content
 
 mixin subPost(post)
 	aside.sub-post(class!= attributes.class !== undefined ? attributes.class + ' ' + post.type : post.type
-			title!= '#{post.createdAt}&#x0A;'
+			title!= post.createdAt
 			data-id= post.id
 			data-user-id= post.user.id)
 		div.main

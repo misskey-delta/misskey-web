@@ -1,6 +1,6 @@
 div.ui-user-card
 	div.main
-		div.banner(style={'background-image': "url(#{user.bannerUrl}?size=250&quality=#{userSettings.displayImageQuality})"})
+		div.banner(style={'background-image': `url(${user.bannerUrl}?size=250&quality=${userSettings.displayImageQuality})`})
 		button.nav-button
 			i.fa.fa-ellipsis-h
 		if login && me.id !== user.id
