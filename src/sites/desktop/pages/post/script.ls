@@ -6,8 +6,8 @@ tooltiper = require '../../common/scripts/tooltiper.js'
 AlbumDialog = require '../../common/scripts/album-dialog.js'
 post-content-initializer = require '../../common/scripts/post-content-initializer.js'
 
-post-compiler = require '../../common/views/post/detail/render.jade'
-sub-post-compiler = require '../../common/views/post/detail/sub-post-render.jade'
+post-compiler = require '../../common/views/post/detail/render.pug'
+sub-post-compiler = require '../../common/views/post/detail/sub-post-render.pug'
 
 class Post
 	(post = null) ->

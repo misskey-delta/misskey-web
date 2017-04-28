@@ -8,13 +8,13 @@
 		if (text === null) {
 			return null;
 		}
-		text = analyzeHashtags(analyzeMentions(analyzeUrl(analyzeStrike(analyzeBold(escapeHtml(text)))))).replace(/(\r\n|\r|\n)/g, '<br>');
+		text = analyzeHashtags(analyzeMentions(analyzeUrl(analyzeStrike(analyzeBold(escapeHtml(text)))))).replace(/\r?\n/g, '<br>');
 		return text;
 	}
 
 	function analyzeUrl(text) {
 		'use strict';
-		return text.replace(/https?:\/\/[0-9a-z_\.\-~%!$&'()*+,;=@:]+(\/[0-9a-z_\.\-~%!$&'()*+,;=@:]*)*(\?[0-9a-z_\.\-~%!$&'()*+,;=@:\/\?]*)?(#[0-9a-z_\.\-~%!$&'()*+,;=@:\/\?]*)?/gi, function(url) {
+		return text.replace(/https?:\/\/[0-9a-z_\.\-~%!$&'()*+,;=@:]+[\/0-9a-z_\.\-~%!$&'()*+,;=@:\?#]*/gi, function(url) {
 			return '<a href="' + url + '" title="' + url + '" target="_blank" class="url" rel="nofollow">' + url + '</a>';
 		});
 	}

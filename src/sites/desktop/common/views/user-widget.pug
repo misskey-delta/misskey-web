@@ -1,7 +1,7 @@
 mixin user-widget(user)
 	div.user-widget(data-user= JSON.stringify(user))
 		div.main
-			div.banner(style={'background-image': "url(#{user.bannerUrl}?size=250&quality=#{userSettings.displayImageQuality})"})
+			div.banner(style={'background-image': `url(${user.bannerUrl}?size=250&quality=${userSettings.displayImageQuality})`})
 			if login && me.id !== user.id
 				if user.isFollowing
 					button.friend-button.following(data-tooltip=locale.sites.desktop.common.user_card.unfollow): i.fa.fa-plus

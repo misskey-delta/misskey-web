@@ -28,7 +28,7 @@ li.item.file(
 				when 'image/webp'
 				when 'image/tiff'
 				when 'image/bmp'
-					div.thumbnail(style={'background-image': 'url(#{file.thumbnailUrl})'})
+					div.thumbnail(style={'background-image': `url(${file.thumbnailUrl})`})
 				default
 					div.thumbnail
 						i.fa.fa-file-o

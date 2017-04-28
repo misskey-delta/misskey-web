@@ -4,7 +4,7 @@ import * as request from 'request';
 import * as mongoose from 'mongoose';
 import tracer from 'trace-redirect';
 import summaly from 'summaly';
-const jade: any = require('jade');
+const pug: any = require('pug');
 
 const client: any = require('cheerio-httpcli');
 client.headers['User-Agent'] = 'MisskeyBot';
@@ -101,8 +101,8 @@ async function analyzer(url: URL.Url): Promise<[Date, string]> {
 }
 
 function showImage(src: string, href: string): string {
-	const compiler: (locals: any) => string = jade.compileFile(
-		`${__dirname}/image.jade`);
+	const compiler: (locals: any) => string = pug.compileFile(
+		`${__dirname}/image.pug`);
 
 	const image: string = compiler({
 		src,
@@ -167,16 +167,16 @@ async function analyzeImgur(url: URL.Url): Promise<string> {
 async function analyzeGeneral(url: URL.Url): Promise<string> {
 	const summary = await summaly(url.href);
 
-	const compiler: (locals: any) => string = jade.compileFile(
-		`${__dirname}/summary.jade`);
+	const compiler: (locals: any) => string = pug.compileFile(
+		`${__dirname}/summary.pug`);
 
 	// コンパイル
 	const viewer: string = compiler({
 		url: url,
 		title: summary.title,
-		icon: summary.icon,
+		icon: wrap(summary.icon),
 		description: summary.description,
-		image: summary.thumbnail,
+		image: wrap(summary.thumbnail),
 		siteName: summary.sitename
 	});
 
