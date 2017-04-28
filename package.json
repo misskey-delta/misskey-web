@@ -84,8 +84,8 @@
   },
   "dependencies": {
     "@misskey/emojinize": "git+https://github.com/potato4d/ms-emojinize.git",
-    "Sortable": "1.4.2",
-    "Swiper": "swiper#3.3.0",
+    "sortablejs": "1.5.1",
+    "swiper": "3.4.2",
     "accettare": "0.0.4",
     "body-parser": "1.17.1",
     "cheerio-httpcli": "0.6.11",
