@@ -75,8 +75,6 @@ export interface IConfig {
 		webStreamingUrl: string;
 		shareDomain: string;
 		shareUrl: string;
-		widgetsDomain: string;
-		widgetsUrl: string;
 		googleRecaptchaSiteKey: string;
 	};
 }
