@@ -7,7 +7,9 @@ $.ajax-setup {
 	type: \post
 	-cache
 	xhr-fields: {+with-credentials}
-	data: { '_csrf': CSRF_TOKEN }
+	headers: {
+		'csrf-token': CSRF_TOKEN
+	}
 }
 
 $ -> attach-fast-click document.body

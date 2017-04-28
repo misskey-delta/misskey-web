@@ -16,7 +16,9 @@
     "less": "gulp build:client-styles",
     "gulp": "gulp",
     "deploy": "npm install && npm run bower && npm run build",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "fix": "find src/ -type f -name '*.ts' | xargs tslint --fix",
+    "ls": "gulp build-develop:client-scripts" 
   },
   "license": "MIT",
   "browserify": {
@@ -108,8 +110,7 @@
     "socket.io": "1.7.3",
     "subdomain": "1.2.0",
     "trace-redirect": "1.0.4",
-    "vhost": "3.0.2",
-    "sorriso": "0.3.1"
+    "vhost": "3.0.2"
   },
   "private": true
 }
