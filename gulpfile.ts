@@ -46,13 +46,13 @@ gulp.task('compile:client-scripts', ['build:ts'], () => {
 
 gulp.task('copy:client-templates', () => {
 	return es.merge(
-		gulp.src('./src/sites/**/common/views/**/*.jade')
+		gulp.src('./src/sites/**/common/views/**/*.pug')
 			.pipe(gulp.dest('./tmp/')),
-		gulp.src('./src/sites/**/pages/**/*.jade')
+		gulp.src('./src/sites/**/pages/**/*.pug')
 			.pipe(gulp.dest('./tmp/')),
-		gulp.src('./src/sites/**/common/widgets/**/*.jade')
+		gulp.src('./src/sites/**/common/widgets/**/*.pug')
 			.pipe(gulp.dest('./tmp/')),
-		gulp.src('./src/sites/common/**/*.jade')
+		gulp.src('./src/sites/common/**/*.pug')
 			.pipe(gulp.dest('./tmp/common'))
 	);
 });
