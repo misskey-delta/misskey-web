@@ -1,7 +1,7 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 require 'jquery.transit'
 moment = require 'moment'
-Sortable = require 'Sortable'
+sortable = require 'sortablejs'
 
 require './main.js'
 require '../../../common/kronos.js'
@@ -450,7 +450,7 @@ class StatusPostForm
 		THIS.$textarea = THIS.$form.find 'textarea'
 		THIS.$submit-button = THIS.$form.find '[type=submit]'
 
-		Sortable.create (THIS.$form.find '.photos')[0], {
+		sortable.create (THIS.$form.find '.photos')[0], {
 			animation: 150ms
 		}
 

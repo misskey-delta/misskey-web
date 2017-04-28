@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 require '../../common/scripts/ui.js'
 post-content-initializer = require '../../common/scripts/post-content-initializer.js'
 

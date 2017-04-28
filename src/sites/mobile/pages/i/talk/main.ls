@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 require '../../../common/scripts/ui.js'
 require '../../../../common/kronos.js'
 upload-file = require '../../../../common/upload-file.js'

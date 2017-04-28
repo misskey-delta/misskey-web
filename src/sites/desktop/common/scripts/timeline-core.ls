@@ -1,6 +1,6 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 require 'jquery.transit'
-Sortable = require 'Sortable'
+sortable = require 'sortablejs'
 upload-file = require '../../../common/upload-file.js'
 sncompleter = require './sncompleter.js'
 post-content-initializer = require './post-content-initializer.js'
@@ -122,7 +122,7 @@ class Post
 	init-reply-form: ->
 		THIS = @
 
-		Sortable.create (THIS.$reply-form.find '.photos')[0], {
+		sortable.create (THIS.$reply-form.find '.photos')[0], {
 			animation: 150ms
 		}
 

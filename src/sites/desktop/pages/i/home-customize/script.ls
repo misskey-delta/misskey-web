@@ -1,6 +1,6 @@
 require '../../home/script.js'
-$ = require 'jquery/dist/jquery'
-Sortable = require 'Sortable'
+$ = require 'jquery'
+sortable = require 'sortablejs'
 
 function update-available-widgets-list
 	$ \#customizer-available-widgets .empty!
@@ -82,17 +82,17 @@ $ ->
 		$widget-lapper.append $widget-caption
 		$widget.append $widget-lapper
 
-	Sortable.create ($ '#left-contents')[0], {
+	sortable.create ($ '#left-contents')[0], {
 		group: \contents
 		animation: 300ms
 	}
 
-	Sortable.create ($ '#main-contents')[0], {
+	sortable.create ($ '#main-contents')[0], {
 		group: \contents
 		animation: 300ms
 	}
 
-	Sortable.create ($ '#right-contents')[0], {
+	sortable.create ($ '#right-contents')[0], {
 		group: \contents
 		animation: 300ms
 	}

@@ -1,13 +1,13 @@
 require '../../common/scripts/ui.js'
-$ = require 'jquery/dist/jquery'
-require 'Swiper'
+$ = require 'jquery'
+require 'swiper'
 
 $ ->
 	is-me = LOGIN and ME.id == USER.id
 
 	window.is-following = if LOGIN then USER.is-following else null
 
-	swiper = new Swiper \.swiper-container {
+	swiper = new swiper \.swiper-container {
 		direction: \horizontal
 		loop: true
 		pagination: \.swiper-pagination

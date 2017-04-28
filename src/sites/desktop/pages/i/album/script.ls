@@ -1,6 +1,6 @@
 require '../../../common/scripts/ui.js'
 Album = require '../../../common/scripts/album-core.js'
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 
 $ ->
 	album = new Album $ '#album > .misskey-album'

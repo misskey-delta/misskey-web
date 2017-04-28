@@ -1,6 +1,6 @@
 require '../../../common/scripts/ui.js'
 require '../script.js'
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 Timeline = require '../../../common/scripts/timeline-core.js'
 
 timeline = null

@@ -1,5 +1,5 @@
 require '../../common/scripts/ui.js'
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 
 show-modal-window = require '../../common/scripts/modal-window.js'
 AlbumDialog = require '../../common/scripts/album-dialog.js'
