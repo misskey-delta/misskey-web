@@ -8,6 +8,7 @@ import * as mongoose from 'mongoose';
 import * as MongoStore from 'connect-mongo';
 const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(session);
 import config from '../../config';
+import db from '../../db';
 
 let server: http.Server | https.Server;
 
@@ -21,9 +22,6 @@ if (config.https.enable) {
 }
 
 const io: SocketIO.Server = SocketIO.listen(server);
-
-// Init DB connection
-const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
 
 const sessionStore: any = new _MongoStore({
 	mongooseConnection: db
