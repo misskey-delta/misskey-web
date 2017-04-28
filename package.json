@@ -18,7 +18,7 @@
     "deploy": "npm install && npm run bower && npm run build",
     "tsc": "tsc",
     "fix": "find src/ -type f -name '*.ts' | xargs tslint --fix",
-    "ls": "gulp build-develop:client-scripts" 
+    "ls": "gulp build-develop:client-scripts"
   },
   "license": "MIT",
   "browserify": {
@@ -110,7 +110,13 @@
     "socket.io": "1.7.3",
     "subdomain": "1.2.0",
     "trace-redirect": "1.0.4",
-    "vhost": "3.0.2"
+    "vhost": "3.0.2",
+    "cropper": "2.3.4",
+    "fastclick": "1.0.6",
+    "jquery": "2.2.0",
+    "jquery.transit": "0.9.12",
+    "Sortable": "1.4.2",
+    "Swiper": "swiper#3.3.0"
   },
   "private": true
 }
