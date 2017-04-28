@@ -48,8 +48,6 @@ export interface IConfig {
 		domain: string;
 		host: string;
 		url: string;
-		adminUrl: string;
-		adminDomain: string;
 		authorizeUrl: string;
 		authorizeDomain: string;
 		registerUrl: string;
@@ -69,18 +67,12 @@ export interface IConfig {
 		helpDomain: string;
 		talkDomain: string;
 		talkUrl: string;
-		forumDomain: string;
-		forumUrl: string;
 		apiHost: string;
 		apiUrl: string;
 		webApiDomain: string;
 		webApiHost: string;
 		webApiUrl: string;
 		webStreamingUrl: string;
-		developerCenterHost: string;
-		developerCenterUrl: string;
-		colorDomain: string;
-		colorUrl: string;
 		shareDomain: string;
 		shareUrl: string;
 		widgetsDomain: string;

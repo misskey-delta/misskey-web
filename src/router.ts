@@ -107,10 +107,6 @@ export default function router(app: express.Express): void {
 		}
 	});
 
-	app.get(`/subdomain/${config.publicConfig.colorDomain}/`, (req, res) => {
-		callController(req, res, 'color');
-	});
-
 	app.get(`/subdomain/${config.publicConfig.registerDomain}/`, (req, res) => {
 		if (res.locals.isLogin) {
 			res.redirect(config.publicConfig.url);
@@ -154,14 +150,6 @@ export default function router(app: express.Express): void {
 			callController(req, res, 'search/result');
 		} else {
 			callController(req, res, 'search/index');
-		}
-	});
-
-	app.get(`/subdomain/${config.publicConfig.adminDomain}/`, (req, res) => {
-		if (res.locals.isLogin) {
-			callController(req, res, 'admin');
-		} else {
-			callController(req, res, 'login');
 		}
 	});
 
@@ -230,10 +218,6 @@ export default function router(app: express.Express): void {
 	app.get(`/subdomain/${config.publicConfig.talkDomain}/\:group/:talkGroupId`,
 		(req, res) => {
 		callController(req, res, 'i/talk/group');
-	});
-
-	app.get(`/subdomain/${config.publicConfig.forumDomain}/`, (req, res) => {
-		callController(req, res, 'forum');
 	});
 
 	app.get('/i/album', (req, res) => {
