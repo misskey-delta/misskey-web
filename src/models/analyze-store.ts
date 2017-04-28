@@ -4,9 +4,7 @@
  */
 
 import * as mongoose from 'mongoose';
-import config from '../config';
-
-const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
+import db from './common/db'
 
 const scheme = new mongoose.Schema({
 	url: String,

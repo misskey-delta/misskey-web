@@ -1,9 +1,7 @@
 import * as mongoose from 'mongoose';
-import config from '../config';
+import db from './common/db'
 
 const Schema: typeof mongoose.Schema = mongoose.Schema;
-
-const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
 
 const schema: any = {
 	displayImageQuality: { type: Number, required: false, default: 90 },
