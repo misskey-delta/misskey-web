@@ -165,7 +165,7 @@ async function analyzeImgur(url: URL.Url): Promise<string> {
  * @param url url
  */
 async function analyzeGeneral(url: URL.Url): Promise<string> {
-	const summary = await summaly(url.href)
+	const summary = await summaly(url.href);
 
 	const compiler: (locals: any) => string = jade.compileFile(
 		`${__dirname}/summary.jade`);

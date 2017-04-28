@@ -4,7 +4,7 @@
  */
 
 import * as mongoose from 'mongoose';
-import db from '../db'
+import db from '../db';
 
 const scheme = new mongoose.Schema({
 	url: String,
