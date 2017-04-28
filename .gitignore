@@ -1,5 +1,6 @@
 /node_modules
 /built
+/src/sites/common/common.less
 npm-debug.log
 /tmp
 /uploads
