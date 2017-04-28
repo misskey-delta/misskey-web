@@ -57,17 +57,6 @@ html(
 		script!= escapeScript('USER_SETTINGS', JSON.stringify(userSettings))
 		script!= setScript('LOCALE', JSON.stringify(locale))
 		script(src= scriptPath)
-		script(type='application/ld+json').
-			{
-			  "@context": "http://schema.org",
-			  "@type": "WebSite",
-			  "url": "#{config.url}",
-			  "potentialAction": {
-			    "@type": "SearchAction",
-			    "target": "#{config.searchUrl}?q={q}",
-			    "query-input": "required name=q"
-			  }
-			}
 		block assets
 	
 	body
