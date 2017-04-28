@@ -174,9 +174,9 @@ async function analyzeGeneral(url: URL.Url): Promise<string> {
 	const viewer: string = compiler({
 		url: url,
 		title: summary.title,
-		icon: summary.icon,
+		icon: wrap(summary.icon),
 		description: summary.description,
-		image: summary.thumbnail,
+		image: wrap(summary.thumbnail),
 		siteName: summary.sitename
 	});
 
