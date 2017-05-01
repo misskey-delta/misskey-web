@@ -89,7 +89,7 @@ async function analyzer(url: URL.Url): Promise<[Date, string]> {
 		// crawl a website
 		const data = await custom(url) || await analyzeGeneral(url);
 		if (! data) {
-			throw new Error("no-data");
+			throw new Error('no-data');
 		}
 		const document = new analyzeStore({
 			url: url.href,
@@ -136,13 +136,13 @@ async function analyzeImgur(url: URL.Url): Promise<string> {
 	const result = await client.fetch(url.href);
 
 	if (result.error !== undefined && result.error !== null) {
-		throw new Error("crawl-error");
+		throw new Error('crawl-error');
 	}
 
 	// HTMLじゃなかった場合は中止
 	const contentType: string = result.response.headers['content-type'];
 	if (! contentType || contentType.indexOf('text/html') === -1) {
-		throw new Error("crawl-error-not-html");
+		throw new Error('crawl-error-not-html');
 	}
 
 	const $: any = result.$;
@@ -154,7 +154,7 @@ async function analyzeImgur(url: URL.Url): Promise<string> {
 		$('link[rel="apple-touch-icon"]').attr('href'),
 		$('link[rel="apple-touch-icon image_src"]').attr('href'));
 	if (! src) {
-		throw new Error("crawl-error-empty-src");
+		throw new Error('crawl-error-empty-src');
 	}
 	return showImage(wrap(src.replace(URL.parse(src).search, "")), url.href);
 }
@@ -184,7 +184,7 @@ async function analyzeGeneral(url: URL.Url): Promise<string> {
 }
 
 function wrap(url: string): string {
-	return `https://images.weserv.nl/?url=${url.replace(/^.*:\/\//, '')}`;
+	return typeof url === 'string' ? `https://images.weserv.nl/?url=${url.replace(/^.*:\/\//, '')}` : null;
 }
 
 /**
@@ -192,7 +192,6 @@ function wrap(url: string): string {
  * @param val: 文字列
  */
 function nullOrEmpty(val: string): boolean {
-
 	if (val === undefined) {
 		return true;
 	} else if (val === null) {
@@ -205,7 +204,6 @@ function nullOrEmpty(val: string): boolean {
 }
 
 function or(...xs: string[]): string {
-
 	for (let i = 0; i < xs.length; i++) {
 		const x = xs[i];
 		if (!nullOrEmpty(x)) {
@@ -217,7 +215,6 @@ function or(...xs: string[]): string {
 }
 
 function clip(s: string, max: number): string {
-
 	if (nullOrEmpty(s)) {
 		return s;
 	}
