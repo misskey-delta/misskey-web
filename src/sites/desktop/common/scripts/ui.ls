@@ -82,7 +82,7 @@ $ ->
 
 $ window .on 'load scroll resize' on-scroll
 
-$ window .load ->
+$ window .on 'load' ->
 	if not NOUI
 		$ \body .css \margin-top "#{$ \#misskey-header .outer-height!}px"
 

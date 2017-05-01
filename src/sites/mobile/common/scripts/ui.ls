@@ -32,7 +32,7 @@ $ ->
 					$ '#misskey-nav .talks a .unread-count' .remove!
 					$ '#misskey-nav .talks a' .append $ "<span class=\"unread-count\">#{count}</span>"
 
-$ window .load ->
+$ window .on 'load' ->
 	if not NOUI
 		init-view-position!
 

@@ -65,7 +65,7 @@ function set-body-margin-top
 function set-body-margin-bottom
 	$ \body .css \margin-bottom ($ \#post-form .outer-height! + \px)
 
-$ window .load ->
+$ window .on 'load' ->
 	set-body-margin-top!
 	set-body-margin-bottom!
 	scroll 0, document.body.client-height

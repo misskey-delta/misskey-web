@@ -55,7 +55,7 @@ function upload-new-file(file)
 				$thumbnail.remove!
 			$ '#post-form > .files' .append $thumbnail
 
-$ window .load ->
+$ window .on 'load' ->
 	scroll 0, document.body.client-height
 
 $ ->
