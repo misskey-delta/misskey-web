@@ -53,7 +53,7 @@
     "@types/multer": "0.0.33",
     "@types/node": "7.0.16",
     "@types/redis": "0.12.36",
-    "@types/request": "0.0.42",
+    "@types/request": "0.0.43",
     "@types/socket.io": "1.4.29",
     "@types/vinyl": "2.0.0",
     "@types/vinyl-source-stream": "0.0.29",
