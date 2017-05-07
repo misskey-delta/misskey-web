@@ -24,12 +24,12 @@ const sessionStore: any = new _MongoStore({
 const sessionGetter = (sessionKey: string) => new Promise((res, rej) => {
 	sessionStore.get(sessionKey, (err: any, session: any) => {
 		if (err) {
-			throw err;
+			rej(err);
 		}
 		if (! session) {
-			throw new Error('session is null');
+			rej(new Error('session is null'));
 		}
-		return session;
+		res(session);
 	});
 });
 
