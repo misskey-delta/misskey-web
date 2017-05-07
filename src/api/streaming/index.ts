@@ -34,7 +34,7 @@ const sessionGetter = (sessionKey: string) => new Promise((res, rej) => {
 });
 
 const emitter = (socket: SocketIO.Socket, event: string, data: {[key: string]: string}, close?: boolean) => {
-	socket.emit(event, JSON.stringify(data));
+	socket.emit(event, data);
 	if (close) {
 		socket.disconnect(true);
 	}
