@@ -38,7 +38,7 @@ export default (server: http.Server | https.Server): void => {
 	const io: SocketIO.Server = SocketIO.listen(server);
 
 	endpoints.forEach(name => {
-		io.of(name).on('connection', async (socket: SocketIO.Socket) => {
+		io.of(`/streaming/${name}`).on('connection', async (socket: SocketIO.Socket) => {
 			// クッキーが無い場合切断
 			if (! socket.handshake.headers.cookie) {
 				emitter(socket, 'announcement', {
