@@ -1,6 +1,7 @@
 const recluster: any = require('recluster');
 const sticky: any = require('sticky-listen');
 import * as path from 'path';
+import {logInfo} from 'log-cool';
 import config from './config';
 
 (<any>Error).stackTraceLimit = Infinity;
@@ -20,4 +21,7 @@ const balancer = sticky.createBalancer({
   retryDelay: 100
 });
 
-balancer.listen(config.https.enable ? config.port.https : config.port.http);
+const port = config.https.enable ? config.port.https : config.port.http;
+balancer.listen(port, () => {
+	logInfo(`\u001b[1;32mstart listening at ${port}\u001b[0m`);
+});
