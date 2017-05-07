@@ -13,8 +13,8 @@ import db from '../../db';
 import endpoints from './endpoints';
 
 interface IMessage {
-	type: string,
-	value: any
+	type: string;
+	value: any;
 }
 
 const sessionStore: any = new _MongoStore({
@@ -23,16 +23,22 @@ const sessionStore: any = new _MongoStore({
 
 const sessionGetter = (sessionKey: string) => new Promise((res, rej) => {
 	sessionStore.get(sessionKey, (err: any, session: any) => {
-		if (err) throw err;
-		if (! session) throw new Error('session is null');
+		if (err) {
+			throw err;
+		}
+		if (! session) {
+			throw new Error('session is null');
+		}
 		return session;
 	});
 });
 
 const emitter = (socket: SocketIO.Socket, event: string, data: {[key: string]: string}, close?: boolean) => {
 	socket.emit(event, JSON.stringify(data));
-	if (close) socket.disconnect(true);
-}
+	if (close) {
+		socket.disconnect(true);
+	}
+};
 
 export default (server: http.Server | https.Server): void => {
 	const io: SocketIO.Server = SocketIO.listen(server);
@@ -73,7 +79,7 @@ export default (server: http.Server | https.Server): void => {
 			}
 
 			// APIのWebSocket
-			const client = new WebSocket.client()
+			const client = new WebSocket.client();
 
 			// 接続できなかったら切断
 			client.on('connectFailed', (error) => {
@@ -108,7 +114,9 @@ export default (server: http.Server | https.Server): void => {
 				// メッセージ受領 -> クライアントへ返答
 				connection.on('message', (data) => {
 					// UTF-8 メッセージでなければ処理しない
-					if (! (data.type === 'utf8')) return;
+					if (! (data.type === 'utf8')) {
+						return;
+					}
 
 					let message: IMessage;
 					try {
@@ -136,7 +144,7 @@ export default (server: http.Server | https.Server): void => {
 
 			// APIに接続
 			client.connect(`ws://${config.apiServerIp}:${config.apiServerPort}/streams/${name}`
-				+ `?passkey=${config.apiPasskey}&user-id=${session.userId}`)
+				+ `?passkey=${config.apiPasskey}&user-id=${session.userId}`);
 		});
 	});
-}
+};
