@@ -13,7 +13,7 @@ export default function router(app: express.Express): void {
 			req.session.hasOwnProperty('userId') &&
 			(<any>req.session).userId !== null;
 
-		logInfo(`Request API: ${req.method} ${req.path}`)
+		logInfo(`Request API: ${req.method} ${req.path}`);
 
 		if (res.locals.isLogin) {
 			req.user = (<any>req.session).userId;

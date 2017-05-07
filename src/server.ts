@@ -140,5 +140,5 @@ if (config.https.enable) {
 // go stream
 streaming(server);
 
-sticky.listen(server)
-process.send({cmd: 'ready'})
+sticky.listen(server);
+process.send({cmd: 'ready'});
