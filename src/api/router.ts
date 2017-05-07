@@ -1,17 +1,19 @@
 import * as express from 'express';
 import * as multer from 'multer';
+import {logInfo} from 'log-cool';
 const upload: any = multer({ dest: 'uploads/' });
 
 import requestApi from '../core/request-api';
 
 export default function router(app: express.Express): void {
-
 	app.use((req, res, next) => {
 		res.locals.isLogin =
 			req.hasOwnProperty('session') &&
 			req.session !== null &&
 			req.session.hasOwnProperty('userId') &&
 			(<any>req.session).userId !== null;
+
+		logInfo(`Request API: ${req.method} ${req.path}`);
 
 		if (res.locals.isLogin) {
 			req.user = (<any>req.session).userId;

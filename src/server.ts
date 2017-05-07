@@ -1,4 +1,3 @@
-import * as cluster from 'cluster';
 import * as fs from 'fs';
 import * as http from 'http';
 import * as https from 'https';
@@ -13,16 +12,14 @@ import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as csrf from 'csurf';
 const vhost: any = require('vhost');
-
-import namingWorkerId from './core/naming-worker-id';
+const sticky: any = require('sticky-listen');
 
 import config from './config';
 
 import api from './api/server';
 import resources from './resources-server';
 import router from './router';
-
-console.log(`Init ${namingWorkerId(cluster.worker.id)} server...`);
+import streaming from './api/streaming';
 
 // Global options
 const sessionExpires: number = 1000 * 60 * 60 * 24 * 365;
@@ -123,10 +120,8 @@ app.get('/publicconfig.json', (req, res) => {
 router(app);
 
 let server: http.Server | https.Server;
-let port: number;
 
 if (config.https.enable) {
-	port = config.port.https;
 	server = https.createServer({
 		key: fs.readFileSync(config.https.keyPath),
 		cert: fs.readFileSync(config.https.certPath)
@@ -139,14 +134,11 @@ if (config.https.enable) {
 		res.end();
 	}).listen(config.port.http);
 } else {
-	port = config.port.http;
 	server = http.createServer(app);
 }
 
-server.listen(port, () => {
-	const listenhost: string = server.address().address;
-	const listenport: number = server.address().port;
+// go stream
+streaming(server);
 
-	console.log(
-		`\u001b[1;32m${namingWorkerId(cluster.worker.id)} is now listening at ${listenhost}:${listenport}\u001b[0m`);
-});
+sticky.listen(server);
+process.send({cmd: 'ready'});

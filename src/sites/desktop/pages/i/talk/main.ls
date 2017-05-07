@@ -177,8 +177,8 @@ $ ->
 
 function init-streaming(stream)
 	endpoint = switch (TALK_TYPE)
-		| \user => "#{CONFIG.web-streaming-url}/streaming/talk"
-		| \group => "#{CONFIG.web-streaming-url}/streaming/group-talk"
+		| \user => "#{CONFIG.web-api-url}/streaming/talk"
+		| \group => "#{CONFIG.web-api-url}/streaming/group-talk"
 	socket = io.connect endpoint
 
 	socket.on \connected ->

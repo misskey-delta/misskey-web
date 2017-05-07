@@ -117,7 +117,7 @@ module.exports = (type) ->
 	function init-stream
 		$ \body .append $ "<p class=\"streaming-info\"><i class=\"fa fa-spinner fa-spin\"></i>#{LOCALE.sites.desktop.common.connecting_stream}</p>"
 
-		socket = io.connect CONFIG.web-streaming-url + '/streaming/' + type
+		socket = io.connect CONFIG.web-api-url + '/streaming/' + type
 
 		socket.on \connect ->
 			$ 'body > .streaming-info' .remove!
