@@ -1,26 +1,23 @@
-import * as cluster from 'cluster';
-import namingWorkerId from './core/naming-worker-id';
+const recluster: any = require('recluster');
+const sticky: any = require('sticky-listen');
+import * as path from 'path';
+import config from './config';
 
 (<any>Error).stackTraceLimit = Infinity;
 
-if (cluster.isMaster) {
-	console.log('Welcome to Misskey!');
+console.log('Welcome to Misskey!\n');
 
-	// Count the machine's CPUs
-	const cpuCount: number = require('os').cpus().length;
-
-	// Create a worker for each CPU
-	for (let i = 0; i < cpuCount; i++) {
-		cluster.fork();
-	}
-} else {
-	require('./server');
-}
-
-// Listen for dying workers
-cluster.on('exit', (worker: cluster.Worker) => {
-	// Replace the dead worker,
-	// we're not sentimental
-	console.log(`\u001b[1;31m${namingWorkerId(worker.id)} died :(\u001b[0m`);
-	cluster.fork();
+const cluster = recluster(path.join(__dirname, 'server'), {
+	readyWhen: 'ready'
 });
+
+cluster.run();
+
+const balancer = sticky.createBalancer({
+  behindProxy: true,
+  activeWorkers: cluster.activeWorkers,
+  maxRetries: 5,
+  retryDelay: 100
+});
+
+balancer.listen(config.https.enable ? config.port.https : config.port.http);
