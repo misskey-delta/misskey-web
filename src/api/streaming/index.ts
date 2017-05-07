@@ -11,6 +11,7 @@ const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(session);
 import config from '../../config';
 import db from '../../db';
 import endpoints from './endpoints';
+import {logInfo} from 'log-cool';
 
 interface IMessage {
 	type: string;
@@ -45,6 +46,7 @@ export default (server: http.Server | https.Server): void => {
 
 	endpoints.forEach(name => {
 		io.of(`/streaming/${name}`).on('connection', async (socket: SocketIO.Socket) => {
+			logInfo(`Request API: Socket.IO stream /streaming/${name}`)
 			// クッキーが無い場合切断
 			if (! socket.handshake.headers.cookie) {
 				emitter(socket, 'announcement', {
