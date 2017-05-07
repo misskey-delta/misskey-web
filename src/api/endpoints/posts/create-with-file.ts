@@ -5,6 +5,17 @@ import requestApi from '../../../core/request-api';
 export default function createWithFile(req: express.Request, res: express.Response): void {
 	const emojinize = require("@misskey/emojinize");
 
+	const emojis = require("../../../emoji");
+
+	function emojinize(text: any){
+		return text.replace(/:([a-zA-Z0-9+-_]*?):/g, (match: any, part: any)=>{
+			const target = emojis.find((emoji: any)=>{
+				return part in emoji.aliases;
+			});
+			return target ? target.emoji : match;
+		});
+	}
+
 	const file: Express.Multer.File = (<any>req).file;
 	if (file !== undefined && file !== null) {
 		const data: any = {};
