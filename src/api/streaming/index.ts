@@ -6,45 +6,137 @@ import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
 import * as mongoose from 'mongoose';
 import * as MongoStore from 'connect-mongo';
+import * as WebSocket from 'websocket';
 const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(session);
 import config from '../../config';
 import db from '../../db';
+import endpoints from './endpoints';
 
-let server: http.Server | https.Server;
-
-if (config.https.enable) {
-	server = https.createServer({
-		key: fs.readFileSync(config.https.keyPath),
-		cert: fs.readFileSync(config.https.certPath)
-	});
-} else {
-	server = http.createServer();
+interface IMessage {
+	type: string,
+	value: any
 }
-
-const io: SocketIO.Server = SocketIO.listen(server);
 
 const sessionStore: any = new _MongoStore({
 	mongooseConnection: db
 });
 
-// Authorization
-io.use((socket: SocketIO.Socket, next: (err?: any) => void) => {
-	const rawCookie: string = socket.request.headers.cookie;
-	let isAuthorized: boolean;
-	if (rawCookie !== undefined && rawCookie !== null) {
-		const parsedCookie: { [key: string]: string } = cookie.parse(rawCookie);
-		isAuthorized = /s:(.+?)\./.test(parsedCookie[config.sessionKey]);
-	} else {
-		isAuthorized = false;
-	}
-	if (isAuthorized) {
-		next();
-	} else {
-		next(new Error('[[error:not-authorized]]'));
-	}
+const sessionGetter = (sessionKey: string) => new Promise((res, rej) => {
+	sessionStore.get(sessionKey, (err: any, session: any) => {
+		if (err) throw err;
+		if (! session) throw new Error('session is null');
+		return session;
+	});
 });
 
-require('./home')(io, sessionStore);
-require('./talk')(io, sessionStore);
+const emitter = (socket: SocketIO.Socket, event: string, data: {[key: string]: string}, close?: boolean) => {
+	socket.emit(event, JSON.stringify(data));
+	if (close) socket.disconnect(true);
+}
 
-server.listen(config.port.streaming);
+export default (server: http.Server | https.Server): void => {
+	const io: SocketIO.Server = SocketIO.listen(server);
+
+	endpoints.forEach(name => {
+		io.of(name).on('connection', async (socket: SocketIO.Socket) => {
+			// クッキーが無い場合切断
+			if (! socket.handshake.headers.cookie) {
+				emitter(socket, 'announcement', {
+					type: 'error',
+					message: `cookie doesn't exist`,
+					happen: 'proxy'
+				}, true);
+				return;
+			}
+			const cookies: { [key: string]: string } = cookie.parse(socket.handshake.headers.cookie);
+			// cookieに必要情報が無い場合切断
+			if (! cookies[config.sessionKey] && ! /s:(.+?)\./.test(cookies[config.sessionKey])) {
+				emitter(socket, 'announcement', {
+					type: 'error',
+					message: `cookie ${config.sessionKey} doesn't exist`,
+					happen: 'proxy'
+				}, true);
+				return;
+			}
+			const sessionKey: string = cookies[config.sessionKey].match(/s:(.+?)\./)[1];
+			let session: any;
+			try {
+				session = await sessionGetter(sessionKey);
+			} catch (e) {
+				// セッション取ってこれなかったら切断
+				emitter(socket, 'announcement', {
+					type: 'error',
+					message: `session doesn't exist`,
+					happen: 'proxy'
+				}, true);
+				return;
+			}
+
+			// APIのWebSocket
+			const client = new WebSocket.client()
+
+			// 接続できなかったら切断
+			client.on('connectFailed', (error) => {
+				emitter(socket, 'announcement', {
+					type: 'error',
+					message: `can't connection to upstream server`,
+					happen: 'proxy'
+				}, true);
+			});
+
+			client.on('connect', (connection) => {
+				// なんらかのエラー
+				connection.on('error', (error) => {
+					emitter(socket, 'announcement', {
+						type: 'error',
+						message: `can't establish connection`,
+						detail: error.toString(),
+						happen: 'upstream'
+					});
+				});
+
+				// 切断
+				connection.on('close', (code, desc) => {
+					emitter(socket, 'announcement', {
+						type: 'error',
+						message: 'close by upstream',
+						detail: desc,
+						happen: 'upstream'
+					}, true);
+				});
+
+				// メッセージ受領 -> クライアントへ返答
+				connection.on('message', (data) => {
+					// UTF-8 メッセージでなければ処理しない
+					if (! (data.type === 'utf8')) return;
+
+					let message: IMessage;
+					try {
+						message = JSON.parse(data.utf8Data);
+					} catch (e) {
+						// JSONじゃねえ、クールに去るぜ・・・
+						return;
+					}
+
+					// upstremのエラーメッセージ
+					if (message.type === 'error') {
+						emitter(socket, 'announcement', {
+							type: 'error',
+							message: 'upstream error happned',
+							detail: message.value.message,
+							happen: 'upstream'
+						}, true);
+						return;
+					}
+
+					// おりゃ
+					emitter(socket, message.type, message.value);
+				});
+			});
+
+			// APIに接続
+			client.connect(`ws://${config.apiServerIp}:${config.apiServerPort}/streams/${name}`
+				+ `?passkey=${config.apiPasskey}&user-id=${session.userId}`)
+		});
+	});
+}

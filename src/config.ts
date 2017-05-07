@@ -29,7 +29,6 @@ export interface IConfig {
 	port: {
 		http: number;
 		https: number;
-		streaming: number;
 	};
 	https: {
 		enable: boolean;
@@ -72,7 +71,6 @@ export interface IConfig {
 		webApiDomain: string;
 		webApiHost: string;
 		webApiUrl: string;
-		webStreamingUrl: string;
 		shareDomain: string;
 		shareUrl: string;
 		googleRecaptchaSiteKey: string;

@@ -13,8 +13,6 @@ if (cluster.isMaster) {
 	for (let i = 0; i < cpuCount; i++) {
 		cluster.fork();
 	}
-
-	require('./api/streaming');
 } else {
 	require('./server');
 }

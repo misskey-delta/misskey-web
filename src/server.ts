@@ -21,6 +21,7 @@ import config from './config';
 import api from './api/server';
 import resources from './resources-server';
 import router from './router';
+import streaming from './api/streaming';
 
 console.log(`Init ${namingWorkerId(cluster.worker.id)} server...`);
 
@@ -142,6 +143,9 @@ if (config.https.enable) {
 	port = config.port.http;
 	server = http.createServer(app);
 }
+
+// go stream
+streaming(server);
 
 server.listen(port, () => {
 	const listenhost: string = server.address().address;
