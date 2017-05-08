@@ -92,9 +92,9 @@ export default (server: http.Server | https.Server): void => {
 				}, true);
 			});
 
-			client.on('connect', (connection) => {
+			client.on('connect', (upstream) => {
 				// なんらかのエラー
-				connection.on('error', (error) => {
+				upstream.on('error', (error) => {
 					emitter(socket, 'announcement', {
 						type: 'error',
 						message: `can't establish connection`,
@@ -104,7 +104,7 @@ export default (server: http.Server | https.Server): void => {
 				});
 
 				// 切断
-				connection.on('close', (code, desc) => {
+				upstream.on('close', (code, desc) => {
 					emitter(socket, 'announcement', {
 						type: 'error',
 						message: 'close by upstream',
@@ -114,7 +114,7 @@ export default (server: http.Server | https.Server): void => {
 				});
 
 				// メッセージ受領 -> クライアントへ返答
-				connection.on('message', (data) => {
+				upstream.on('message', (data) => {
 					// UTF-8 メッセージでなければ処理しない
 					if (! (data.type === 'utf8')) {
 						return;
