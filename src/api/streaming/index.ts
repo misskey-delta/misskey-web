@@ -46,7 +46,7 @@ export default (server: http.Server | https.Server): void => {
 
 	endpoints.forEach(name => {
 		io.of(`/streaming/${name}`).on('connect', async (socket: SocketIO.Socket) => {
-			logInfo(`Request API: Socket.IO stream /streaming/${name}`);
+			logInfo(`Request Socket.IO stream: /streaming/${name}`);
 			// クッキーが無い場合切断
 			if (! socket.handshake.headers.cookie) {
 				emitter(socket, 'announcement', {
@@ -93,6 +93,12 @@ export default (server: http.Server | https.Server): void => {
 			});
 
 			client.on('connect', (upstream) => {
+				// upstream接続後にsocketの切断が合った場合にupstreamも正常に切断させる
+				socket.on('disconnect', (reason: string) => {
+					logInfo(`Diconnect Socket.IO stream: /streaming/${name} by ${reason}`);
+					upstream.close();
+				});
+
 				// なんらかのエラー
 				upstream.on('error', (error) => {
 					emitter(socket, 'announcement', {
