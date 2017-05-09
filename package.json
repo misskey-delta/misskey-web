@@ -97,7 +97,7 @@
     "moment": "2.18.1",
     "mongoose": "4.9.7",
     "multer": "1.3.0",
-    "object-assign-deep": "0.1.0",
+    "object-assign-deep": "0.3.0",
     "pug": "2.0.0-rc.1",
     "recluster": "0.4.5",
     "request": "2.81.0",
