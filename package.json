@@ -74,7 +74,7 @@
   "dependencies": {
     "@misskey/emojinize": "git+https://github.com/potato4d/ms-emojinize.git",
     "accettare": "0.0.4",
-    "body-parser": "1.17.1",
+    "body-parser": "1.17.2",
     "cheerio-httpcli": "0.6.11",
     "compression": "1.6.2",
     "connect-mongo": "1.3.2",
