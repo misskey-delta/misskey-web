@@ -127,4 +127,4 @@ gulp.task('build-develop-copy', ['build-develop:client-scripts'], () => {
 	gulp.src('./resources/**/*').pipe(gulp.dest('./built/resources/common/'));
 });
 
-gulp.task('test', ['lint', 'build:ts']);
+gulp.task('test', ['lint', 'build']);
