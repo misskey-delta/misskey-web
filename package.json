@@ -102,7 +102,7 @@
     "recluster": "0.4.5",
     "request": "2.81.0",
     "socket.io": "2.0.1",
-    "sortablejs": "1.5.1",
+    "sortablejs": "1.6.0",
     "sticky-listen": "3.3.0",
     "subdomain": "1.2.0",
     "summaly": "2.0.3",
