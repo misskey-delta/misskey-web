@@ -37,7 +37,7 @@
     "@types/express-session": "1.15.0",
     "@types/glob": "5.0.30",
     "@types/gm": "1.17.30",
-    "@types/gulp": "4.0.3",
+    "@types/gulp": "4.0.4",
     "@types/gulp-less": "0.0.30",
     "@types/gulp-tslint": "3.6.31",
     "@types/gulp-typescript": "2.13.0",
