@@ -66,7 +66,7 @@
     "livescript": "1.5.0",
     "pug-runtime": "2.0.3",
     "pugify": "2.0.1",
-    "tslint": "5.4.0",
+    "tslint": "5.4.2",
     "typescript": "2.3.4",
     "vinyl": "2.0.2",
     "vinyl-source-stream": "1.1.0"
