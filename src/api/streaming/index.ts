@@ -155,9 +155,21 @@ export default (server: http.Server | https.Server): void => {
 				});
 			});
 
+			// 接続URL組み立て
+			let endpoint: string;
+			switch (name) {
+				case 'talk':
+					endpoint = `ws://${config.apiServerIp}:${config.apiServerPort}/streams/${name}?passkey=${config.apiPasskey}&user-id=${session.userId}&otherparty-id=${socket.handshake.query['otherparty-id']}`
+					break
+				case 'group-talk':
+					endpoint = `ws://${config.apiServerIp}:${config.apiServerPort}/streams/${name}?passkey=${config.apiPasskey}&user-id=${session.userId}&otherparty-id=${socket.handshake.query['group-id']}`
+					break
+				default:
+					endpoint = `ws://${config.apiServerIp}:${config.apiServerPort}/streams/${name}?passkey=${config.apiPasskey}&user-id=${session.userId}`
+			}
+
 			// APIに接続
-			client.connect(`ws://${config.apiServerIp}:${config.apiServerPort}/streams/${name}`
-				+ `?passkey=${config.apiPasskey}&user-id=${session.userId}`);
+			client.connect(endpoint);
 		});
 	});
 };

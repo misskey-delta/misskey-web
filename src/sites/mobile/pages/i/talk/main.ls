@@ -131,19 +131,13 @@ $ ->
 				now-loading := no
 
 function init-streaming(stream)
-	endpoint = switch (TALK_TYPE)
+	base-endpoint = switch (TALK_TYPE)
 		| \user => "#{CONFIG.web-api-url}/streaming/talk"
 		| \group => "#{CONFIG.web-api-url}/streaming/group-talk"
+	endpoint = switch (TALK_TYPE)
+		| \user => "#{base-endpoint}?otherparty-id=#{OTHERPARTY.id}"
+		| \group => "#{base-endpoint}?group-id=#{GROUP.id}"
 	socket = io.connect endpoint
-
-	socket.on \connected ->
-		sign = switch (TALK_TYPE)
-			| \user => {'otherparty-id': OTHERPARTY.id}
-			| \group => {'group-id': GROUP.id}
-		socket.json.emit \init sign
-
-	socket.on \inited ->
-		# something
 
 	socket.on \disconnect (client) ->
 		console.log 'Disconnected'
