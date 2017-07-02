@@ -17,7 +17,7 @@ const workerId: string = namingWorkerId(cluster.worker.id);
 export default function router(app: express.Express): void {
 
 	// Init session
-	app.use((req, res, next) => {
+	app.use((req: express.Request, res: express.Response, next) => {
 		res.header('X-Frame-Options', `ALLOW-FROM ${config.publicConfig.url}`);
 		res.header('X-XSS-Protection', '1; mode=block');
 		res.header('X-Content-Type-Options', 'nosniff');
@@ -44,10 +44,10 @@ export default function router(app: express.Express): void {
 			}
 		}
 
-		const ua: string = uatype(req.headers['user-agent']);
+		const ua: string = uatype(req.headers['user-agent'] as string);
 		const noui: boolean = req.query.hasOwnProperty('noui');
 		const cookieLang: boolean = req.cookies['ui-language'];
-		const browserAcceptLanguageString: string = req.headers['accept-language'];
+		const browserAcceptLanguageString: string = req.headers['accept-language'] as string;
 
 		const browserAcceptLanguage = browserAcceptLanguageString !== undefined && browserAcceptLanguageString !== null
 			? accettare.get(browserAcceptLanguageString)
