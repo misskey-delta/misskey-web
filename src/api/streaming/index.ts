@@ -131,6 +131,11 @@ export default (server: http.Server | https.Server): void => {
 						message = JSON.parse(data.utf8Data);
 					} catch (e) {
 						// JSONじゃねえ、クールに去るぜ・・・
+						emitter(socket, 'announcement', {
+							type: 'error',
+							message: 'upstream returns non JSON data.',
+							happen: 'upstream'
+						}, true)
 						return;
 					}
 
