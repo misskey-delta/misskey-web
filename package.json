@@ -11,7 +11,9 @@
     "build": "gulp build",
     "lint": "gulp lint",
     "test": "gulp test",
-    "deploy": "npm install && npm run build"
+    "deploy": "npm install && npm run build",
+    "install": "cp ./git-hooks/* ./.git/hooks",
+    "update": "cp ./git-hooks/* ./.git/hooks"
   },
   "license": "MIT",
   "browserify": {
