@@ -1,5 +1,6 @@
 $ = require 'jquery'
-urldecorator = require './urldecorator.js'
+urldecorator = require '../../../common/urldecorator.js'
+metaanalyzer = require '../../../common/ext-meta-analyzer.js'
 
 module.exports = (post-type, $content) ->
 	switch (post-type)
@@ -8,10 +9,8 @@ module.exports = (post-type, $content) ->
 		$content.find '> .text a:not(.mention):not(.hashtag)' .each ->
 			$link = urldecorator $ @
 			if USER_SETTINGS.enable-url-preview-in-post
-				$.ajax "#{CONFIG.web-api-url}/web/url/analyze" {
-					type: \get
-					data:
-						'url': $link.attr \href
-					+cache}
-				.done (html) ->
-					$ html .append-to $content
+				metaanalyzer $link.attr \href
+				.then (html) ->
+					# debug
+					console.log html
+					$ html .append-to $content .hide!.fade-in 200ms
