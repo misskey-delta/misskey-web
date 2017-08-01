@@ -13,12 +13,7 @@ module.exports = (post-type, $content) ->
 					type: \get
 					data:
 						'url': $link.attr \href
-					+cache
-					# overwrite commonized configuration for external api
-					xhr-fields: {
-						-with-credentials
-					}
-					headers: {}
+					-global
 				}
 				.done (res) ->
 					# debug
