@@ -135,7 +135,7 @@ export default (server: http.Server | https.Server): void => {
 							type: 'error',
 							message: 'upstream returns non JSON data.',
 							happen: 'upstream'
-						}, true)
+						}, true);
 						return;
 					}
 
@@ -156,17 +156,14 @@ export default (server: http.Server | https.Server): void => {
 			});
 
 			// 接続URL組み立て
-			let endpoint: string;
-			switch (name) {
-				case 'talk':
-					endpoint = `ws://${config.apiServerIp}:${config.apiServerPort}/streams/${name}?passkey=${config.apiPasskey}&user-id=${session.userId}&otherparty-id=${socket.handshake.query['otherparty-id']}`
-					break
-				case 'group-talk':
-					endpoint = `ws://${config.apiServerIp}:${config.apiServerPort}/streams/${name}?passkey=${config.apiPasskey}&user-id=${session.userId}&otherparty-id=${socket.handshake.query['group-id']}`
-					break
-				default:
-					endpoint = `ws://${config.apiServerIp}:${config.apiServerPort}/streams/${name}?passkey=${config.apiPasskey}&user-id=${session.userId}`
-			}
+			const endpoint: string = (() => {
+				const base = `ws://${config.apiServerIp}:${config.apiServerPort}/streams/${name}?passkey=${config.apiPasskey}`;
+				switch (name) {
+					case 'talk':		return `${base}&user-id=${session.userId}&otherparty-id=${socket.handshake.query['otherparty-id']}`;
+					case 'group-talk':	return `${base}&user-id=${session.userId}&otherparty-id=${socket.handshake.query['group-id']}`;
+					default:			return `${base}&user-id=${session.userId}`;
+				}
+			})();
 
 			// APIに接続
 			client.connect(endpoint);
