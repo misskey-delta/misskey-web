@@ -26,7 +26,7 @@ module.exports = (post-type, $content) ->
 					console.dir meta
 					urls = 
 						canonical: new URL meta.canonical
-						image: if meta.icon then new URL meta.icon else null
+						image: if meta.image then new URL meta.image else null
 					html = """
 					<a class="url-preview" title="#{urls.canonical.href}" href="#{urls.canonical.href}" target="_blank">
 						<aside>
