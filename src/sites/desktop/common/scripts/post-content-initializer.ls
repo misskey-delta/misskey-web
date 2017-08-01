@@ -34,7 +34,8 @@ module.exports = (post-type, $content) ->
 							if meta.image
 							then "
 								<div class=\"thumbnail\" style=\"background-image:url(
-										https://images.weserv.nl/?url=#{urls.image.href.substr urls.image.protocol.length + 2}
+									https://images.weserv.nl/?url=
+									#{urls.image.href.substr urls.image.protocol.length + 2}
 								)\">
 								</div>"
 							else ''
