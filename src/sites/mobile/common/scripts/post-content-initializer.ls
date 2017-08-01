@@ -11,6 +11,4 @@ module.exports = (post-type, $content) ->
 			if USER_SETTINGS.enable-url-preview-in-post
 				metaanalyzer $link.attr \href
 				.then (html) ->
-					# debug
-					console.log html
 					$ html .append-to $content .hide!.fade-in 200ms
