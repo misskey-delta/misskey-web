@@ -4,3 +4,5 @@
 npm-debug.log
 /tmp
 /uploads
+/yarn.lock
+/package-lock.json
