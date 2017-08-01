@@ -17,7 +17,8 @@ module.exports = (url) -> new Promise (res, rej) !->
 	$.ajax "https://analizzatore.prezzemolo.ga/" {
 		type: \get
 		data:
-			'url': url
+			url: url
+			lang: LANG
 		-global
 		+cache
 		xhrFields: {
