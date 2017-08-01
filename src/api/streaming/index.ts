@@ -1,13 +1,13 @@
 import * as fs from 'fs';
 import * as http from 'http';
 import * as https from 'https';
-import * as session from 'express-session';
+import * as express_session from 'express-session';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
 import * as mongoose from 'mongoose';
 import * as MongoStore from 'connect-mongo';
 import * as WebSocket from 'websocket';
-const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(session);
+const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(express_session);
 import config from '../../config';
 import db from '../../db';
 import endpoints from './endpoints';

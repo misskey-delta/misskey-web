@@ -44,8 +44,6 @@ export default function router(app: express.Express): void {
 			}
 		}
 
-		const ua: string = uatype(req.headers['user-agent'] as string);
-		const noui: boolean = req.query.hasOwnProperty('noui');
 		const cookieLang: boolean = req.cookies['ui-language'];
 		const browserAcceptLanguageString: string = req.headers['accept-language'] as string;
 
@@ -56,9 +54,9 @@ export default function router(app: express.Express): void {
 		res.locals.config = config.publicConfig;
 		res.locals.cookie = req.cookies;
 		res.locals.pagePath = req.path;
-		res.locals.noui = noui;
+		res.locals.noui = req.query.hasOwnProperty('noui');
 		res.locals.login = res.locals.isLogin;
-		res.locals.ua = ua;
+		res.locals.ua = uatype(req.headers['user-agent'] as string);
 		res.locals.workerId = workerId;
 
 		if (res.locals.isLogin) {
