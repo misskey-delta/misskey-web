@@ -9,7 +9,7 @@ module.exports = (post-type, $content) ->
 		$content.find '> .text a:not(.mention):not(.hashtag)' .each ->
 			$link = urldecorator $ @
 			if USER_SETTINGS.enable-url-preview-in-post
-				$.ajax "https://github.com/prezzemolo/analizzatore" {
+				$.ajax "https://analizzatore.prezzemolo.ga/" {
 					type: \get
 					data:
 						'url': $link.attr \href
