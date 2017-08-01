@@ -4,6 +4,15 @@
 */
 $ = require 'jquery'
 
+desc-cutter = (desc, length) ->
+	if desc.length > length
+	then "#{desc.substr(length)}..."
+	else desc
+
+weserv-url-gen = (url) ->
+	url-obj = new URL url
+	\https://images.weserv.nl/?url= + url-obj.href.substr url-obj.protocol.length + 2
+
 module.exports = (url) -> new Promise (res, rej) !->
 	$.ajax "https://analizzatore.prezzemolo.ga/" {
 		type: \get
@@ -18,19 +27,15 @@ module.exports = (url) -> new Promise (res, rej) !->
 		headers: null
 	}
 	.done (meta) ->
-		urls = 
-			canonical: new URL meta.canonical
-			image: if meta.image then new URL meta.image else null
-			favicon: if meta.favicon then new URL meta.favicon else null
+		canonical-url-object = new URL meta.canonical
 		html = """
-		<a class="url-preview" title="#{urls.canonical.href}" href="#{urls.canonical.href}" target="_blank">
+		<a class="url-preview" title="#{canonical-url-object.href}" href="#{canonical-url-object.href}" target="_blank">
 			<aside>
 			#{
 				if meta.image
 				then "
 					<div class=\"thumbnail\" style=\"background-image:url(
-						https://images.weserv.nl/?url=
-						#{urls.image.href.substr urls.image.protocol.length + 2}
+						#{weserv-url-gen meta.image}
 					)\">
 					</div>"
 				else ''
@@ -38,23 +43,22 @@ module.exports = (url) -> new Promise (res, rej) !->
 			<h1 class="title">#{meta.title}</h1>
 			#{
 				if meta.description
-				then "<p class=\"description\">#{meta.description}</p>"
+				then "<p class=\"description\">#{desc-cutter meta.description}</p>"
 				else ''
 			}
 			<footer>
 				<p class="hostname">
 					#{
-						if urls.canonical.protocol is 'https:'
+						if canonical-url-object.protocol is 'https:'
 						then "<i class=\"fa fa-lock secure\"></i>"
 						else ''
 					}
-					#{urls.canonical.hostname}
+					#{canonical-url-object.hostname}
 				</p>
 				#{
 					if meta.favicon
 					then "<img class=\"icon\" src=\"
-						https://images.weserv.nl/?url=
-						#{urls.favicon.href.substr urls.favicon.protocol.length + 2}
+						#{weserv-url-gen meta.favicon}
 						\" alt=\"\"/>"
 					else ''
 				}
