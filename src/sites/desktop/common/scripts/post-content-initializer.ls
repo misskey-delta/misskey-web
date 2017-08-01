@@ -16,7 +16,7 @@ module.exports = (post-type, $content) ->
 					+cache
 					# overwrite commonized configuration for external api
 					xhr-fields: {
-						-with-credential
+						-with-credentials
 					}
 					headers: {}
 				}
