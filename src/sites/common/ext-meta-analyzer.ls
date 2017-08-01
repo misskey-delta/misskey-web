@@ -2,6 +2,7 @@
   for use external analyzer in misskey.
   service: https://github.com/prezzemolo/analizzatore
 */
+$ = require 'jquery'
 
 module.exports = (url) -> new Promise (res, rej) !->
 	$.ajax "https://analizzatore.prezzemolo.ga/" {
