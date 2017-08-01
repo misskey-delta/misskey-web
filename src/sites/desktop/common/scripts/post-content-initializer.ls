@@ -32,7 +32,7 @@ module.exports = (post-type, $content) ->
 						<aside>
 						#{
 							if meta.image
-							then "<div class=\"thumbnail\" style=\"background-image:url(https://images.weserv.nl/?url=#{urls.image.}\">"
+							then "<div class=\"thumbnail\" style=\"background-image:url(https://images.weserv.nl/?url=#{urls.image.href.substr urls.image.protocol + 2}\">"
 							else ''
 						}
 						</div>
@@ -45,11 +45,11 @@ module.exports = (post-type, $content) ->
 						<footer>
 							<p class="hostname">
 								#{
-									if url.protocol is 'https:'
+									if urls.canonical.protocol is 'https:'
 									then "<i class=\"fa fa-lock secure\"></i>"
 									else ''
 								}
-								#{url.hostname}
+								#{urls.canonical.hostname}
 							</p>
 							#{
 								if meta.site_name
