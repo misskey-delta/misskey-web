@@ -14,6 +14,11 @@ module.exports = (post-type, $content) ->
 					data:
 						'url': $link.attr \href
 					-global
+					+cache
+					xhrFields: {
+						-with-credentials
+					}
+					headers: {}
 				}
 				.done (res) ->
 					# debug
