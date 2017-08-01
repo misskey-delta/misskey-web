@@ -32,10 +32,9 @@ module.exports = (post-type, $content) ->
 						<aside>
 						#{
 							if meta.image
-							then "<div class=\"thumbnail\" style=\"background-image:url(https://images.weserv.nl/?url=#{urls.image.href.substr urls.image.protocol + 2}\">"
+							then "<div class=\"thumbnail\" style=\"background-image:url(https://images.weserv.nl/?url=#{urls.image.href.substr urls.image.protocol.length + 2}\"></div>"
 							else ''
 						}
-						</div>
 						<h1 class="title">#{meta.title}</h1>
 						#{
 							if meta.description
