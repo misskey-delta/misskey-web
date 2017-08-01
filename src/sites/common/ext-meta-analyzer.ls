@@ -21,6 +21,7 @@ module.exports = (url) -> new Promise (res, rej) !->
 		urls = 
 			canonical: new URL meta.canonical
 			image: if meta.image then new URL meta.image else null
+			favicon: if meta.favicon then new URL meta.favicon else null
 		html = """
 		<a class="url-preview" title="#{urls.canonical.href}" href="#{urls.canonical.href}" target="_blank">
 			<aside>
@@ -49,6 +50,14 @@ module.exports = (url) -> new Promise (res, rej) !->
 					}
 					#{urls.canonical.hostname}
 				</p>
+				#{
+					if meta.favicon
+					then "<img class=\"icon\" src=\"
+						https://images.weserv.nl/?url=
+						#{urls.favicon.href.substr urls.favicon.protocol.length + 2}
+						\" alt=\"\"/>"
+					else ''
+				}
 				#{
 					if meta.site_name
 					then "<p class=\"site-name\">#{meta.site_name}</p>"
