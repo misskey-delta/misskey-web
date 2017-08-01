@@ -18,12 +18,12 @@ module.exports = (post-type, $content) ->
 					xhrFields: {
 						-with-credentials
 					}
-					headers: {}
+					# dirty hack
+					headers: null
 				}
-				.done (res) ->
+				.done (meta) ->
 					# debug
-					console.dir res
-					meta = JSON.parse res
+					console.dir meta
 					urls = 
 						canonical: new URL meta.canonical
 						image: if meta.icon then new URL meta.icon else null
