@@ -13,18 +13,26 @@ module.exports = (post-type, $content) ->
 					type: \get
 					data:
 						'url': $link.attr \href
-					+cache}
+					+cache
+					# overwrite commonized configuration for external api
+					xhr-fields: {
+						-with-credencial
+					}
+					headers: {}
+				}
 				.done (res) ->
 					# debug
 					console.dir res
 					meta = JSON.parse res
-					url = new URL meta.canonical
+					urls = 
+						canonical: new URL meta.canonical
+						image: if meta.icon then new URL meta.icon else null
 					html = """
-					<a class="url-preview" title="#{url.href}" href="#{url.href}" target="_blank">
+					<a class="url-preview" title="#{urls.canonical.href}" href="#{urls.canonical.href}" target="_blank">
 						<aside>
 						#{
 							if meta.image
-							then "<div class=\"thumbnail\" style=\"background-image:url(https://images.weserv.nl/?url=#{meta.image}\">"
+							then "<div class=\"thumbnail\" style=\"background-image:url(https://images.weserv.nl/?url=#{urls.image.}\">"
 							else ''
 						}
 						</div>
@@ -43,10 +51,6 @@ module.exports = (post-type, $content) ->
 								}
 								#{url.hostname}
 							</p>
-							/*
-							not implemented at ext service
-							<img class="icon" src="https://images.weserv.nl/?url=#{meta.icon}" alt=""/>.
-							*/
 							#{
 								if meta.site_name
 								then "<p class=\"site-name\">#{meta.site_name}</p>"
