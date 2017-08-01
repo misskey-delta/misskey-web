@@ -79,9 +79,6 @@ class Post
 					| 70, 76 => # f or l
 						e.prevent-default!
 						THIS.like!
-					| 82, 83 => # r or s
-						e.prevent-default!
-						THIS.repost!
 
 		THIS.$post.click (event) ->
 			if document.get-selection!.to-string! != ''
