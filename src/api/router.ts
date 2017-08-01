@@ -29,7 +29,6 @@ export default function router(app: express.Express): void {
 	});
 
 	app.post('/account/create', require('./endpoints/account/create').default);
-	app.get('/web/url/analyze', require('./endpoints/url/analyze').default);
 	app.post('/web/avatar/update', require('./endpoints/avatar/update').default);
 	app.post('/web/banner/update', require('./endpoints/banner/update').default);
 	app.post('/web/home-layout/update', require('./endpoints/home-layout/update').default);
