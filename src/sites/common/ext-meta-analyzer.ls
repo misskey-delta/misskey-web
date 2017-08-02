@@ -13,21 +13,6 @@ weserv-url-gen = (url) ->
 	url-obj = new URL url
 	\https://images.weserv.nl/?url= + encodeURIComponent url-obj.href.substr url-obj.protocol.length + 2
 
-weserv-gen-icon-after-precheck = (url) -> new Promise (res, rej) !->
-	weserv-url = weserv-url-gen url
-	fetch weserv-url, {
-		mode: \no-cors
-		method: \HEAD
-	}
-	.then (Response) !->
-		if Response.ok
-		then res gen-icon weserv-url
-		else res ''
-	.catch (...args) -> rej ...args
-
-gen-icon = (icon) ->
-	"</p><img class=\"icon\" src=\"#{icon}\" alt=\"\"/>"
-
 module.exports = (url) -> new Promise (res, rej) !->
 	$.ajax "https://analizzatore.prezzemolo.ga/" {
 		type: \get
@@ -70,20 +55,22 @@ module.exports = (url) -> new Promise (res, rej) !->
 						else ''
 					}
 					#{canonical-url-object.hostname}
+				</p>
+				<img class="icon" src="
+				#{
+					if meta.icon
+					then weserv-url-gen meta.icon
+					else weserv-url-gen canonical-url-object.origin + '/favicon.ico'
+				}
+				" alt=""/>
+				#{
+					if meta.site_name
+					then "<p class=\"site-name\">#{meta.site_name}</p>"
+					else ''
+				}
+			</footer>
+			</aside>
+		</a>
 		"""
-		weserv-gen-icon-after-precheck if meta.icon then meta.icon else canonical-url-object.origin + '/favicon.ico'
-		.then (icon) !->
-			html += icon
-			html +=	"
-					#{
-						if meta.site_name
-						then "<p class=\"site-name\">#{meta.site_name}</p>"
-						else ''
-					}
-				</footer>
-				</aside>
-			</a>
-			"
-			res(html)
-		.catch (...args) !-> rej ...args
-	.fail (...args) !-> rej ...args
+		res(html)
+	.fail (...args) !-> rej(...args)
