@@ -15,7 +15,7 @@ weserv-url-gen = (url) ->
 
 weserv-gen-icon-after-precheck = (url) -> new Promise (res, rej) !->
 	weserv-url = weserv-url-gen url
-	fetch weserv-url {
+	fetch weserv-url, {
 		mode: \no-cors
 		method: \HEAD
 	}
