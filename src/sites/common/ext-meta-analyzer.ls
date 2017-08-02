@@ -56,13 +56,13 @@ module.exports = (url) -> new Promise (res, rej) !->
 					}
 					#{canonical-url-object.hostname}
 				</p>
-				<img class="icon" src="
 				#{
 					if meta.icon
-					then weserv-url-gen meta.icon
-					else weserv-url-gen canonical-url-object.origin + '/favicon.ico'
+					then "<img class=\"icon\" src=\"
+						#{weserv-url-gen meta.icon}
+						\" alt=\"\"/>"
+					else ''
 				}
-				" alt=""/>
 				#{
 					if meta.site_name
 					then "<p class=\"site-name\">#{meta.site_name}</p>"
