@@ -70,20 +70,20 @@ module.exports = (url) -> new Promise (res, rej) !->
 						else ''
 					}
 					#{canonical-url-object.hostname}
-			"""
-			weserv-gen-icon-after-precheck if meta.icon then meta.icon else canonical-url-object.origin + '/favicon.ico'
-			.then (icon) !->
-				html += icon
-				html +=	"
-						#{
-							if meta.site_name
-							then "<p class=\"site-name\">#{meta.site_name}</p>"
-							else ''
-						}
-					</footer>
-					</aside>
-				</a>
-				"
-				res(html)
-			.catch (...args) !-> rej ...args
+		"""
+		weserv-gen-icon-after-precheck if meta.icon then meta.icon else canonical-url-object.origin + '/favicon.ico'
+		.then (icon) !->
+			html += icon
+			html +=	"
+					#{
+						if meta.site_name
+						then "<p class=\"site-name\">#{meta.site_name}</p>"
+						else ''
+					}
+				</footer>
+				</aside>
+			</a>
+			"
+			res(html)
+		.catch (...args) !-> rej ...args
 	.fail (...args) !-> rej ...args
