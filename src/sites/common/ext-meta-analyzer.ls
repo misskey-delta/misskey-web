@@ -44,7 +44,7 @@ module.exports = (url) -> new Promise (res, rej) !->
 			<h1 class="title">#{meta.title}</h1>
 			#{
 				if meta.description
-				then "<p class=\"description\">#{desc-cutter meta.description}</p>"
+				then "<p class=\"description\">#{desc-cutter meta.description 300}</p>"
 				else ''
 			}
 			<footer>
