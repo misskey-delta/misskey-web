@@ -7,7 +7,7 @@ $ ->
 
 	window.is-following = if LOGIN then USER.is-following else null
 
-	swiper = new swiper \.swiper-container {
+	swiper = new Swiper \.swiper-container {
 		direction: \horizontal
 		loop: true
 		pagination: \.swiper-pagination
