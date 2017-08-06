@@ -6,7 +6,7 @@ $ = require 'jquery'
 
 desc-cutter = (desc, length) ->
 	if desc.length > length
-	then "#{desc.substr 0 length}..."
+	then "#{desc.substr 0, length}..."
 	else desc
 
 weserv-url-gen = (url) ->
@@ -44,7 +44,7 @@ module.exports = (url) -> new Promise (res, rej) !->
 			<h1 class="title">#{meta.title}</h1>
 			#{
 				if meta.description
-				then "<p class=\"description\">#{desc-cutter meta.description 300}</p>"
+				then "<p class=\"description\">#{desc-cutter meta.description, 300}</p>"
 				else ''
 			}
 			<footer>
