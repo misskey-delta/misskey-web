@@ -6,7 +6,7 @@ $ = require 'jquery'
 
 desc-cutter = (desc, length) ->
 	if desc.length > length
-	then "#{desc.substr(length)}..."
+	then "#{desc.substr 0 length}..."
 	else desc
 
 weserv-url-gen = (url) ->
