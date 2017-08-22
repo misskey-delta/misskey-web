@@ -63,7 +63,7 @@
     "gulp-notify": "3.0.0",
     "gulp-plumber": "1.1.0",
     "gulp-tslint": "8.1.2",
-    "gulp-typescript": "3.2.0",
+    "gulp-typescript": "3.2.2",
     "less": "2.7.2",
     "livescript": "1.5.0",
     "pug-runtime": "2.0.3",
