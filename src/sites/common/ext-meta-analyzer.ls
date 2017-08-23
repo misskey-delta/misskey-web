@@ -13,6 +13,17 @@ weserv-url-gen = (url) ->
 	url-obj = new URL url
 	\https://images.weserv.nl/?url= + encodeURIComponent url-obj.href.substr url-obj.protocol.length + 2
 
+escape-tag = (str) ->
+	table = {
+		"&": "&amp"
+		"'": '&\#x27'
+		"`": "&\#x60"
+		'"': "&quot"
+		"<": "&lt;"
+		">": "&gt;"
+	}
+	str.replace(/[&'`"<>]/g, (a) -> table[a])
+
 module.exports = (url) -> new Promise (res, rej) !->
 	$.ajax "https://analizzatore.prezzemolo.ga/" {
 		type: \get
@@ -30,7 +41,7 @@ module.exports = (url) -> new Promise (res, rej) !->
 	.done (meta) ->
 		canonical-url-object = new URL meta.canonical
 		html = """
-		<a class="url-preview" title="#{canonical-url-object.href}" href="#{canonical-url-object.href}" target="_blank">
+		<a class="url-preview" title="#{escape-tag canonical-url-object.href}" href="#{escape-tag canonical-url-object.href}" target="_blank">
 			<aside>
 			#{
 				if meta.image
@@ -41,10 +52,10 @@ module.exports = (url) -> new Promise (res, rej) !->
 					</div>"
 				else ''
 			}
-			<h1 class="title">#{meta.title}</h1>
+			<h1 class="title">#{escape-tag meta.title}</h1>
 			#{
 				if meta.description
-				then "<p class=\"description\">#{desc-cutter meta.description, 300}</p>"
+				then "<p class=\"description\">#{escape-tag(desc-cutter meta.description, 300)}</p>"
 				else ''
 			}
 			<footer>
@@ -54,7 +65,7 @@ module.exports = (url) -> new Promise (res, rej) !->
 						then "<i class=\"fa fa-lock secure\"></i>"
 						else ''
 					}
-					#{canonical-url-object.hostname}
+					#{escape-tag canonical-url-object.hostname}
 				</p>
 				#{
 					if meta.icon
