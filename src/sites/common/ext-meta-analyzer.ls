@@ -40,6 +40,8 @@ module.exports = (url) -> new Promise (res, rej) !->
 		a = create-element 'a',
 			class: 'url-preview'
 			target: '_blank'
+			href: canonical-url-object.href
+			title: canonical-url-object.href
 		aside = create-element 'aside'
 		a.appendChild aside
 
