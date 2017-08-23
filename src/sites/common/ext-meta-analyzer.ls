@@ -13,7 +13,7 @@ weserv-url-gen = (url) ->
 	url-obj = new URL url
 	\https://images.weserv.nl/?url= + encodeURIComponent url-obj.href.substr url-obj.protocol.length + 2
 
-create-element = (name, attributes, text) ->
+create-element = (name, attributes = {}, text) ->
 	elem = document.createElement name
 	Object.entries attributes .forEach (attribute) !->
 		elem.setAttribute attribute[0], attribute[1]
