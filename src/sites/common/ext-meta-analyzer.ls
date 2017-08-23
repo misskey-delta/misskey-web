@@ -16,7 +16,7 @@ weserv-url-gen = (url) ->
 create-element = (name, attributes, text) ->
 	elem = document.createElement name
 	Object.entries attributes .forEach (attribute) !->
-		elem.setAttribute attiribute[0], attribute[1]
+		elem.setAttribute attribute[0], attribute[1]
 	elem.innerText = text if text
 	return elem
 
