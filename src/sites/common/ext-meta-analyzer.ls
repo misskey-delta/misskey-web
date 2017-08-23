@@ -6,12 +6,19 @@ $ = require 'jquery'
 
 desc-cutter = (desc, length) ->
 	if desc.length > length
-	then "#{desc.substr 0, length}..."
+	then "#{desc.substr(length)}..."
 	else desc
 
 weserv-url-gen = (url) ->
 	url-obj = new URL url
 	\https://images.weserv.nl/?url= + encodeURIComponent url-obj.href.substr url-obj.protocol.length + 2
+
+create-element = (name, attributes, text) ->
+	elem = document.createElement name
+	Object.entries attributes .forEach (attribute) !->
+		elem.setAttribute attiribute[0], attribute[1]
+	elem.innerText = text if text
+	return elem
 
 module.exports = (url) -> new Promise (res, rej) !->
 	$.ajax "https://analizzatore.prezzemolo.ga/" {
@@ -29,48 +36,45 @@ module.exports = (url) -> new Promise (res, rej) !->
 	}
 	.done (meta) ->
 		canonical-url-object = new URL meta.canonical
-		html = """
-		<a class="url-preview" title="#{canonical-url-object.href}" href="#{canonical-url-object.href}" target="_blank">
-			<aside>
-			#{
-				if meta.image
-				then "
-					<div class=\"thumbnail\" style=\"background-image:url(
-						#{weserv-url-gen meta.image}
-					)\">
-					</div>"
-				else ''
-			}
-			<h1 class="title">#{meta.title}</h1>
-			#{
-				if meta.description
-				then "<p class=\"description\">#{desc-cutter meta.description, 300}</p>"
-				else ''
-			}
-			<footer>
-				<p class="hostname">
-					#{
-						if canonical-url-object.protocol is 'https:'
-						then "<i class=\"fa fa-lock secure\"></i>"
-						else ''
-					}
-					#{canonical-url-object.hostname}
-				</p>
-				#{
-					if meta.icon
-					then "<img class=\"icon\" src=\"
-						#{weserv-url-gen meta.icon}
-						\" alt=\"\"/>"
-					else ''
-				}
-				#{
-					if meta.site_name
-					then "<p class=\"site-name\">#{meta.site_name}</p>"
-					else ''
-				}
-			</footer>
-			</aside>
-		</a>
-		"""
-		res(html)
+
+		a = create-element 'a',
+			class: 'url-preview'
+			target: '_blank'
+		aside = create-element 'aside'
+		a.appendChild aside
+
+		# image
+		if meta.image
+		then
+			image = create-element 'div',
+				class: 'thumbnail'
+				style: "background-image:url(#{weserv-url-gen meta.image})"
+			aside.appendChild image
+		# title
+		title = create-element 'h1' null, meta.title
+		aside.appendChild title
+		# footer
+		footer = create-element 'footer'
+		aside.appendChild footer
+		# hostname
+		hostname = create-element 'p', class: 'hostname', canonical-url-object.hostname
+		if canonical-url-object.protocol is 'https:'
+		then
+			i-secure = create-element 'i', class: 'fa fa-lock secure'
+			hostname.appendChild i-secure
+		aside.appendChild hostname
+		# icon
+		if meta.icon
+		then
+			icon = create-element 'img',
+				class: 'icon'
+				src: weserv-url-gen meta.icon
+			aside.appendChild icon
+		# site_name
+		if meta.site_name
+		then
+			site-name = create-element 'p', class: 'site-name', meta.site_name
+			aside.appendChild site-name
+
+		res(a)
 	.fail (...args) !-> rej(...args)
