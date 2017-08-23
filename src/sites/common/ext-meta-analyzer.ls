@@ -51,30 +51,36 @@ module.exports = (url) -> new Promise (res, rej) !->
 				style: "background-image:url(#{weserv-url-gen meta.image})"
 			aside.appendChild image
 		# title
-		title = create-element 'h1' null, meta.title
+		title = create-element 'h1', class: 'title', meta.title
 		aside.appendChild title
+		# description
+		if meta.description
+			description = create-element 'p', class: 'description', meta.description
+			aside.appendChild description
 		# footer
 		footer = create-element 'footer'
 		aside.appendChild footer
-		# hostname
-		hostname = create-element 'p', class: 'hostname', canonical-url-object.hostname
+		# host
+		hostname = create-element 'p', class: 'hostname'
+		footer.appendChild hostname
 		if canonical-url-object.protocol is 'https:'
 		then
 			i-secure = create-element 'i', class: 'fa fa-lock secure'
 			hostname.appendChild i-secure
-		aside.appendChild hostname
+		span = create-element 'span' null canonical-url-object.hostname
+		hostname.appendChild span
 		# icon
 		if meta.icon
 		then
 			icon = create-element 'img',
 				class: 'icon'
 				src: weserv-url-gen meta.icon
-			aside.appendChild icon
+			footer.appendChild icon
 		# site_name
 		if meta.site_name
 		then
 			site-name = create-element 'p', class: 'site-name', meta.site_name
-			aside.appendChild site-name
+			footer.appendChild site-name
 
 		res(a)
 	.fail (...args) !-> rej(...args)
