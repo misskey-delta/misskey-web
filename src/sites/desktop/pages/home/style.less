@@ -148,7 +148,8 @@ body > .streaming-info {
 }
 
 #widget-my-status {
-	display: block;
+	display: flex;
+	align-items: center;
 	box-sizing: border-box;
 	background: transparent;
 	// border: solid 1px rgba(0, 0, 0, 0.15);
@@ -180,7 +181,11 @@ body > .streaming-info {
 			display: flex;
 			align-items: center;
 			margin: 0;
-			padding: 0 0 0 60px;
+			padding: 10px;
+			width: calc(100% - 48px);
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 			color: #736060;
 			line-height: 1.2;
 			font-weight: bold;
