@@ -156,7 +156,8 @@ body > .streaming-info {
 	overflow: hidden;
 
 	header {
-		display: inline-block;
+		display: flex;
+		align-items: center;
 		box-sizing: border-box;
 		padding: 10px 20px;
 		width: 100%;
@@ -177,10 +178,13 @@ body > .streaming-info {
 		}
 
 		h1 {
-			display: flex;
-			align-items: center;
+			flex: 1;
+			display: block;
 			margin: 0;
-			padding: 0 0 0 60px;
+			padding: 10px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 			color: #736060;
 			line-height: 1.2;
 			font-weight: bold;
