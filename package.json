@@ -87,7 +87,7 @@
     "csurf": "1.9.0",
     "escape-html": "1.0.3",
     "express": "4.15.3",
-    "express-minify": "0.2.0",
+    "express-minify": "1.0.0",
     "express-session": "1.15.5",
     "fastclick": "1.0.6",
     "gm": "1.23.0",
