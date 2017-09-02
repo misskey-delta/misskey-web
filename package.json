@@ -67,7 +67,7 @@
     "less": "2.7.2",
     "livescript": "1.5.0",
     "pug-runtime": "2.0.3",
-    "pugify": "2.0.1",
+    "pugify": "2.2.0",
     "tslint": "5.7.0",
     "typescript": "2.5.2",
     "vinyl": "2.1.0",
