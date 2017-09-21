@@ -53,7 +53,7 @@ module.exports = (url) -> new Promise (res, rej) !->
 				style: "background-image:url(#{weserv-url-gen meta.image})"
 			aside.appendChild image
 		# title
-		title = create-element 'h1', class: 'title', meta.title.trim!.replace /\s+/, ' '
+		title = create-element 'h1', class: 'title', meta.title.trim!.replace /\s+/g, ' '
 		aside.appendChild title
 		# description
 		if meta.description
