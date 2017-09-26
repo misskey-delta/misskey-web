@@ -88,7 +88,7 @@
     "escape-html": "1.0.3",
     "express": "5.0.0-alpha.6",
     "express-minify": "1.0.0",
-    "express-session": "1.15.5",
+    "express-session": "1.15.6",
     "fastclick": "1.0.6",
     "gm": "1.23.0",
     "html-entities": "1.2.1",
