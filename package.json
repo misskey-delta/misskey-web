@@ -37,7 +37,7 @@
     "@types/express-session": "1.15.3",
     "@types/csurf": "1.9.34",
     "@types/express": "4.0.37",
-    "@types/glob": "5.0.32",
+    "@types/glob": "5.0.33",
     "@types/gm": "1.17.32",
     "@types/gulp": "4.0.4",
     "@types/gulp-less": "0.0.30",
