@@ -22,6 +22,6 @@ export default function upload(req: express.Request, res: express.Response): voi
 		res.send(albumFile);
 	}, (err: any) => {
 		console.error(err);
-		res.status(500).send('something-happened');
+		res.status(500).send(err.body);
 	});
 }

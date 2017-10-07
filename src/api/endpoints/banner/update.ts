@@ -25,7 +25,7 @@ export default function updatebanner(req: express.Request, res: express.Response
 			}, (getFileErr: any, response: http.IncomingMessage, body: Buffer) => {
 				if (getFileErr !== null) {
 					console.error(getFileErr);
-					return res.status(500).send('something-happened');
+					return res.status(500).send(getFileErr.body);
 				}
 				gm(body, file.name)
 				.crop(trimW, trimH, trimX, trimY)
@@ -34,7 +34,7 @@ export default function updatebanner(req: express.Request, res: express.Response
 				.toBuffer('jpeg', (err: Error, buffer: Buffer) => {
 					if (err !== null) {
 						console.error(err);
-						return res.status(500).send('something-happened');
+						return res.status(500).send(err.body);
 					}
 					requestApi('album/files/upload', {
 						file: {
@@ -50,10 +50,10 @@ export default function updatebanner(req: express.Request, res: express.Response
 						}, req.user).then((me: Object) => {
 							res.send('success');
 						}, (updateErr: any) => {
-							return res.status(500).send('something-happened');
+							return res.status(500).send(updateErr.body);
 						});
 					}, (uploadErr: any) => {
-						return res.status(500).send('something-happened');
+						return res.status(500).send(uploadErr.body);
 					});
 				});
 			});
@@ -64,7 +64,7 @@ export default function updatebanner(req: express.Request, res: express.Response
 		}, req.user).then((me: Object) => {
 			res.send('success');
 		}, (updateErr: any) => {
-			return res.status(500).send('something-happened');
+			return res.status(500).send(updateErr.body);
 		});
 	}
 }
