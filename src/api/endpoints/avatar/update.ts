@@ -32,7 +32,7 @@ export default function updateavatar(req: express.Request, res: express.Response
 				.toBuffer('png', (err: Error, buffer: Buffer) => {
 					if (err !== null) {
 						console.error(err);
-						return res.status(500).send(err.body);
+						return res.status(500).send('something-happened');
 					}
 					requestApi('album/files/upload', {
 						file: {
