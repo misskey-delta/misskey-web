@@ -44,29 +44,39 @@ const sessionsScheme = new mongoose.Schema({
     expires: Date
 })
 const Sessions = connection.model('sessions', sessionsScheme)
-Sessions.find({ session: /userId/i  }).then(values => values.map(value => {
-    const session = JSON.parse(value.session)
-    // get date from session data
-    const date = new Date()
-    date.setTime(session.time)
-    // join proxy & ip
-    const sessionIP = session.proxy ? session.proxy + ", " + session.ip : session.ip
-    // show detail
-    return `[${time(date)}] "${session.user}" (${session.userId}) signin with "${session['user-agent']}" from "${sessionIP}"`
-})).then(logs => {
+const func = async () => {
+    const findQuery = { session: /userId/i }
+    const limit = parseInt(process.argv[2]) || null
+
     console.log(`\
 > session reporter (${process.argv[1]})
-> shows ${process.argv[2] || 'all'} sessions
-> database has available ${logs.length} sessions
+> shows ${limit || 'all'} sessions
+> database has available ${await Sessions.find(findQuery).count()} sessions
 `)
+
+    let query = Sessions.find(findQuery).sort({ $natural: -1 })
+    if (limit) query.limit(limit)
+
+    const logs = await query.then(values => values.reverse().map(value => {
+        const session = JSON.parse(value.session)
+        // get date from session data
+        const date = new Date(session.time)
+        // join proxy & ip
+        const sessionIP = session.proxy ? session.proxy + ", " + session.ip : session.ip
+        // show detail
+        return `[${time(date)}] "${session.user}" (${session.userId}) signin with "${session['user-agent']}" from "${sessionIP}"`
+    }))
+
+
     console.log(
-        logs.slice(logs.length - (parseInt(process.argv[2]) || logs.length))
-            .map((v, index) => `[${index+1}] ${v}`)
+        logs.map((v, index) => `[${index+1}] ${v}`)
             .join('\n')
     )
-}).then(() => {
+
     process.exit(0)
-}).catch(e => {
+}
+
+func().catch(e => {
     console.log(e.stack)
     process.exit(1)
 })
