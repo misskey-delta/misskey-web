@@ -44,22 +44,31 @@ const sessionsScheme = new mongoose.Schema({
     expires: Date
 })
 const Sessions = connection.model('sessions', sessionsScheme)
-Sessions.find({}).where('session').exists().exec().then((values) => {
-    values.forEach(value => {
-        const obj = value.toObject()
-        const session = JSON.parse(obj.session)
-        // if not logged in session, return
-        if (!session.userId) return;
-        // get date from session data
-        const date = new Date()
-        date.setTime(session.time)
-        // join proxy & ip
-        const sessionIP = session.proxy ? session.proxy + ", " + session.ip : session.ip
-        // show detail
-        console.log(
-            `[${time(date)}] "${session.user}" (${session.userId}) signin with "${session['user-agent']}" from "${sessionIP}"`
-        )
-    })
+Sessions.where('session').exists(true).then(values => {
+    return values
+        .filter(value => ~value.session.indexOf('userId'))
+        .map(value => {
+            const session = JSON.parse(value.session)
+            // get date from session data
+            const date = new Date()
+            date.setTime(session.time)
+            // join proxy & ip
+            const sessionIP = session.proxy ? session.proxy + ", " + session.ip : session.ip
+            // show detail
+            return `[${time(date)}] "${session.user}" (${session.userId}) signin with "${session['user-agent']}" from "${sessionIP}"`
+        })
+}).then(logs => {
+    console.log(`\
+> session reporter (${process.argv[1]})
+> shows ${process.argv[2] || 'all'} sessions
+> database has available ${logs.length} sessions
+`)
+    console.log(
+        logs.slice(logs.length - (parseInt(process.argv[2]) || logs.length))
+            .map((v, index) => `[${index+1}] ${v}`)
+            .join('\n')
+    )
+}).then(() => {
     process.exit(0)
 }).catch(e => {
     console.log(e.stack)
