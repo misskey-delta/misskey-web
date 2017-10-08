@@ -46,11 +46,16 @@ const sessionsScheme = new mongoose.Schema({
 const Sessions = connection.model('sessions', sessionsScheme)
 const func = async () => {
     const findQuery = { session: /userId/i }
-    const limit = parseInt(process.argv[2]) || null
+    const limit = (() => {
+        const parsed = parseInt(process.argv[2])
+        return Number.isNaN(parsed) ? null : parsed
+    })()
+
+    if (limit !== null && 1 > limit) throw new Error('limit must be 1 or more.')
 
     console.log(`\
 > session reporter (${process.argv[1]})
-> shows ${limit || 'all'} sessions
+> shows last ${limit || 'all'} session${limit > 1 ? 's' : ''}
 > database has available ${await Sessions.find(findQuery).count()} sessions
 `)
 
