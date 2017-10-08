@@ -55,7 +55,7 @@ const func = async () => {
 
     console.log(`\
 > session reporter (${process.argv[1]})
-> shows last ${limit || 'all'} session${limit > 1 ? 's' : ''}
+> shows last ${limit || 'all'} session${!limit || limit > 1 ? 's' : ''}
 > database has available ${await Sessions.find(findQuery).count()} sessions
 `)
 
@@ -69,7 +69,7 @@ const func = async () => {
         // join proxy & ip
         const sessionIP = session.proxy ? session.proxy + ", " + session.ip : session.ip
         // show detail
-        return `[${time(date)}] "${session.user}" (${session.userId}) signin with "${session['user-agent']}" from "${sessionIP}"`
+        return `[${time(date)}] #${value._id} - "${session.user}" (${session.userId}) signin with "${session['user-agent']}" from "${sessionIP}"`
     }))
 
 
