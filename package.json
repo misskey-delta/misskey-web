@@ -111,7 +111,7 @@
     "swiper": "4.0.1",
     "trace-redirect": "1.0.4",
     "vhost": "3.0.2",
-    "websocket": "1.0.24"
+    "websocket": "1.0.25"
   },
   "private": true
 }
