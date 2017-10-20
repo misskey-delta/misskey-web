@@ -6,7 +6,7 @@ $ = require 'jquery'
 
 desc-cutter = (desc, length) ->
 	if desc.length > length
-	then "#{desc.substr 0 length}..."
+	then "#{desc.substr 0 length}…"
 	else desc
 
 weserv-url-gen = (url) ->
@@ -17,7 +17,7 @@ create-element = (name, attributes = {}, text) ->
 	elem = document.createElement name
 	Object.entries attributes .forEach (attribute) !->
 		elem.setAttribute attribute[0], attribute[1]
-	elem.innerText = text if text
+	elem.innerText = desc-cutter text, 300 if text
 	return elem
 
 module.exports = (url) -> new Promise (res, rej) !->
@@ -57,7 +57,7 @@ module.exports = (url) -> new Promise (res, rej) !->
 		aside.appendChild title
 		# description
 		if meta.description
-			description = create-element 'p', class: 'description', meta.description.trim!.replace /\n\n+/, '\n\n'
+			description = create-element 'p', class: 'description', meta.description.trim!.replace /\n\n+/ '\n\n'
 			aside.appendChild description
 		# footer
 		footer = create-element 'footer'
