@@ -5,8 +5,8 @@ file-compiler = require '../views/album/file.pug'
 
 class Album
 	($album) ->
-		THIS = @
-		THIS.on-file-dblclicked = null
+		self = @
+		@on-file-dblclicked = null
 		@current-location = null
 		@$album = $album
 		@$album-header = @$album.find '> header'
@@ -20,24 +20,24 @@ class Album
 		@$album-files = @$album-browser.find '> .files'
 
 		# Init uploader
-		THIS.$album-uploader.find \button .click ->
-			THIS.$album-uploader.find \input .click!
+		@$album-uploader.find \button .click ->
+			self.$album-uploader.find \input .click!
 			false
-		THIS.$album-uploader.find \input .change ->
-			files = (THIS.$album-uploader.find \input)[0].files
+		@$album-uploader.find \input .change ->
+			files = (self.$album-uploader.find \input)[0].files
 			for i from 0 to files.length - 1
 				file = files.item i
-				THIS.upload file
+				self.upload file
 
 		# Init context menu
-		THIS.init-contextmenu THIS.$album-browser, THIS.$album-browser-contextmenu
+		@init-contextmenu self.$album-browser, self.$album-browser-contextmenu
 
 		# Init selectd area highlighter
-		THIS.$album-browser.mousedown (e) ->
-			left = e.page-x + THIS.$album-browser.scroll-left! - THIS.$album-browser.offset!.left
-			top = e.page-y + THIS.$album-browser.scroll-top! - THIS.$album-browser.offset!.top
-			THIS.$selection.stop!
-			THIS.$selection.css {
+		@$album-browser.mousedown (e) ->
+			left = e.page-x + self.$album-browser.scroll-left! - self.$album-browser.offset!.left
+			top = e.page-y + self.$album-browser.scroll-top! - self.$album-browser.offset!.top
+			self.$selection.stop!
+			self.$selection.css {
 				display: \block
 				top: top
 				left: left
@@ -45,11 +45,11 @@ class Album
 				height: 0
 				opacity: 1
 			}
-			THIS.$album-files.find \.file .each ->
+			self.$album-files.find \.file .each ->
 				($ @).attr \data-selected \false
 			function move(e)
-				cursor-x = e.page-x + THIS.$album-browser.scroll-left! - THIS.$album-browser.offset!.left
-				cursor-y = e.page-y + THIS.$album-browser.scroll-top! - THIS.$album-browser.offset!.top
+				cursor-x = e.page-x + self.$album-browser.scroll-left! - self.$album-browser.offset!.left
+				cursor-y = e.page-y + self.$album-browser.scroll-top! - self.$album-browser.offset!.top
 				w = cursor-x - left
 				h = cursor-y - top
 				css = {
@@ -68,14 +68,14 @@ class Album
 					css.height = -h
 					css.top = cursor-y
 
-				THIS.$selection.css css
+				self.$selection.css css
 
 				# 重なり判定
-				selection-top = THIS.$selection.offset!.top
-				selection-left = THIS.$selection.offset!.left
-				selection-width = THIS.$selection.outer-width!
-				selection-height = THIS.$selection.outer-height!
-				THIS.$album-files.find \.file .each ->
+				selection-top = self.$selection.offset!.top
+				selection-left = self.$selection.offset!.left
+				selection-width = self.$selection.outer-width!
+				selection-height = self.$selection.outer-height!
+				self.$album-files.find \.file .each ->
 					$item = $ @
 					item-top = $item.offset!.top
 					item-left = $item.offset!.left
@@ -88,21 +88,20 @@ class Album
 			function up(e)
 				$ \html .off \mousemove move
 				$ \html .off \mouseup up
-				THIS.$selection.animate {
+				self.$selection.animate {
 					opacity: 0
 				} 100ms ->
-					THIS.$selection.css {
+					self.$selection.css {
 						display: \none
 					}
 			$ \html .on \mousemove move
 			$ \html .on \mouseup up
 
-		THIS.load-files!
+		self.load-files!
 
 	get-selected-files: ->
-		THIS = @
 		selected-files = []
-		THIS.$album-files.find '> .file[data-selected="true"]' .each ->
+		@$album-files.find '> .file[data-selected="true"]' .each ->
 			selected-files.push JSON.parse ($ @).attr \data-data
 		return selected-files
 
@@ -126,16 +125,16 @@ class Album
 				$file.before $date-info
 
 	add-file: (file) ->
-		THIS = @
+		self = @
 		$file = $ file-compiler {
 			file
 			config: CONFIG
 			locale: LOCALE
 			me: ME
 		}
-		THIS.$album-files.append $file
-		THIS.insert-date-info $file
-		THIS.init-contextmenu $file, ($file.find '> .context-menu'), ->
+		@$album-files.append $file
+		@insert-date-info $file
+		@init-contextmenu $file, ($file.find '> .context-menu'), ->
 			$file.attr \data-selected \true
 		$file.mousedown (e) ->
 			e.stop-immediate-propagation!
@@ -148,38 +147,37 @@ class Album
 
 		$file.dblclick ->
 			$file.attr \data-selected \true
-			if THIS.on-file-dblclicked?
-				THIS.on-file-dblclicked $file
+			if self.on-file-dblclicked?
+				self.on-file-dblclicked $file
 
 	load-files: ->
-		THIS = @
+		self = @
 		$.ajax "#{CONFIG.web-api-url}/album/files/stream"
 		.done (files) ->
-			THIS.$album-files.empty!
+			self.$album-files.empty!
 			files.for-each (file) ->
-				THIS.add-file file
+				self.add-file file
 		.fail ->
 			window.display-message '読み込みに失敗しました。再度お試しください。'
 
 	upload: (file) ->
-		THIS = @
-		THIS.$album-uploads.css \display \block
+		self = @
+		@$album-uploads.css \display \block
 		$info = $ "<li><p class='name'>#{file.name}</p><progress></progress></li>"
 		$progress-bar = $info.find \progress
-		THIS.$album-uploads.find \ol .append $info
+		@$album-uploads.find \ol .append $info
 		upload-file do
 			file
 			null
 			$progress-bar
 			null
 			(file-obj) ->
-				if THIS.current-location == file-obj.folder
-					THIS.add-file file-obj
+				if self.current-location == file-obj.folder
+					self.add-file file-obj
 			(err) ->
 				window.display-message 'アップロードに失敗しました。'
 
 	init-contextmenu: ($trigger, $menu, shown) ->
-		THIS = @
 		$instance = null
 
 		$trigger.bind \contextmenu (e) ->
