@@ -57,7 +57,7 @@ module.exports = (url) -> new Promise (res, rej) !->
 		aside.appendChild title
 		# description
 		if meta.description
-			description = create-element 'p', class: 'description', meta.description.trim!.replace /\n\n+/, '\n\n'
+			description = create-element 'p', class: 'description', meta.description.trim!.replace /\n\n+/g, '\n\n'
 			aside.appendChild description
 		# footer
 		footer = create-element 'footer'
