@@ -103,7 +103,7 @@
     "pug": "2.0.0-rc.4",
     "recluster": "0.4.5",
     "request": "2.83.0",
-    "socket.io": "2.0.2",
+    "socket.io": "2.0.4",
     "sortablejs": "1.6.1",
     "sticky-listen": "3.3.0",
     "subdomain": "1.2.0",
