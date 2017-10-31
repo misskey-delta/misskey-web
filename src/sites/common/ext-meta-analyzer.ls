@@ -3,7 +3,7 @@
   service: https://github.com/prezzemolo/analizzatore
 */
 $ = require 'jquery'
-riassumere = require 'riassumere'
+riassumere = require 'riassumere' .default
 
 desc-cutter = (desc, length) ->
 	if desc.length > length
