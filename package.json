@@ -69,7 +69,7 @@
     "pug-runtime": "2.0.3",
     "pugify": "2.2.0",
     "tslint": "5.8.0",
-    "typescript": "2.5.3",
+    "typescript": "2.6.1",
     "vinyl": "2.1.0",
     "vinyl-source-stream": "1.1.0"
   },
