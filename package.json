@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/browserify": "12.0.33",
-    "@types/body-parser": "1.16.6",
+    "@types/body-parser": "1.16.7",
     "@types/compression": "0.0.34",
     "@types/connect-mongo": "0.0.34",
     "@types/cookie": "0.3.1",
