@@ -3,6 +3,7 @@
   service: https://github.com/prezzemolo/analizzatore
 */
 $ = require 'jquery'
+riassumere = require 'riassumere' .default
 
 desc-cutter = (desc, length) ->
 	if desc.length > length
@@ -21,20 +22,8 @@ create-element = (name, attributes = {}, text) ->
 	return elem
 
 module.exports = (url) -> new Promise (res, rej) !->
-	$.ajax "https://analizzatore.prezzemolo.ga/" {
-		type: \get
-		data:
-			url: url
-			lang: LANG
-		-global
-		+cache
-		xhrFields: {
-			-with-credentials
-		}
-		# dirty hack
-		headers: null
-	}
-	.done (meta) ->
+	riassumere url
+	.then (meta) ->
 		canonical-url-object = new URL meta.canonical
 
 		a = create-element 'a',
@@ -85,4 +74,4 @@ module.exports = (url) -> new Promise (res, rej) !->
 			footer.appendChild site-name
 
 		res(a)
-	.fail (...args) !-> rej(...args)
+	.catch (...args) !-> rej(...args)
