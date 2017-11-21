@@ -4,9 +4,9 @@ import * as ts from 'gulp-typescript';
 import * as tslint from 'gulp-tslint';
 import * as browserify from 'browserify';
 import * as Vinyl from 'vinyl';
-const source = require('vinyl-source-stream');
-const es = require('event-stream');
-const less = require('gulp-less');
+import * as less from 'gulp-less';
+import * as source from 'vinyl-source-stream';
+import * as es from 'event-stream';
 const lessVars = require('gulp-less-json-variables');
 const ls = require('gulp-livescript');
 
@@ -98,21 +98,6 @@ gulp.task('lint', () => {
 });
 
 gulp.task('build-copy', ['build:client-scripts'], () => {
-	gulp.src(['./src/sites/*/common/**/*', './src/sites/*/pages/**/*'])
-		.pipe(gulp.dest('./built/resources'));
-	gulp.src([
-		'./src/**/*',
-		'!./src/**/*.ts',
-		'!./src/**/*.ls',
-		'!./src/**/*.js'
-	]).pipe(gulp.dest('./built'));
-	gulp.src([
-		'./src/share/script.js'
-	]).pipe(gulp.dest('./built/share'));
-	gulp.src('./resources/**/*').pipe(gulp.dest('./built/resources/common/'));
-});
-
-gulp.task('build-develop-copy', ['build-develop:client-scripts'], () => {
 	gulp.src(['./src/sites/*/common/**/*', './src/sites/*/pages/**/*'])
 		.pipe(gulp.dest('./built/resources'));
 	gulp.src([
