@@ -533,12 +533,11 @@ class StatusPostForm
 		THIS.$submit-button.add-class \updating
 		THIS.$submit-button.find \p .text 'Updating'
 		THIS.$submit-button.find \i .attr \class 'fa fa-spinner fa-pulse'
-		emojinize = require '@misskey/emojinize'
 		file-ids = (THIS.$form.find '.photos > li' .map ->
 			$ @ .attr \data-id).get!
 
 		$.ajax "#{CONFIG.web-api-url}/posts/create", { data: {
-			'text': emojinize(THIS.$form.find \textarea .val!)
+			'text': THIS.$form.find \textarea .val!
 			'files': file-ids.join \,
 		}}
 		.done (data) ->

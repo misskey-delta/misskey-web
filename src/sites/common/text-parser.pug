@@ -1,14 +1,34 @@
 -
+	var pictograph = require('pictograph');
+
+	function runner(target, processors = []) {
+		var processed = target;
+		processors.forEach(function (processor) {
+			processed = processor(resolved);
+		});
+		return processed;
+	}
+
 	function escapeHtml(text) {
 		return text.replace(/>/g,'&gt;').replace(/</g,'&lt;');
 	}
-	
+
 	function parse(text) {
 		'use strict';
 		if (text === null) {
 			return null;
 		}
-		text = analyzeHashtags(analyzeMentions(analyzeUrl(analyzeStrike(analyzeBold(escapeHtml(text)))))).replace(/\r?\n/g, '<br>');
+		text = runner(text,
+			[
+				escapeHtml,
+				analyzeBold,
+				analyzeStrike,
+				analyzeUrl,
+				analyzeMentions,
+				analyzeHashtags,
+				pictograph.decode
+			]
+		).replace(/\r?\n/g, '<br>');
 		return text;
 	}
 
@@ -25,14 +45,14 @@
 			return space + '<a href="' + config.url + '/' + screenName + '" class="mention" data-user-card="' + screenName + '">@' + screenName + '</a>';
 		});
 	}
-	
+
 	function analyzeBold(text) {
 		'use strict';
 		return text.replace(/\*\*(.+?)\*\*/g, function(arg, boldee) {
 			return '<strong>' + boldee + '</strong>';
 		});
 	}
-	
+
 	function analyzeStrike(text) {
 		'use strict';
 		return text.replace(/~~(.+?)~~/g, function(arg, strikeee){
