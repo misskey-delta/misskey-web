@@ -27,6 +27,11 @@
       ]
     ]
   },
+  "greenkeeper": {
+    "ignore": [
+      "@types/gulp"
+    ]
+  },
   "devDependencies": {
     "@types/body-parser": "1.16.8",
     "@types/browserify": "12.0.33",
@@ -41,7 +46,7 @@
     "@types/express-session": "1.15.6",
     "@types/glob": "5.0.33",
     "@types/gm": "1.17.33",
-    "@types/gulp": "4.0.5",
+    "@types/gulp": "3.8.35",
     "@types/gulp-less": "0.0.31",
     "@types/gulp-tslint": "3.6.32",
     "@types/gulp-typescript": "2.13.0",
