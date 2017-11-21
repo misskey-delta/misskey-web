@@ -8,10 +8,6 @@ post-compiler = require '../views/post/smart/render.pug'
 sub-post-compiler = require '../views/post/smart/sub-post-render.pug'
 AlbumDialog = require './album-dialog.js'
 user-card = require './user-card.js'
-pictograph = require 'pictograph'
-
-# dirty hack!!!!
-window.pictograph = pictograph
 
 class Post
 	(post = null) ->
