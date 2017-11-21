@@ -1,6 +1,6 @@
 /*
   for use external analyzer in misskey.
-  service: https://github.com/prezzemolo/analizzatore
+  service: https://github.com/prezzemolo/riassumere
 */
 $ = require 'jquery'
 riassumere = require 'riassumere' .default
