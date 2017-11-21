@@ -3,6 +3,8 @@ import * as express from 'express';
 import requestApi from '../../../core/request-api';
 
 export default function createWithFile(req: express.Request, res: express.Response): void {
+	const emojinize = require("@misskey/emojinize");
+
 	const file: Express.Multer.File = (<any>req).file;
 	if (file !== undefined && file !== null) {
 		const data: any = {};
@@ -28,7 +30,7 @@ export default function createWithFile(req: express.Request, res: express.Respon
 		const inReplyToPostId = req.body['in-reply-to-post-id'];
 		if (inReplyToPostId !== undefined && inReplyToPostId !== null && inReplyToPostId !== '') {
 			requestApi('posts/reply', {
-				'text': req.body.text,
+				'text': emojinize(req.body.text),
 				'files': fileEntity !== null ? fileEntity.id : null,
 				'in-reply-to-post-id': inReplyToPostId
 			}, req.user).then((post: Object) => {
@@ -38,7 +40,7 @@ export default function createWithFile(req: express.Request, res: express.Respon
 			});
 		} else {
 			requestApi('posts/create', {
-				'text': req.body.text,
+				'text': emojinize(req.body.text),
 				'files': fileEntity !== null ? fileEntity.id : null
 			}, req.user).then((post: Object) => {
 				res.send(post);
