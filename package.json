@@ -76,7 +76,6 @@
     "vinyl-source-stream": "1.1.0"
   },
   "dependencies": {
-    "@misskey/emojinize": "git+https://github.com/potato4d/ms-emojinize.git",
     "accettare": "0.0.4",
     "body-parser": "1.18.2",
     "compression": "1.7.1",
