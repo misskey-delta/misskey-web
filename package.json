@@ -88,7 +88,7 @@
     "express": "5.0.0-alpha.6",
     "express-session": "1.15.6",
     "fastclick": "1.0.6",
-    "gm": "1.23.0",
+    "gm": "1.23.1",
     "jquery": "3.2.1",
     "jquery.transit": "0.9.12",
     "log-cool": "1.1.0",
