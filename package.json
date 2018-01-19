@@ -57,7 +57,7 @@
     "@types/socket.io": "1.4.31",
     "@types/vinyl": "2.0.2",
     "@types/vinyl-source-stream": "0.0.30",
-    "@types/websocket": "0.0.35",
+    "@types/websocket": "0.0.36",
     "browserify": "14.5.0",
     "depcheck": "0.6.8",
     "event-stream": "3.3.4",
