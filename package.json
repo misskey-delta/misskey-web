@@ -58,7 +58,7 @@
     "@types/vinyl": "2.0.2",
     "@types/vinyl-source-stream": "0.0.30",
     "@types/websocket": "0.0.37",
-    "browserify": "16.1.0",
+    "browserify": "16.1.1",
     "depcheck": "0.6.9",
     "event-stream": "3.3.4",
     "glob": "7.1.2",
