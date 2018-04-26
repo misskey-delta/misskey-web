@@ -107,7 +107,7 @@
     "subdomain": "1.2.0",
     "swiper": "4.2.0",
     "vhost": "3.0.2",
-    "websocket": "1.0.25"
+    "websocket": "1.0.26"
   },
   "private": true
 }
