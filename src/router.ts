@@ -155,7 +155,7 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'share');
 	});
 
-	app.get('/subdomain/${config.publicConfig.shareDomain}/manifest.json', (req, res) => {
+	app.get(`/subdomain/${config.publicConfig.shareDomain}/manifest.json`, (req, res) => {
 		res.sendFile(path.resolve(`${__dirname}/share/manifest.json`));
 	});
 
