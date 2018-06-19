@@ -1,6 +1,6 @@
 {
   "name": "Misskey share",
   "share_target": {
-    "url_template": "/?title={title}&url={title}+{url}"
+    "url_template": "/?title={title}&url={text}+{url}"
   }
 }
