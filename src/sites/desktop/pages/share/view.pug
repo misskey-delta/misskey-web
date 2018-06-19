@@ -1,8 +1,11 @@
 extends ../../base
 
+block head
+	link(rel='manifest', href='/manifest.json')
+
 block title
 	| Misskeyでページを共有する
-		
+
 block body
 	main(role='main')
 		if login

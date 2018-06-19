@@ -40,7 +40,6 @@ html(
 		link(rel='apple-touch-icon', sizes='120x120', href= config.resourcesUrl + '/common/apple-touch-icon-120x120.png')
 		link(rel='apple-touch-icon', sizes='144x144', href= config.resourcesUrl + '/common/apple-touch-icon-144x144.png')
 		link(rel='apple-touch-icon', sizes='180x180', href= config.resourcesUrl + '/common/apple-touch-icon-180x180.png')
-		link(rel='manifest', href= config.url + '/manifest.json')
 		link(rel='search', href= config.searchUrl, title=' Misskey search')
 		link(rel='dns-prefetch', href= config.resourcesUrl)
 		link(rel='dns-prefetch', href= config.webApiUrl)
@@ -58,6 +57,7 @@ html(
 		script!= setScript('LOCALE', JSON.stringify(locale))
 		script(src= scriptPath)
 		block assets
+		block head
 	
 	body
 		block root-body

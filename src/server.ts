@@ -108,9 +108,6 @@ if (config.https.enable) {
 app.get('/favicon.ico', (req, res) => {
 	res.sendFile(path.resolve(`${__dirname}/favicon.ico`));
 });
-app.get('/manifest.json', (req, res) => {
-	res.sendFile(path.resolve(`${__dirname}/manifest.json`));
-});
 
 // Return publicconfig
 app.get('/publicconfig.json', (req, res) => {
