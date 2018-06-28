@@ -155,6 +155,10 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'share');
 	});
 
+	app.get(`/subdomain/${config.publicConfig.shareDomain}/manifest.json`, (req, res) => {
+		res.sendFile(path.resolve(`${__dirname}/share/manifest.json`));
+	});
+
 	app.get(`/subdomain/${config.publicConfig.shareDomain}/script.js`, (req, res) => {
 		res.header('Access-Control-Allow-Origin', '*');
 		res.header('Access-Control-Allow-Credentials', 'false');
