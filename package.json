@@ -78,7 +78,7 @@
   "dependencies": {
     "accettare": "0.0.4",
     "body-parser": "1.18.2",
-    "compression": "1.7.2",
+    "compression": "1.7.3",
     "connect-mongo": "2.0.1",
     "cookie": "0.3.1",
     "cookie-parser": "1.4.3",
