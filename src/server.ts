@@ -70,15 +70,15 @@ app.use(compression());
 // CORS
 app.use((req, res, next) => {
 	if (req.headers['origin'] === config.publicConfig.registerUrl) {
-		res.header('Access-Control-Allow-Origin', `${config.publicConfig.registerUrl}`)
+		res.header('Access-Control-Allow-Origin', `${config.publicConfig.registerUrl}`);
 	} else {
-		res.header('Access-Control-Allow-Origin', `${config.publicConfig.url}`)
+		res.header('Access-Control-Allow-Origin', `${config.publicConfig.url}`);
 	}
 	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
 	res.header('Access-Control-Allow-Headers', 'Content-Type, csrf-token');
 	res.header('Access-Control-Allow-Credentials', 'true');
 
-	res.vary('Origin')
+	res.vary('Origin');
 
 	// intercept OPTIONS method
 	if (req.method === 'OPTIONS') {

@@ -54,7 +54,7 @@ export default function router(app: express.Express): void {
 		).then((response: any) => {
 			res.json(response);
 		}, (err: any) => {
-			console.error(err)
+			console.error(err);
 			res.status(err.statusCode);
 			res.send(err.body);
 		});
