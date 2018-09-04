@@ -117,6 +117,7 @@ export default function router(app: express.Express): void {
 		login(req.body['screen-name'], req.body['password'], req.session, req.headers, req.ip).then(() => {
 			res.sendStatus(200);
 		}, (err: any) => {
+			console.error(err)
 			res.status(err.statusCode).send(err.body);
 		});
 	});

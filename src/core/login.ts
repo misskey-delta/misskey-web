@@ -13,7 +13,7 @@ export default function login(screenName: string, password: string, session: any
 				userId: user.id
 			}, (err: any, settings: IUserSettings) => {
 				if (err !== null) {
-					return reject();
+					return reject(err);
 				}
 				if (settings === null) {
 					// ユーザー設定が無ければ作成
