@@ -60,7 +60,7 @@
     "@types/websocket": "0.0.38",
     "browserify": "16.2.0",
     "depcheck": "0.6.9",
-    "event-stream": "3.3.4",
+    "event-stream": "4.0.0",
     "glob": "7.1.2",
     "gulp": "3.9.1",
     "gulp-less": "3.5.0",
