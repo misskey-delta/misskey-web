@@ -68,7 +68,7 @@
     "gulp-livescript": "3.0.1",
     "gulp-tslint": "8.1.3",
     "gulp-typescript": "4.0.2",
-    "livescript": "1.5.0",
+    "livescript": "1.6.0",
     "pugify": "2.2.0",
     "tslint": "5.9.0",
     "typescript": "2.6.2",
